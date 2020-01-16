@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css?family=Caveat|Dancing+Script|Pacifico&display=swap');
+:root{
+--white-color: rgb(228, 226, 229);
+--dark-color: rgb(5, 5, 5);
+--dark-color-transparent: rgba(5, 5, 5, 0.479);
+}
+
+body{
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    background-color: var(--white-color);
+}
+
+.introductory-block{
+    background-image: url('../img/navbar-bg-pic.jpg');
+    background-size: cover;
+    height: 100%;
+}
+
+.container{
+    display: flex;
+}
+a{
+    text-decoration: none;
+    color: var(--white-color);
+}
+.expl-to-do{
+    font-family: 'Caveat', cursive;
+}
+.announce-brand{
+   color: rgb(115, 206, 183); 
+   margin-right: 0px;
+}
+.it-brand{
+   color: rgb(159, 133, 228); 
+   margin-left: 0px;
+}
+.brand{
+    font-weight: bolder;
+}
+
+/* backgrounds */
+.bg-dark{
+    background-color: var(--dark-color);
+    color: var(--white-color);
+}
+.bg-dark-transparent{
+    background-color: var(--dark-color-transparent);
+    color: var(--white-color);
+}
+
+/* widths and height */
+.width-100{
+    width: 100%;
+}
+.width-90{
+    width: 90%;
+}
+.width-80{
+    width: 80%;
+}
+.width-60{
+    width: 60%;
+}
+.width-40{
+    width: 40%;
+}
+.width-20{
+    width: 20%;
+}
+.height-100{
+    height: 100%;
+}
+.heigth-200{
+    height: 400px;
+}
+
+/* paddings and margins */
+.padding-5{
+    padding: 5px;
+}
+.padding-10{
+    padding: 10px;
+}
+.margin-right-5{
+    margin-right: 5px;
+}
+.margin-left-5{
+    margin-left: 5px;
+}
+.margin-top-10{
+    margin-top: 10%;
+}
+
+/* text sizes*/
+.text-30{
+    font-size: 30px;
+}
+
+/*navbar*/
+.nav{
+    margin: 0px 30px 0px 0px;
+}
+
+/*positions*/
+.centered-element-h-v{
+    margin: auto;
+}
+.centered-element-h{
+    justify-content: center;
+}
+.text-center{
+    text-align: center;
+}
+
+/* borders */
+.white-bordered-1{
+    border: 1px solid var(--white-color);
+}
+.white-bordered-1-bottom{
+    border-bottom: 1px solid var(--white-color);
+}
+.dark-bordered-1{
+    border: 1px solid var(--dark-color);
+}
+
+.rounded-corner-30{
+    border-radius: 30px;
+}
+.rounded-corner-15{
+    border-radius: 15px;
+}
+
+.entrance-button{
+    margin:-30px auto;
+    text-align: center;
+}
