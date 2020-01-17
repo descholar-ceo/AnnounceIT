@@ -3,6 +3,7 @@
 --white-color: rgb(228, 226, 229);
 --dark-color: rgb(5, 5, 5);
 --dark-color-transparent: rgba(5, 5, 5, 0.664);
+--blue-color: rgb(157, 147, 241);
 }
 
 body{
@@ -46,9 +47,7 @@ a{
 .forms-container{
     background: var(--dark-color-transparent);
     padding: 40%;
-    width: 50%;
-    margin: auto;
-    margin-top: 10%;
+    margin-top: 5%;
     height: 30%;
     margin-left: 60%;
     border-radius: 10px;
@@ -62,7 +61,7 @@ input{
     font-weight: bolder;
     padding: 10px 0;
     outline: none;
-    color: #fff;
+    color: rgba(255, 255, 255);
     margin-bottom: 40px;
 }
 button{
@@ -71,6 +70,11 @@ button{
     line-height: 40px;
     margin-bottom: 25px;
     outline: none;
+}
+
+footer{
+    background-color: var(--dark-color);
+    color: var(--white-color);
 }
 
 .hand-cursor{
@@ -133,6 +137,18 @@ cursor: pointer;
 .margin-top-10{
     margin-top: 10%;
 }
+.margin-top-5{
+    margin-top: 5%;
+}
+.margin-bottom-5{
+    margin-bottom: 5%;
+}
+.margin-right-10{
+    margin-right: 10%;
+}
+.margin-left-40{
+    margin-left: 40%;
+}
 
 /* text sizes*/
 .text-30{
@@ -140,6 +156,11 @@ cursor: pointer;
 }
 .text-15{
     font-size: 15px;
+}
+
+/* text-colors */
+.text-blue{
+    color: var(--blue-color);
 }
 
 /*navbar*/
