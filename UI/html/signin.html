@@ -4,11 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Signin page</title>
+    <link rel="stylesheet" href="../css/announceit-styles.css">
+    <title>Signin</title>
 </head>
 <body>
-    <div>
-        <h1>hello world</h1>
+    <div class="entrance-pages">
+        <nav class="container bg-dark padding-10">
+            <div class="brand text-30">
+            <a href="/">
+                <span class="announce-brand">Announce</span>
+                <span class="it-brand">IT</span>
+            </a>
+            </div>
+            <div class="position-right">
+                <a href="#">
+                    Help
+                </a>
+            </div>
+        </nav>
+            <div class="bg-dark-transparent width-20 padding-10 forms-container">
+            <form class="">
+            <div>
+              <h3 className="text-center text-success">Signin here</h3>
+              <hr />
+
+              <div>
+                <label for="signin-email">
+                  <span class="hand-cursor">Your Email</span>
+                  <input
+                    type="text"
+                    id="signin-email"
+                    placeholder="Eg.: example@announceit.rw"
+                  />
+                </label>
+              </div>
+              <div>
+                <label class="for="signin-password">
+                  <span className="col-md-4 hand-cursor">Your password</span>
+                  <input
+                    type="password"
+                    id="signin-password"
+                    placeholder="Eg.: myp3a$$%sSwoRD"
+                  />
+                </label>
+              </div>
+              <div>
+                
+                  <a href="user-profile.html">
+                    <button
+                  type="button"
+                  class="hand-cursor rounded-corner-30 width-100 bg-dark-transparent text-center text-15"
+                >Signin</button>
+                  </a>
+                
+              </div>
+              <div>
+                <span class="margin-left-5">
+                    You don't have account yet? 
+                    <a href="signup.html">Signup</a>
+                </span>
+              </div>
+            </div>
+            </form>
+        </div>
     </div>
 </body>
 </html>

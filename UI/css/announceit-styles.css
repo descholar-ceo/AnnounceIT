@@ -2,7 +2,7 @@
 :root{
 --white-color: rgb(228, 226, 229);
 --dark-color: rgb(5, 5, 5);
---dark-color-transparent: rgba(5, 5, 5, 0.479);
+--dark-color-transparent: rgba(5, 5, 5, 0.664);
 }
 
 body{
@@ -21,7 +21,9 @@ body{
 
 .container{
     display: flex;
+    flex-direction: row;
 }
+
 a{
     text-decoration: none;
     color: var(--white-color);
@@ -41,6 +43,44 @@ a{
     font-weight: bolder;
 }
 
+.forms-container{
+    background: var(--dark-color-transparent);
+    padding: 40%;
+    width: 50%;
+    margin: auto;
+    margin-top: 10%;
+    height: 30%;
+    margin-left: 60%;
+    border-radius: 10px;
+}
+input{
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    font-size: 16px;
+    font-weight: bolder;
+    padding: 10px 0;
+    outline: none;
+    color: #fff;
+    margin-bottom: 40px;
+}
+button{
+    border: none;
+    color: var(--white-color);
+    line-height: 40px;
+    margin-bottom: 25px;
+    outline: none;
+}
+
+.hand-cursor{
+cursor: pointer;
+}
+
+.entrance-pages{
+    background: url('../img/signin-signup-bg.webp');
+    background-size: cover;
+}
 /* backgrounds */
 .bg-dark{
     background-color: var(--dark-color);
@@ -98,6 +138,9 @@ a{
 .text-30{
     font-size: 30px;
 }
+.text-15{
+    font-size: 15px;
+}
 
 /*navbar*/
 .nav{
@@ -114,7 +157,9 @@ a{
 .text-center{
     text-align: center;
 }
-
+.position-right{
+    margin-left: auto;
+}
 /* borders */
 .white-bordered-1{
     border: 1px solid var(--white-color);
