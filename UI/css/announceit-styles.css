@@ -5,6 +5,7 @@
 --dark-color-transparent: rgba(5, 5, 5, 0.664);
 --blue-color: rgb(113, 103, 204);
 --blue-color-transparent: rgba(113, 103, 204, 0.459);
+--grey-color: rgba(104, 103, 107);
 }
 
 body{
@@ -120,7 +121,9 @@ footer{
     bottom: 0px;
     left: 0px;
 }
-
+.profile-heading{
+    background: url('../img/profile-heading.jpeg');
+}
 .search-bar{
     justify-content: center;
 }
@@ -128,11 +131,46 @@ footer{
     height:100%;
     justify-content: flex-start;
     width: 20%;
-    margin-top: -20px;
+    margin-top: -80px;
 }
 .default-pp{
     width: 100%;
     height: 200px;
+}
+.list{
+    height: 100%;
+    margin-top: -80px;
+    justify-content: flex-end;
+    width: 80%;
+}
+
+.list-of-announcements{
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 320px;
+}
+
+.list-of-announcements thead tr{
+    background-color: var(--grey-color);
+    color: var(--white-color);
+    text-align: left;
+}
+
+.list-of-announcements th, .list-of-announcements td{
+    padding: 10px 15px;
+}
+
+.list-of-announcements tbody tr{
+    border-bottom: 1px solid rgb(184, 182, 182);
+}
+
+.list-of-announcements tbody tr:nth-of-type(even){
+    background-color: rgb(184, 182, 182);
+}
+.list-of-announcements tbody tr:hover{
+    cursor: pointer;
+    background-color: var(--grey-color);
 }
 
 .hand-cursor{
