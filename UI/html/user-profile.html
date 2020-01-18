@@ -4,9 +4,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>User Profile</title>
+    <link rel="stylesheet" href="../css/announceit-styles.css">
+    <title>User profile</title>
 </head>
 <body>
-   <h1>Hello, this is a user profile</h1> 
+
+  <!-- Heading and navbar -->
+     <div class="container bg-dark heigth-200">
+        <head>
+        <div class="brand-show margin-right-5">
+          <a href="index.html">
+            <span class="announce-brand">Announce</span>
+            <span class="it-brand">IT</span>
+          </a>
+        </div>
+        <div class="width-40 search-bar">
+              <input 
+              type="text"
+              placeholder="Search announcement by state. Eg.:Accepted"
+             >
+            </div>
+        <nav>
+          <ul>
+            <li>
+              <a href="#">All announcements</a>
+            </li>
+            <li>
+              <a href="#">Help</a>
+            </li>
+            <li>
+              <a href="#">Settings</a>
+            </li>
+            <li>
+              <a href="signin.html">Logout</a>
+            </li>
+          </ul>
+        </nav>
+      </head>
+      </div>
+
+     <div class="profile-content width-90">
+
+        <!-- Profile details -->
+      <div class="container profile-details bg-white dark-bordered-1 rounded-corner-15 padding-10 margin-bottom-5">
+        <div class="container-vertical">
+          <div>
+          <img src="../img/default-avatar.png" alt="profile picture" class="default-pp">
+        </div>
+        <div>
+          <span>MUGIRASE Emmanuel</span>
+          <span>emmanuellamugi@gmail.com</span>
+        </div>
+        <div 
+        class="profile-statistics white-bordered-1 margin-top-5 padding-5 rounded-corner-15 bg-dark-transparent text-17">
+          <span class="margin-top-10">All announcements posted: </span><span>234</span><br><br>
+          <span class="margin-top-10">Accepted announcements : </span><span>220</span><br><br>
+          <span>Declined announcements : </span><span>2</span><br><br>
+          <span>Active announcements : </span><span>180</span><br><br>
+          <span>Deactivated announcements : </span><span>40</span><br><br>
+        </div>
+        </div>
+      </div>
+     </div>
+      
+      <!-- Footer -->
+     <footer>
+      <div class="container centered-element-h">
+          <span>AnnounceIT</span>
+          <span class="margin-left-5">&#9426; 2020</span>
+      </div>
+  </footer>
 </body>
 </html>
