@@ -61,7 +61,7 @@ font-size: 50px;
     margin-left: 60%;
     border-radius: 10px;
 }
-input{
+input,textarea{
     width: 100%;
     border: none;
     border-bottom: 1px solid #fff;
@@ -202,6 +202,7 @@ cursor: pointer;
 /* widths and height */
 .width-100{
     width: 100%;
+    margin: auto;
 }
 .width-90{
     width: 90%;
@@ -213,12 +214,15 @@ cursor: pointer;
 }
 .width-60{
     width: 60%;
+    margin: auto;
 }
 .width-40{
     width: 40%;
+    margin: auto;
 }
 .width-20{
     width: 20%;
+    margin: auto;
 }
 .height-100{
     height: 100px;
