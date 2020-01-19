@@ -6,7 +6,7 @@
 --blue-color: rgb(74, 67, 141);
 --blue-color-transparent: rgba(113, 103, 204, 0.459);
 --grey-color: rgb(104, 103, 107);
---green-color: rgb(54, 90, 63);
+--green-color: rgb(7, 192, 146);
 --red-color: rgb(133, 69, 69);
 }
 
@@ -41,7 +41,7 @@ a{
     font-family: 'ZCOOL XiaoWei', serif;
 }
 .announce-brand{
-   color: rgb(115, 206, 183); 
+   color: var(--green-color) 
    margin-right: 0px;
 }
 .it-brand{
@@ -315,6 +315,9 @@ cursor: pointer;
 /* text-colors */
 .text-blue{
     color: var(--blue-color);
+}
+.text-success{
+    color: var(--green-color);
 }
 
 /*positions*/
