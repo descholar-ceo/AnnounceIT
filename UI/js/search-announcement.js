@@ -5,7 +5,8 @@ const displayAnnouncementsDiv = document.querySelector('div#announcements-displa
 const searchingFunc = (searchQuery) => {
     
     let matchings = announcements.filter((announc) => {
-        return announc.id.match(new RegExp(`^${searchQuery}`, 'gi'));
+        const regex = new RegExp(`^${searchQuery}`, 'gi');
+        return announc.state.match(regex)||announc.id.match(regex);
     });
 
     let resultArr;
