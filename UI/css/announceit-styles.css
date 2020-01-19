@@ -178,6 +178,9 @@ footer{
 .hand-cursor{
 cursor: pointer;
 }
+.hidden-element{
+    display: none;
+}
 
 .entrance-pages{
     background: url('../img/signin-signup-bg.webp');
@@ -318,6 +321,9 @@ cursor: pointer;
 }
 .text-success{
     color: var(--green-color);
+}
+.text-danger{
+    color: var(--red-color)
 }
 
 /*positions*/
