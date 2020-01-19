@@ -21,7 +21,8 @@
         <div class="width-40 search-bar">
               <input 
               type="text"
-              placeholder="Search announcement by state. Eg.:Accepted"
+              placeholder="Search announcement by state or id. Eg.:Accepted or 3"
+              id="searching-bar"
              >
             </div>
         <nav>
@@ -47,204 +48,7 @@
       </div>
 
     <div class="container centered-element-h">
-      <div class="margin-top-5 bg-white width-80">
-        <table class="width-100 rounded-corner-15 list-of-announcements">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Valid from</th>
-              <th>Valid until</th>
-              <th>State</th>
-              <th>Owner</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                Buying school uniform
-              </td>
-              <td>
-                Jan 10th, 2020
-              </td>
-              <td>
-                Feb 09th, 2020
-              </td>
-              <td>
-                Pending
-              </td>
-              <td>
-                Karemangingo
-              </td>
-              <td>
-                view
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Buying school uniform
-              </td>
-              <td>
-                Jan 10th, 2020
-              </td>
-              <td>
-                Feb 09th, 2020
-              </td>
-              <td>
-                Accepted
-              </td>
-              <td>
-                Delete
-              </td>
-              <td>
-                view
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Buying school uniform
-              </td>
-              <td>
-                Jan 10th, 2020
-              </td>
-              <td>
-                Feb 09th, 2020
-              </td>
-              <td>
-                Pending
-              </td>
-              <td>
-                Aimable
-              </td>
-              <td>
-                view
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Buying school uniform
-              </td>
-              <td>
-                Jan 10th, 2020
-              </td>
-              <td>
-                Feb 09th, 2020
-              </td>
-              <td>
-                Active
-              </td>
-              <td>
-                Kalisa
-              </td>
-              <td>
-                view
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Buying school uniform
-              </td>
-              <td>
-                Jan 10th, 2020
-              </td>
-              <td>
-                Feb 09th, 2020
-              </td>
-              <td>
-                Accepted
-              </td>
-              <td>
-                Hakizimana
-              </td>
-              <td>
-                view
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Buying school uniform
-              </td>
-              <td>
-                Jan 10th, 2020
-              </td>
-              <td>
-                Feb 09th, 2020
-              </td>
-              <td>
-                Pending
-              </td>
-              <td>
-                Karemangingo
-              </td>
-              <td>
-                view
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Buying school uniform
-              </td>
-              <td>
-                Jan 10th, 2020
-              </td>
-              <td>
-                Feb 09th, 2020
-              </td>
-              <td>
-                Pending
-              </td>
-              <td>
-                Mugirase
-              </td>
-              <td>
-                view
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Buying school uniform
-              </td>
-              <td>
-                Jan 10th, 2020
-              </td>
-              <td>
-                Feb 09th, 2020
-              </td>
-              <td>
-                Pending
-              </td>
-              <td>
-                Kamayirese
-              </td>
-              <td>
-                view
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Buying school uniform
-              </td>
-              <td>
-                Jan 10th, 2020
-              </td>
-              <td>
-                Feb 09th, 2020
-              </td>
-              <td>
-                Pending
-              </td>
-              <td>
-                Karemangingo
-              </td>
-              <td>
-                view
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div>
-          <button class="bg-dark width-100 hand-cursor">Load more ...</button>
-        </div>
+      <div class="margin-top-5 bg-white width-80" id="announcements-display">
       </div>
         </div>
       
@@ -255,5 +59,9 @@
           <span class="margin-left-5">&#9426; 2020</span>
       </div>
   </footer>
+
+  <!-- Importing javascripts-->
+  <script src="../../js/display-announcement.js" type="module"></script>
+  <script src="../../js/search-announcement.js" type="module"></script>
 </body>
 </html>

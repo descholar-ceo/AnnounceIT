@@ -129,6 +129,9 @@ footer{
 .search-bar{
     justify-content: center;
 }
+.search-bar-result{
+    margin-top: -80px;
+}
 .profile-details{
     height:100%;
     justify-content: flex-start;
