@@ -1,11 +1,13 @@
-@import url('https://fonts.googleapis.com/css?family=Caveat|Dancing+Script|Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css?family=ZCOOL+XiaoWei&display=swap');
 :root{
 --white-color: rgb(228, 226, 229);
 --dark-color: rgb(5, 5, 5);
 --dark-color-transparent: rgba(5, 5, 5, 0.664);
---blue-color: rgb(113, 103, 204);
+--blue-color: rgb(74, 67, 141);
 --blue-color-transparent: rgba(113, 103, 204, 0.459);
---grey-color: rgba(104, 103, 107);
+--grey-color: rgb(104, 103, 107);
+--green-color: rgb(54, 90, 63);
+--red-color: rgb(133, 69, 69);
 }
 
 body{
@@ -36,7 +38,7 @@ a{
     color: var(--white-color);
 }
 .expl-to-do{
-    font-family: 'Caveat', cursive;
+    font-family: 'ZCOOL XiaoWei', serif;
 }
 .announce-brand{
    color: rgb(115, 206, 183); 
@@ -64,7 +66,7 @@ font-size: 50px;
 input,textarea{
     width: 100%;
     border: none;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid rgb(255, 255, 255);
     background: transparent;
     font-size: 16px;
     font-weight: bolder;
@@ -181,6 +183,13 @@ cursor: pointer;
     background: url('../img/signin-signup-bg.webp');
     background-size: cover;
 }
+.option-hovered:hover{
+    background-color: var(--dark-color);
+    color: var(--white-color);
+    font-size: 20px;
+    transition: background 0.5s linear,font-size 0.5s linear;
+}
+
 /* backgrounds */
 .bg-dark{
     background-color: var(--dark-color);
@@ -196,6 +205,18 @@ cursor: pointer;
 }
 .bg-blue-transparent{
     background-color: var(--blue-color-transparent);
+    color: var(--white-color);
+}
+.bg-blue{
+    background-color: var(--blue-color);
+    color: white;
+}
+.bg-green{
+    background-color: var(--green-color);
+    color: var(--white-color);
+}
+.bg-red{
+    background-color: var(--red-color);
     color: var(--white-color);
 }
 
@@ -223,6 +244,17 @@ cursor: pointer;
 .width-20{
     width: 20%;
     margin: auto;
+}
+.width-10{
+    width: 10%;
+    margin: auto;
+}
+.width-5{
+    width: 5%;
+    margin: auto;
+}
+.heigth-50{
+    height: 50px;
 }
 .height-100{
     height: 100px;
@@ -287,7 +319,7 @@ cursor: pointer;
 
 /*positions*/
 .centered-element-h-v{
-    margin: auto;
+    margin: auto auto auto auto;
 }
 .centered-element-h{
     justify-content: center;
