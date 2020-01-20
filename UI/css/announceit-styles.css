@@ -3,7 +3,8 @@
 --white-color: rgb(228, 226, 229);
 --dark-color: rgb(5, 5, 5);
 --dark-color-transparent: rgba(5, 5, 5, 0.664);
---blue-color: rgb(157, 147, 241);
+--blue-color: rgb(113, 103, 204);
+--blue-color-transparent: rgba(113, 103, 204, 0.459);
 }
 
 body{
@@ -24,6 +25,10 @@ body{
     display: flex;
     flex-direction: row;
 }
+.container-vertical{
+    display: flex;
+    flex-direction: column;
+}
 
 a{
     text-decoration: none;
@@ -42,6 +47,9 @@ a{
 }
 .brand{
     font-weight: bolder;
+}
+.brand-show{
+font-size: 50px;
 }
 
 .forms-container{
@@ -72,9 +80,59 @@ button{
     outline: none;
 }
 
+
+/*navbar*/
+.nav{
+    margin: 0px 30px 0px 0px;
+}
+/* NAVBAR */
+nav {
+  display: inline-block;
+  text-align: right;
+  justify-content: flex-end;
+  flex: 2;
+}
+
+nav ul {
+  list-style-type: none;
+  margin-right: 2%;
+}
+nav li {
+  display: inline-block;
+}
+nav a {
+  font-size: 1.4em;
+  color: rgb(190, 200, 188);
+  padding-bottom: 1px;
+  text-decoration: none;
+  margin-right: 12px;
+}
+nav a:hover {
+  color: aliceblue;
+  text-decoration: none;
+}
+
 footer{
     background-color: var(--dark-color);
     color: var(--white-color);
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+}
+
+.search-bar{
+    justify-content: center;
+}
+.profile-details{
+    height:100%;
+    justify-content: flex-start;
+    width: 20%;
+    margin-top: -20px;
+}
+.default-pp{
+    width: 100%;
+    height: 200px;
 }
 
 .hand-cursor{
@@ -90,8 +148,16 @@ cursor: pointer;
     background-color: var(--dark-color);
     color: var(--white-color);
 }
+.bg-white{
+    background-color: var(--white-color);
+    color: var(--dark-color);
+}
 .bg-dark-transparent{
     background-color: var(--dark-color-transparent);
+    color: var(--white-color);
+}
+.bg-blue-transparent{
+    background-color: var(--blue-color-transparent);
     color: var(--white-color);
 }
 
@@ -101,9 +167,11 @@ cursor: pointer;
 }
 .width-90{
     width: 90%;
+    margin: 0 auto;
 }
 .width-80{
     width: 80%;
+    margin: 0 auto;
 }
 .width-60{
     width: 60%;
@@ -115,9 +183,12 @@ cursor: pointer;
     width: 20%;
 }
 .height-100{
-    height: 100%;
+    height: 100px;
 }
 .heigth-200{
+    height: 200px;
+}
+.heigth-400{
     height: 400px;
 }
 
@@ -129,7 +200,7 @@ cursor: pointer;
     padding: 10px;
 }
 .margin-right-5{
-    margin-right: 5px;
+    margin-right: 5%;
 }
 .margin-left-5{
     margin-left: 5px;
@@ -151,21 +222,25 @@ cursor: pointer;
 }
 
 /* text sizes*/
-.text-30{
-    font-size: 30px;
-}
 .text-15{
     font-size: 15px;
+}
+.text-17{
+    font-size: 17px;
+}
+.text-20{
+    font-size: 20px;
+}
+.text-22{
+    font-size: 22px;
+}
+.text-30{
+    font-size: 30px;
 }
 
 /* text-colors */
 .text-blue{
     color: var(--blue-color);
-}
-
-/*navbar*/
-.nav{
-    margin: 0px 30px 0px 0px;
 }
 
 /*positions*/
