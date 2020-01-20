@@ -8,6 +8,7 @@
     <title>Signin</title>
 </head>
 <body>
+  <!--header-->
     <div class="entrance-pages">
         <nav class="container bg-dark padding-10">
             <div class="brand text-30">
@@ -22,34 +23,40 @@
                 </a>
             </div>
         </nav>
-            <div class="bg-dark-transparent width-20 padding-10 forms-container">
-            <form>
-            <div>
-              <h3 class="text-center text-success">Signin here</h3>
-              <hr />
 
-              <div>
+        <!-- Signin form -->
+            <div class="bg-dark-transparent width-60 margin-top-5 margin-bottom-5 padding-2 rounded-corner-15">
+            <form>
+            <div class="margin-bottom-5">
+              <h1 class="text-center">Signin here</h1>
+            </div>
+
+              <div class="margin-bottom-5">
                 <label for="signin-email">
                   <span class="text-center hand-cursor">Your Email</span>
                   <input
-                    type="text"
+                    type="email"
                     id="signin-email"
-                    placeholder="Eg.: example@announceit.rw"
+                    placeholder="Eg: example@announceit.rw"
+                    class="width-100 white-bordered-1-bottom text-17 text-white"
                   />
                 </label>
               </div>
-              <div>
+
+
+              <div class="margin-bottom-5">
                 <label class="for="signin-password">
                   <span class="text-center hand-cursor">Your password</span>
                   <input
                     type="password"
                     id="signin-password"
-                    placeholder="Eg.: myp3a$$%sSwoRD"
+                    placeholder="Eg: myp3a$$%sSwoRD"
+                    class="width-100 white-bordered-1-bottom text-17 text-white"
                   />
                 </label>
               </div>
-              <div>
-                
+
+              <div class="margin-bottom-5">
                   <a href="user-profile.html">
                     <button
                   type="button"
@@ -58,16 +65,19 @@
                   </a>
                 
               </div>
-              <div>
+
+
+              <div class="margin-bottom-5">
                 <span class="margin-left-5">
                     You don't have account yet? 
-                    <a href="signup.html">Signup</a>
+                    <a href="signup.html" class="text-success">Signup</a>
                 </span>
               </div>
-              <div>
+
+              <div class="margin-bottom-5">
                 <span class="margin-left-5">
                     Forgot your account ? 
-                    <a href="reset-password.html">Reset password</a>
+                    <a href="reset-password.html" class="text-success">Reset password</a>
                 </span>
               </div>
             </div>

@@ -3,7 +3,7 @@
 --white-color: rgb(228, 226, 229);
 --dark-color: rgb(5, 5, 5);
 --dark-color-transparent: rgba(5, 5, 5, 0.664);
---blue-color: rgb(74, 67, 141);
+--blue-color: rgb(82, 69, 202);
 --blue-color-transparent: rgba(113, 103, 204, 0.459);
 --grey-color: rgb(104, 103, 107);
 --green-color: rgb(7, 192, 146);
@@ -42,39 +42,28 @@ a{
 }
 .announce-brand{
    color: var(--green-color);
-   margin-right: 0px;
 }
 .it-brand{
-   color: rgb(159, 133, 228); 
+   color: var(--blue-color);
    margin-left: 0px;
 }
 .brand{
     font-weight: bolder;
 }
-.brand-show{
-font-size: 50px;
-}
 
-.forms-container{
-    background: var(--dark-color-transparent);
-    padding: 40%;
-    margin-top: 5%;
-    height: 30%;
-    margin-left: 60%;
-    border-radius: 10px;
-}
 input,textarea{
-    width: 100%;
     border: none;
-    border-bottom: 1px solid rgb(255, 255, 255);
     background: transparent;
-    font-size: 16px;
     font-weight: bolder;
     padding: 10px 0;
     outline: none;
-    color: rgba(255, 255, 255);
     margin-bottom: 40px;
 }
+
+input[type=email]:invalid{
+background-color: var(--red-color);
+}
+
 button{
     border: none;
     color: var(--white-color);
@@ -83,6 +72,12 @@ button{
     outline: none;
 }
 
+/*
+
+ELEMENTS
+
+
+*/
 
 /*navbar*/
 .nav{
@@ -186,7 +181,10 @@ cursor: pointer;
 }
 
 .entrance-pages{
-    background: url('../img/signin-signup-bg.webp');
+    background: url('../img/signin-signup-bg.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
 }
 .option-hovered:hover{
@@ -196,6 +194,17 @@ cursor: pointer;
     transition: background 0.5s linear,font-size 0.5s linear;
 }
 
+
+.entrance-button{
+    margin:-15px auto;
+}
+
+
+/*
+
+GENERAL STYLES
+
+*/
 /* backgrounds */
 .bg-dark{
     background-color: var(--dark-color);
@@ -237,7 +246,7 @@ cursor: pointer;
 }
 .width-80{
     width: 80%;
-    margin: 0 auto;
+    margin: auto;
 }
 .width-60{
     width: 60%;
@@ -274,22 +283,49 @@ cursor: pointer;
 
 /* paddings and margins */
 .padding-5{
-    padding: 5px;
+    padding: 5%;
+}
+.padding-2{
+    padding: 2%;
 }
 .padding-10{
+    padding: 10px;
+}
+.padding-left-5{
+    padding: 5%;
+}
+.padding-left-10{
+    padding: 10px;
+}
+.padding-bottom-5{
+    padding: 5%;
+}
+.padding-bottom-10{
+    padding: 10px;
+}
+.padding-right-5{
+    padding: 5%;
+}
+.padding-right-10{
     padding: 10px;
 }
 .margin-right-5{
     margin-right: 5%;
 }
 .margin-left-5{
-    margin-left: 5px;
+    margin-left: 5%;
 }
 .margin-top-10{
     margin-top: 10%;
 }
 .margin-top-5{
     margin-top: 5%;
+}
+.margin-bottom-2{
+    margin-bottom: 2%;
+}
+.margin-bottom-2{
+    margin-bottom: 2%;
 }
 .margin-bottom-5{
     margin-bottom: 5%;
@@ -317,6 +353,12 @@ cursor: pointer;
 .text-30{
     font-size: 30px;
 }
+.text-40{
+    font-size: 40px;
+}
+.text-50{
+    font-size: 50px;
+}
 
 /* text-colors */
 .text-blue{
@@ -327,6 +369,9 @@ cursor: pointer;
 }
 .text-danger{
     color: var(--red-color)
+}
+.text-white{
+    color: white;
 }
 
 /*positions*/
@@ -358,9 +403,4 @@ cursor: pointer;
 }
 .rounded-corner-15{
     border-radius: 15px;
-}
-
-.entrance-button{
-    margin:-30px auto;
-    text-align: center;
 }
