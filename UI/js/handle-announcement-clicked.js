@@ -13,7 +13,7 @@ const announcementStatus = document.querySelector('span#announcement-status');
 const announcementOwner = document.querySelector('span#announcement-owner');
 const announcementStartDate = document.querySelector('span#announcement-startdate');
 const announcementEndDate = document.querySelector('span#announcement-enddate');
-const announcementUpdateBtn = document.querySelector('button#announcement-update-btn');
+const announcementUpdateBtn = document.querySelector('button[announcement-update-btn]');
 const announcementDeleteBtn = document.querySelector('button[announcement-delete-btn]');
 const goBackToListBtn = document.querySelector('button#goback-to-list-btn');
 
@@ -32,7 +32,21 @@ export const clickedSingleResult = (event) => {
             announcementStartDate.innerHTML = `Valid since : ${currAnnounc.startDate}`;
             announcementEndDate.innerHTML = `To : ${currAnnounc.endDate}`;
 
+<<<<<<< HEAD
             announcementDeleteBtn.setAttribute('id', currAnnounc.id);
+=======
+            announcementUpdateBtn.setAttribute('id', currAnnounc.id);
+            announcementDeleteBtn.setAttribute('id', currAnnounc.id);
+
+            clickedElt = {
+                title: currAnnounc.title,
+                content: currAnnounc.text,
+                status: currAnnounc.status,
+                owner: currAnnounc.owner,
+                startDate: currAnnounc.startDate,
+                endDate: currAnnounc.endDate
+            }
+>>>>>>> ft(edit-announcement): User Edits announcement
         }
     });
    
@@ -46,6 +60,7 @@ goBackToListBtn.addEventListener('click', () => {
     location.reload();
 });
 
+<<<<<<< HEAD
 announcementDeleteBtn.addEventListener('click', (event) => {
 
     /**
@@ -57,3 +72,25 @@ announcementDeleteBtn.addEventListener('click', (event) => {
     announcementsDisplayList.classList.remove('hidden-element');
     announcementDisplayDetails.classList.add('hidden-element');
 })
+=======
+announcementUpdateBtn.addEventListener('click', (event) => {
+    let createAnnouncementPage;
+    let clickedAnnouncement;
+    const currAddress = window.location.href;
+    if (currAddress.includes('admin-side')) {
+        createAnnouncementPage = '../create-announcement.html';
+    } else {
+        createAnnouncementPage = '../html/create-announcement.html';
+    }
+
+    announcements.forEach((currAnnounc) => {
+        if (currAnnounc.id === event.target.id) {
+            clickedAnnouncement = currAnnounc;
+        }
+    });
+
+    // console.log();
+
+    location.replace(`${createAnnouncementPage}?${JSON.stringify(clickedAnnouncement)}`);
+});
+>>>>>>> ft(edit-announcement): User Edits announcement
