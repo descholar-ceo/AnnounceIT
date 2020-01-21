@@ -211,7 +211,8 @@ cursor: pointer;
     color: var(--white-color);
     font-size: 20px;
     transition: background 0.5s linear,font-size 0.5s linear;
-    padding: 5%;
+    padding: 1%;
+    margin: 1%;
     border-radius: 15px;
 }
 
@@ -219,6 +220,7 @@ cursor: pointer;
 .entrance-button{
     margin:-30px auto;
     line-height: 42px;
+    width: 20%;
 }
 
 
@@ -322,6 +324,12 @@ GENERAL STYLES
 .padding-left-5{
     padding-left: 5%;
 }
+.padding-right-2{
+    padding-right: 2%;
+}
+.padding-left-2{
+    padding-left: 2%;
+}
 .padding-left-10{
     padding-left: 10px;
 }
@@ -363,6 +371,9 @@ GENERAL STYLES
 .margin-top-5{
     margin-top: 5%;
 }
+.margin-top-1{
+    margin-top: 1%;
+}
 .margin-top-2{
     margin-top: 2%;
 }
@@ -377,6 +388,9 @@ GENERAL STYLES
 }
 .margin-right-10{
     margin-right: 10%;
+}
+.margin-left-1{
+    margin-left: 1%;
 }
 .margin-left-2{
     margin-left: 2%;
@@ -471,6 +485,7 @@ GENERAL STYLES
 .rounded-corner-30{
     border-radius: 30px;
 }
+
 .rounded-corner-15{
     border-radius: 15px;
 }
