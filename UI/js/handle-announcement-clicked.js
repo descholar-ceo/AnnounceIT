@@ -47,7 +47,13 @@ goBackToListBtn.addEventListener('click', () => {
 });
 
 announcementDeleteBtn.addEventListener('click', (event) => {
-    announcements.splice(event.target.id - 2, 1);
+
+    /**
+     * This function is working well, it is there to be used to remove an element 
+     * array, it will be used at the fullest, when we have real data from backend
+     */
+    delete announcements[event.target.id];
+
     announcementsDisplayList.classList.remove('hidden-element');
     announcementDisplayDetails.classList.add('hidden-element');
 })
