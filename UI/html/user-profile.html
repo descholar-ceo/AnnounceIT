@@ -11,24 +11,28 @@
 
   <!-- Heading and navbar -->
      <div class="container profile-heading heigth-200">
-        <head>
         <div class="brand-show margin-right-5">
-          <a href="index.html">
+          <a href="index.html" class="text-50">
             <span class="announce-brand">Announce</span>
             <span class="it-brand">IT</span>
           </a>
         </div>
-        <div class="width-40 search-bar">
+
+        <!-- search bar -->
+         <div class="width-40 shadows-black rounded-corner-30 dark-bordered-1 margin-top-2">
               <input 
               type="text"
-              placeholder="Search announcement by state. Eg.:Accepted"
+              placeholder="Search announcement by status. Eg:Accepted"
               id="searching-bar"
+              class="width-100 bg-white text-17 text-black rounded-corner-30 text-center"
              >
             </div>
+
+            <!-- navbar (contains the menus)-->
         <nav>
           <ul>
             <li>
-              <a href="create-announcement.html">Create</a>
+              <a href="create-announcement.html">Create announcement</a>
             </li>
             <li>
               <a href="#">Help</a>
@@ -41,7 +45,6 @@
             </li>
           </ul>
         </nav>
-      </head>
       </div>
 
  <div class="width-90">     
@@ -49,16 +52,22 @@
 <!-- Profile details on a side bar-->
       <div 
         class="container-vertical profile-details bg-white dark-bordered-1 rounded-corner-15 padding-10 margin-bottom-5">
-       
-          <div>
-          <img src="../img/default-avatar.png" alt="profile picture" class="default-pp">
-        </div>
+     
+        <!-- user-card -->
+<div class="bg-dark-transparent padding-2 rounded-corner-15">
         <div>
+          <img 
+          src="../img/default-avatar.png" alt="profile picture" class="default-pp circled-element">
+        </div>
+        <div class="text-blue bg-dark padding-2 rounded-corner-15 text-13">
           <span>MUGIRASE Emmanuel</span>
           <span>emmanuellamugi@gmail.com</span>
         </div>
+
+</div>
+          
         <div 
-        class="profile-statistics white-bordered-1 margin-top-5 padding-5 rounded-corner-15 bg-dark-transparent text-17">
+        class="white-bordered-1 margin-5 padding-5 rounded-corner-15 bg-dark-transparent text-15">
           <span class="margin-top-10">All announcements posted: </span><span>234</span><br><br>
           <span class="margin-top-10">Accepted announcements : </span><span>220</span><br><br>
           <span>Declined announcements : </span><span>2</span><br><br>
@@ -69,9 +78,52 @@
 
       <!-- Displaying list of all announcements-->
       <div 
-       class="list dark-bordered-1 margin-left-5 bg-white"
+       class="list dark-bordered-1 margin-left-2 bg-white padding-top-2 rounded-corner-15 padding-bottom-2 shadow-black"
        id="announcements-display">
       </div>
+
+      <!-- Displaying details of announcement-->
+      <div 
+        class="list dark-bordered-1 margin-left-2 bg-white padding-top-2 rounded-corner-15 padding-bottom-2 hidden-element"
+        id="announcement-details-display">
+      <div class="width-100">
+            <h2 id="announcement-title" class="text-center"></h2>
+            <div class="bg-dark-transparent padding-2">
+                <div class="width-80">
+                    <h3>Content</h3>
+                    <span id="announcement-content"/>
+                </div>
+
+                <div class="container width-80 margin-top-2">
+                    <span class="width-40">Status : </span>
+                    <span class="width-40" id="announcement-status"/>
+                </div>
+                    
+                <div class="container width-80 margin-top-2">
+                    <span class="width-40">Posted by : </span>
+                    <span class="width-40" id="announcement-owner"/>
+                </div>
+
+                <div class="container width-80 margin-top-2">
+                    <span class="width-40" id="announcement-startdate"/>
+                    <span class="width-40" id="announcement-enddate"/>
+                </div>
+            </div>
+            <div class="width-100 container margin-top-2">
+                <button class="width-20 bg-blue rounded-corner-30 hand-cursor" id="announcement-update-btn">
+                  Update</button>
+                <button
+                    class="width-20 bg-green rounded-corner-30 hand-cursor" id="goback-to-list-btn">
+                    Go back to list</button>
+                <button 
+                    class="width-20 bg-red rounded-corner-30 hand-cursor" id="announcement-delete-btn">
+                    Delete</button>
+            </div>
+
+            </div>
+      </div>
+      
+
         </div>
      </div>
       
@@ -86,5 +138,6 @@
   <!-- Importing javascripts-->
   <script src="../js/display-announcement.js" type="module"></script>
   <script src="../js/search-announcement.js" type="module"></script>
+  <script src="../js/handle-announcement-clicked.js" type="module"></script>
 </body>
 </html>
