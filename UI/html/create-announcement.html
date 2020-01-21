@@ -9,6 +9,8 @@
 </head>
 <body>
     <div class="entrance-pages">
+
+      <!-- header -->
         <nav class="container bg-dark padding-10">
             <div class="brand text-30">
             <a href="index.html">
@@ -22,64 +24,70 @@
                 </a>
             </div>
         </nav>
-            <div
-             class="bg-dark-transparent width-60 margin-bottom-5 margin-top-5 rounded-corner-15 padding-10">
-            <form>
-            <div>
-              <h3 class="text-center">Fill this form to create new announcement</h3>
-              <hr />
 
-              <div>
+        <!-- Announcement form -->
+            <div
+             class="bg-dark-transparent width-60 margin-bottom-5 margin-top-5 rounded-corner-15 padding-5">
+            <form>
+            <div class="margin-bottom-5">
+              <h1 class="text-center">Fill this form to create new announcement</h1>
+            </div>
+
+              <div class="margin-bottom-5">
                 <label for="announcement-title">
-                  <span class="hand-cursor">Announcement title</span>
+                  <span class="hand-cursor text-bold text-17">Announcement title</span>
                   <input
                     type="text"
                     id="announcement-title"
                     placeholder="Eg.: Buying school uniform"
+                    class="width-100 white-bordered-1-bottom text-17 text-white"
                   />
                 </label>
               </div>
 
-              <div>
+              <div class="margin-bottom-5">
                 <label for="announcement-content">
-                  <span class="hand-cursor">Announcement content</span>
+                  <span class="hand-cursor text-bold text-17">Announcement content</span>
                   <textarea 
                   name="announcement-content" 
                   id="announcement-content" 
                   cols="30" 
                   rows="5"
                   id="announcement-content"
-                  placeholder="Enter the announcement content here"></textarea>
+                  placeholder="Enter the announcement content here"
+                  class="width-100 white-bordered-1-bottom text-17 text-white"></textarea>
                 </label>
               </div>
 
-              <div>
+              <div class="margin-bottom-5">
                 <label for="announcement-stating-time">
-                  <span class="hand-cursor">Announcement starting time</span>
+                  <span class="hand-cursor text-bold text-17">Announcement starting time</span>
                   <input
                     type="date"
                     id="announcement-stating-time"
+                    class="width-100 white-bordered-1-bottom text-17 text-white"
                   />
                 </label>
               </div>
 
-              <div>
+              <div class="margin-bottom-5">
                 <label for="announcement-ending-date">
-                  <span class="hand-cursor">Announcement ending date</span>
+                  <span class="hand-cursor text-bold text-17">Announcement ending date</span>
                   <input
                     type="date"
                     id="announcement-ending-date"
+                    class="width-100 white-bordered-1-bottom text-17 text-white"
                   />
                 </label>
               </div>
 
               
-              <div>
+              <div class="margin-bottom-5">
                 
                   <a href="user-profile.html">
                     <button
                   type="button"
-                  class="hand-cursor rounded-corner-30 width-100 bg-dark-transparent text-center text-15"
+                  class="hand-cursor text-bold text-17 rounded-corner-30 width-100 bg-dark-transparent text-center text-15"
                 >Send your announcement</button>
                   </a>
                 
