@@ -14,7 +14,7 @@ const announcementOwner = document.querySelector('span#announcement-owner');
 const announcementStartDate = document.querySelector('span#announcement-startdate');
 const announcementEndDate = document.querySelector('span#announcement-enddate');
 const announcementUpdateBtn = document.querySelector('button#announcement-update-btn');
-const announcementDeleteBtn = document.querySelector('button#announcement-delete-btn');
+const announcementDeleteBtn = document.querySelector('button[announcement-delete-btn]');
 const goBackToListBtn = document.querySelector('button#goback-to-list-btn');
 
 export const clickedSingleResult = (event) => {
@@ -31,6 +31,8 @@ export const clickedSingleResult = (event) => {
             announcementOwner.innerHTML = currAnnounc.owner;
             announcementStartDate.innerHTML = `Valid since : ${currAnnounc.startDate}`;
             announcementEndDate.innerHTML = `To : ${currAnnounc.endDate}`;
+
+            announcementDeleteBtn.setAttribute('id', currAnnounc.id);
         }
     });
    
@@ -42,4 +44,16 @@ singleResult.forEach((currTr) => {
 
 goBackToListBtn.addEventListener('click', () => {
     location.reload();
+});
+
+announcementDeleteBtn.addEventListener('click', (event) => {
+
+    /**
+     * This function is working well, it is there to be used to remove an element 
+     * array, it will be used at the fullest, when we have real data from backend
+     */
+    delete announcements[event.target.id];
+
+    announcementsDisplayList.classList.remove('hidden-element');
+    announcementDisplayDetails.classList.add('hidden-element');
 })
