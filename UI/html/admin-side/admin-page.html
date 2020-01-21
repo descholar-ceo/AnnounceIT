@@ -12,22 +12,28 @@
   <!-- Heading and navbar -->
      <div class="container profile-heading heigth-200">
         <head>
-        <div class="brand-show margin-right-5 expl-to-do">
-          <a href="../index.html">
+        <div class="text-50 margin-right-5 expl-to-do">
+          <a href="../index.html" class="text-50">
             <span class="announce-brand">Announce</span>
             <span class="it-brand">IT</span>
           </a>
         </div>
-        <div class="width-40 search-bar">
+
+        <!-- search bar -->
+        <div class="width-40 shadows-black rounded-corner-30 dark-bordered-1 margin-top-1 margin-left-1">
             <input 
               type="text"
-              placeholder="Search all announcements with state. Eg.:Accepted"
+              placeholder="Search all announcements with status or id or name of announcement. Eg:Accepted"
+              class="width-100 bg-white text-17 text-black rounded-corner-30 text-center padding-left-2 padding-right-2"
+               id="searching-bar"
              />
         </div>
+
+        <!-- nav menu -->
         <nav>
           <ul>
             <li>
-              <a href="../create-announcement.html">Create</a>
+              <a href="../create-announcement.html">Create announcement</a>
             </li>
             <li>
               <a href="#">Help</a>
@@ -43,23 +49,28 @@
       </head>
       </div>
 
-     <div class="admin-profile-content width-90">
+     <div class="width-90">
 
-        <div class="container">
+    <div class="container">
 <!-- Profile details -->
       <div 
         class="container-vertical profile-details bg-white dark-bordered-1 rounded-corner-15 padding-10 margin-bottom-5">
        
+        <!-- admin card -->
+        <div class="bg-dark-transparent padding-2 rounded-corner-15">
           <div>
-          <img src="../../img/default-admin-avatar.png" alt="profile picture" class="default-pp">
+            <img src="../../img/default-admin-avatar.png" 
+            alt="profile picture" class="default-pp circled-element">
         </div>
         
-        <div>
+        <div class="text-blue bg-dark padding-5 rounded-corner-15">
           <span>descholar</span><br/>
           <span>emmamugira@gmail.com</span>
         </div>
+        </div>
+          
         <div 
-        class="profile-statistics white-bordered-1 margin-top-5 padding-5 rounded-corner-15 bg-dark-transparent text-17">
+        class="profile-statistics white-bordered-1 margin-top-5 padding-5 rounded-corner-15 bg-dark-transparent text-17 shadows-black">
           
           <p class="option-hovered">
             <a href="#">All users</a>
@@ -81,9 +92,51 @@
         </div>
         </div>
       
-      <div class="list margin-left-5 bg-white rounded-corner-15">
+        <!-- Dashboard -->
+      <div class="list margin-left-2 bg-white rounded-corner-15 shadows-black container-vertical">
+
+        <!-- First row -->
         <div class="container padding-10">
-            <div class="rounded-corner-15 width-20 height-50 bg-blue hand-cursor padding-5 option-hovered">
+            <a 
+            href="all-announcements.html" 
+            class="rounded-corner-15 width-20 height-50 bg-blue hand-cursor padding-2 text-center shadows-black option-hovered">
+            <h2>
+                17
+            </h2> 
+            <span>
+                My announcements
+            </span>
+        </a>
+        <a 
+        href="#" 
+        class="rounded-corner-15 width-20 height-50 bg-green hand-cursor padding-2 text-center shadows-black option-hovered">
+            <h2>
+                22
+            </h2>
+            Edited announcements
+        </a>
+        <div class="rounded-corner-15 width-20 height-50 bg-red hand-cursor padding-2 text-center shadows-black option-hovered">
+            <h2>
+                45
+            </h2>
+            <span>
+                Announcements I accepted
+            </span>
+        </div>
+        <div class="rounded-corner-15 width-20 height-50 bg-dark hand-cursor padding-2 text-center shadows-black option-hovered">
+            <h2>
+              10
+            </h2>
+            <span>
+                Announcements I deactivated
+            </span>
+        </div>
+            
+        </div>
+
+        <!-- Second row -->
+        <div class="container padding-10">
+            <div class="rounded-corner-15 width-20 height-50 bg-blue hand-cursor padding-2 text-center shadows-black option-hovered">
             <h2>
                 234
             </h2> 
@@ -91,13 +144,13 @@
                 All Users
             </span>
         </div>
-        <a href="all-announcements.html" class="rounded-corner-15 width-20 height-50 bg-green hand-cursor padding-5 option-hovered">
+        <a href="all-announcements.html" class="rounded-corner-15 width-20 height-50 bg-green hand-cursor padding-2 text-center shadows-black option-hovered">
             <h2>
                 106
             </h2>
             All announcements
         </a>
-        <div class="rounded-corner-15 width-20 height-50 bg-red hand-cursor padding-5 option-hovered">
+        <div class="rounded-corner-15 width-20 height-50 bg-red hand-cursor padding-2 text-center shadows-black option-hovered">
             <h2>
                 .
             </h2>
@@ -105,13 +158,15 @@
                 Delete announcements
             </span>
         </div>
-        <div class="rounded-corner-15 width-20 height-50 bg-dark hand-cursor padding-5 option-hovered">
+        <div class="rounded-corner-15 width-20 height-50 bg-dark hand-cursor padding-2 text-center shadows-black option-hovered">
             <h2>.</h2>
             <span>
                 Add user to blacklist
             </span>
         </div>
+            
         </div>
+        
       </div>
         </div>
      </div>
