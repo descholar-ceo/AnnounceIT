@@ -1,4 +1,3 @@
-
 import { announcements } from '../js/resources/announcements.js';
 
 /** varibales */
@@ -32,9 +31,8 @@ export const clickedSingleResult = (event) => {
             announcementStartDate.innerHTML = `Valid since : ${currAnnounc.startDate}`;
             announcementEndDate.innerHTML = `To : ${currAnnounc.endDate}`;
 
-<<<<<<< HEAD
             announcementDeleteBtn.setAttribute('id', currAnnounc.id);
-=======
+
             announcementUpdateBtn.setAttribute('id', currAnnounc.id);
             announcementDeleteBtn.setAttribute('id', currAnnounc.id);
 
@@ -46,7 +44,6 @@ export const clickedSingleResult = (event) => {
                 startDate: currAnnounc.startDate,
                 endDate: currAnnounc.endDate
             }
->>>>>>> ft(edit-announcement): User Edits announcement
         }
     });
    
@@ -60,7 +57,6 @@ goBackToListBtn.addEventListener('click', () => {
     location.reload();
 });
 
-<<<<<<< HEAD
 announcementDeleteBtn.addEventListener('click', (event) => {
 
     /**
@@ -72,7 +68,7 @@ announcementDeleteBtn.addEventListener('click', (event) => {
     announcementsDisplayList.classList.remove('hidden-element');
     announcementDisplayDetails.classList.add('hidden-element');
 })
-=======
+
 announcementUpdateBtn.addEventListener('click', (event) => {
     let createAnnouncementPage;
     let clickedAnnouncement;
@@ -89,8 +85,5 @@ announcementUpdateBtn.addEventListener('click', (event) => {
         }
     });
 
-    // console.log();
-
     location.replace(`${createAnnouncementPage}?${JSON.stringify(clickedAnnouncement)}`);
 });
->>>>>>> ft(edit-announcement): User Edits announcement
