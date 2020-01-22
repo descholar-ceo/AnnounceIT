@@ -11,24 +11,24 @@
 
   <!-- Heading and navbar -->
      <div class="container profile-heading heigth-200">
-        <div class="brand-show margin-right-5">
-          <a href="index.html" class="text-50">
+        <div class="expl-to-do text-50 text-bold">
+          <a href="index.html">
             <span class="announce-brand">Announce</span>
             <span class="it-brand">IT</span>
           </a>
         </div>
 
         <!-- search bar -->
-         <div class="width-40 shadows-black rounded-corner-30 dark-bordered-1 margin-top-1 margin-left-1">
+         <div class="search-bar-div rounded-corner-30 dark-bordered-1 margin-top-1">
               <input 
               type="text"
-              placeholder="Search announcement by status. Eg:Accepted"
+              placeholder="Search announcement by id, status, or announcement title. Eg:Accepted, or 1, ..."
               id="searching-bar"
-              class="width-100 bg-white text-17 text-black rounded-corner-30 text-center"
+              class="width-100 bg-white text-17 shadows-black text-black rounded-corner-30 text-center padding-left-2 padding-right-2"
              >
             </div>
 
-            <!-- navbar (contains the menus)-->
+            <!-- nav (contains the menus)-->
         <nav>
           <ul>
             <li>
@@ -78,7 +78,7 @@
 
       <!-- Displaying list of all announcements-->
       <div 
-       class="list dark-bordered-1 margin-left-2 bg-white padding-top-2 rounded-corner-15 padding-bottom-2 shadow-black"
+       class="list dark-bordered-1  bg-white padding-top-2 rounded-corner-15 padding-bottom-2 shadows-black"
        id="announcements-display">
       </div>
 
@@ -94,19 +94,19 @@
                     <span id="announcement-content"/>
                 </div>
 
-                <div class="container width-80 margin-top-2">
-                    <span class="width-40">Status : </span>
-                    <span class="width-40" id="announcement-status"/>
+                <div class="container announcement-card-footer margin-top-2">
+                    <span class="width-40 text-15">Status : </span>
+                    <span class="width-40 text-15" id="announcement-status"/>
                 </div>
                     
-                <div class="container width-80 margin-top-2">
-                    <span class="width-40">Posted by : </span>
-                    <span class="width-40" id="announcement-owner"/>
+                <div class="container announcement-card-footer margin-top-2">
+                    <span class="width-40 text-15">Posted by : </span>
+                    <span class="width-40 text-15" id="announcement-owner"/>
                 </div>
 
-                <div class="container width-80 margin-top-2">
-                    <span class="width-40" id="announcement-startdate"/>
-                    <span class="width-40" id="announcement-enddate"/>
+                <div class="container announcement-card-footer margin-top-2">
+                    <span class="width-40 text-15" id="announcement-startdate"/>
+                    <span class="width-40 text-15" id="announcement-enddate"/>
                 </div>
             </div>
             <div class="width-100 container margin-top-2">

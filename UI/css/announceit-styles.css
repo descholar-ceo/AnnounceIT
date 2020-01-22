@@ -12,7 +12,7 @@
 --red-color: rgb(133, 69, 69);
 }
 
-body{
+body,html{
     margin: 0;
     width: 100%;
     height: 100%;
@@ -30,6 +30,24 @@ body{
     display: flex;
     flex-direction: row;
 }
+@media screen and (max-width: 800px){
+    .container{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 800px){
+    h1{
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 319px){
+    h1{
+        font-size: 15px;
+    }
+}
 .container-vertical{
     display: flex;
     flex-direction: column;
@@ -38,6 +56,11 @@ body{
 a{
     text-decoration: none;
     color: var(--white-color);
+}
+@media screen and (max-width:800px){
+    a{
+        margin: 10%;
+    }
 }
 .expl-to-do{
     font-family: 'ZCOOL XiaoWei', serif;
@@ -49,10 +72,6 @@ a{
    color: var(--blue-color);
    margin-left: 0px;
 }
-.brand{
-    font-weight: bolder;
-}
-
 
 input,textarea{
     border: none;
@@ -92,6 +111,12 @@ button{
     outline: none;
 }
 
+@media screen and (max-width:800px){
+    button{
+        line-height: 30px;
+    }
+}
+
 /*
 
 ELEMENTS
@@ -102,6 +127,16 @@ ELEMENTS
 /*navbar*/
 .nav{
     margin: 0px 30px 0px 0px;
+}
+
+@media screen and (max-width: 800px){
+    nav{
+        width: 40%;
+        margin-left: auto;
+        margin-right: 2%;
+        font-size: 14px;
+        text-align: left;
+    }
 }
 /* NAVBAR */
 nav {
@@ -118,15 +153,28 @@ nav li {
   display: inline-block;
 }
 nav a {
-  font-size: 1.2em;
+  font-size: 17px;
   color: var(--white-color);
   padding-bottom: 1px;
   text-decoration: none;
   margin-right: 12px;
 }
 nav a:hover {
-  color: aliceblue;
+  color: var(--blue-color);
   text-decoration: none;
+}
+
+.search-bar-div{
+    width: 40%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+@media screen and (max-width: 800px){
+    .search-bar-div{
+        width: 80%;
+        margin: auto;
+    }
 }
 
 footer{
@@ -137,6 +185,7 @@ footer{
     bottom: 0px;
     left: 0px;
 }
+
 .profile-heading{
     background: url('../img/profile-heading.jpeg');
 }
@@ -144,20 +193,47 @@ footer{
     margin-top: -80px;
 }
 .profile-details{
-    height:100%;
     justify-content: flex-start;
     width: 20%;
     margin-top: -80px;
+}
+
+@media screen and (max-width: 800px){
+   .profile-details{
+        width: 80%;
+        margin: 1% auto;
+   }
 }
 .default-pp{
     width: 100%;
     height: 200px;
 }
+@media screen and (max-width: 800px){
+    .default-pp{
+        width: 100%;
+        height: 100%;
+        margin: auto;
+    }
+}
 .list{
     height: 100%;
     margin-top: -80px;
+    margin-left: 2%;
+    margin-bottom: 8%;
     justify-content: flex-end;
     width: 80%;
+}
+
+@media screen and (max-width: 800px){
+    .list{
+        width: 85%;
+        margin: 1% auto;
+    }
+}
+@media screen and (max-width: 530px){
+    .list{
+        overflow-y: auto;
+    }
 }
 
 .shadows-black{
@@ -165,9 +241,12 @@ footer{
 }
 .list-of-announcements{
     border-collapse: collapse;
-    margin: 25px 0;
-    font-size: 0.9em;
-    min-width: 320px;
+    width: 100%;
+    margin: 2% auto;
+}
+
+@media screen and (max-width:800px){
+    /* width: 100%; */
 }
 
 .list-of-announcements thead tr{
@@ -222,7 +301,23 @@ cursor: pointer;
     line-height: 42px;
     width: 20%;
 }
+@media screen and (max-width:800px){
+   .entrance-button{
+        margin: -60px auto;
+        line-height: 30px;
+   }
+}
 
+.announcement-card-footer{
+    width: 30%;
+}
+@media screen and (max-width: 800px){
+    .announcement-card-footer{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+    }
+}
 
 /*
 
@@ -284,10 +379,25 @@ GENERAL STYLES
     width: 40%;
     margin: auto;
 }
+@media screen and (max-width:800px){
+    .width-40{
+        width: 60%;
+        margin: auto;
+    }
+}
+
 .width-20{
     width: 20%;
     margin: auto;
 }
+
+@media screen and (max-width:800px){
+    .width-20{
+        width: 60%;
+        margin: auto;
+    }
+}
+
 .width-10{
     width: 10%;
     margin: auto;
@@ -430,11 +540,22 @@ GENERAL STYLES
 .text-30{
     font-size: 30px;
 }
+@media screen and (max-width: 800px){
+    .text-30{
+        font-size: 20px;
+    }
+}
+
 .text-40{
     font-size: 40px;
 }
 .text-50{
     font-size: 50px;
+}
+@media screen and (max-width: 800px){
+    .text-50{
+        font-size: 25px;
+    }
 }
 
 /* text-colors */
