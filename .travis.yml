@@ -1,0 +1,15 @@
+language: node_js
+node_js
+  - 13.6.0
+
+install
+  - npm ci
+
+script
+  - npm test
+
+notification
+  - email: false
+  
+after_success
+  - npm run coverage
