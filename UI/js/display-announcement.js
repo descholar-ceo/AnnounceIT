@@ -14,7 +14,7 @@ const announcementsList = announcements.map((announc) => (
 
 const displayAnnouncements = () => {
     displayAnnouncementsDiv.innerHTML = `
-    <table class="width-100 rounded-corner-15 list-of-announcements">
+    <table class="text-15 list-of-announcements">
         <thead>
             <tr>
               <th>id</th>
