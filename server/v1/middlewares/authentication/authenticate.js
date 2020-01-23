@@ -7,7 +7,7 @@ export const authenticate = (req, res, next) => {
     if (process.env.NODE_ENV === 'test') {
         token = req.query.auth;
     } else {
-        req.headers.authorization.split(' ')[1];
+        token = req.headers.authorization.split(' ')[1];
     }
 
     try {

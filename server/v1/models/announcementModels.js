@@ -31,8 +31,29 @@ export const getAllAnnouncementsByOwnerId = (req, res, next) => {
             })
         }
     } else {
-        res.status(401).send({
+        res.status(404).send({
             error:'The announcements you are requesting for, are not found, try again!'
+        })
+    }
+}
+
+export const getSpecificAnnouncement = (req, res, next) => {
+    const { authenticatedUser } = req;
+    const {announcementId} = req.params;
+
+    const gottenAnnounc = announcemment.announcements.getSpecificAnnouncementById(announcementId,
+        authenticatedUser.id);
+    
+    if (gottenAnnounc) {
+        res.status(200).json({
+            status: 'success',
+            data: gottenAnnounc
+        });
+        next();
+    } else {
+        res.status(404).send({
+            status: 'error',
+            error: 'The announcement you trying to get is not registered yet'
         })
     }
 }
