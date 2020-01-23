@@ -12,5 +12,7 @@ announcementRouter.get('/get-specific-announcement/:announcementId',
     authenticate, models.getSpecificAnnouncement);
 announcementRouter.get('/get-specific-announcement-by-status/:announcementStatus',
     authenticate, models.getSpecificAnnouncementByStatus);
+announcementRouter.get('/admin-get-all-announcements-from-all-users',
+    authenticate, models.adminGetAllAnnouncements);
 
 export default announcementRouter;

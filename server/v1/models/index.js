@@ -4,6 +4,7 @@ import {
     getAllAnnouncementsByOwnerId,
     getSpecificAnnouncement,
     getSpecificAnnouncementByStatus,
+    adminGetAllAnnouncements
 } from '../models/announcementModels';
 
 export default {
@@ -12,5 +13,6 @@ export default {
     addNewAnnouncement,
     getAllAnnouncementsByOwnerId,
     getSpecificAnnouncement,
-    getSpecificAnnouncementByStatus
+    getSpecificAnnouncementByStatus,
+    adminGetAllAnnouncements,
 };

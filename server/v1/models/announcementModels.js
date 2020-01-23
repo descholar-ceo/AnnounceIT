@@ -78,3 +78,36 @@ export const getSpecificAnnouncementByStatus = (req, res, next) => {
         })
     }
 }
+
+export const adminGetAllAnnouncements = (req, res, next) => {
+    const { authenticatedUser } = req;
+    if (authenticatedUser.isadmin) {
+        const allAnnouncs = announcemment.announcements.adminGetAllAnnouncements();
+
+        if (allAnnouncs) {
+            if (allAnnouncs.length !== 0) {
+                res.status(200).send({
+            status: 'success',
+            data: allAnnouncs
+        });
+        next();
+            } else {
+                res.status(404).send({
+                    status: 'error',
+                    error:'It seems like no one has posted any announcement yet!'
+                })
+            }
+        } else {
+            res.status(500).send({
+                status: 'error',
+                error:'Unexpected cirmuctance occured in our servers, please refresh'
+            })
+        }
+        
+    } else {
+        res.status(401).send({
+            status:'error',
+            error: 'You are not admin'
+        })
+    }
+}
