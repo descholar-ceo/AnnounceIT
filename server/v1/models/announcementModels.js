@@ -111,3 +111,29 @@ export const adminGetAllAnnouncements = (req, res, next) => {
         })
     }
 }
+
+export const adminDeleteAnnouncement = (req, res, next) => {
+    const { authenticatedUser } = req;
+    console.log(authenticatedUser)
+    if (authenticatedUser.isadmin) {
+        const returnedArray = announcemment.announcements.deleteAnnouncement(req.id);
+    if (announcemment.announcements.announcArray.length - 1 === returnedArray.length) {
+        res.status(200).send({
+            status: 'success',
+            data: "Successfully deleted your announcement"
+        });
+        next();
+    } else {
+        res.status({
+            status: 'error',
+            error:'We failed to delete your announcement, try again!'
+        })
+    }
+    } else {
+        res.status(401).send({
+            status: 'error',
+            error:'You are not admin, admin only can delete'
+        })
+    }
+    
+}

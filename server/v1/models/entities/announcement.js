@@ -42,6 +42,25 @@ class Announcements{
         return this.announcArray;
     }
 
+    // delete announcement
+    deleteAnnouncement(id) {
+        const myArr = this.announcArray;
+        if(myArr.length < parseInt(id)){
+            return {
+                status:'error', error:'That number does\'nt exist on database!'
+            }
+        } else {
+            //
+        }
+
+
+        if (this.announcArray[id]) {
+             return delete this.announcArray[id];
+        } else {
+            return null;
+        }
+       
+    }
     
 }
 
