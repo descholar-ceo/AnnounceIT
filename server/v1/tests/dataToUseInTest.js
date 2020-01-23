@@ -11,6 +11,7 @@ export default {
         },
         wrongDataForSignup: {
             fname: 'Doe',
+            "email": "cool@gmail.com",
             lname: 'John',
             password: 'johndoe',
         },
