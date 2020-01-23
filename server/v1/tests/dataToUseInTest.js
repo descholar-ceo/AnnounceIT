@@ -40,6 +40,7 @@ export default {
             "text": "buying computers",
             "start-date": "1/1/2020",
             "end-date": "22/2/2020"
-}
-    }
+        }
+    },
+    fakeToken:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTEDIyfQ.SlKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
 }
