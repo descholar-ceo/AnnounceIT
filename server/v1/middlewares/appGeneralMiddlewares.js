@@ -9,6 +9,7 @@ const appGeneralMiddlewares = (server, express) => {
 
   server.use(express.json());
   server.use('/api/v1/auth', routes.userRouter);
+  server.use('/api/v1/announcements', routes.announcementRouter);
 };
 
 export default appGeneralMiddlewares;

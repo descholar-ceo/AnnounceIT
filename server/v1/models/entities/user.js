@@ -5,6 +5,7 @@ class User{
     constructor() {
         this.data = [
             {
+                "id":"1",
                 fname: 'emmamugira',
                 lname: 'emma',
                 password: hashPassword('123'),
@@ -37,5 +38,5 @@ class UsersData{
         this.isadmin = data.isadmin;
     }
 }
-const users = new User;
+const users = new User();
 export default { users, UsersData};
