@@ -2,7 +2,8 @@ import { addUser, getUser } from '../models/userModels';
 import {
     addNewAnnouncement,
     getAllAnnouncementsByOwnerId,
-    getSpecificAnnouncement
+    getSpecificAnnouncement,
+    getSpecificAnnouncementByStatus,
 } from '../models/announcementModels';
 
 export default {
@@ -10,5 +11,6 @@ export default {
     getUser,
     addNewAnnouncement,
     getAllAnnouncementsByOwnerId,
-    getSpecificAnnouncement
+    getSpecificAnnouncement,
+    getSpecificAnnouncementByStatus
 };

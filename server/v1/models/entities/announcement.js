@@ -22,6 +22,17 @@ class Announcements{
         return this.announcArray.find((currAnn) => parseInt(currAnn.announcementowner) === parseInt(userID)
             && parseInt(currAnn.announcementid) === parseInt(announcID));
     }
+    getSpecificAnnouncementByStatus(announcStatus, userID) {
+        let newArr = [];
+        this.announcArray.forEach((currAnn) => {
+            if (currAnn.announcementstatus === announcStatus && parseInt(currAnn.announcementowner) === parseInt(userID)) {
+                newArr.push(currAnn);
+            }
+        });
+
+        return newArr;
+
+    }
     
 }
 
