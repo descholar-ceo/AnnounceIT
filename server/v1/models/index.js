@@ -5,12 +5,8 @@ import {
     getSpecificAnnouncement,
     getSpecificAnnouncementByStatus,
     adminGetAllAnnouncements,
-<<<<<<< HEAD
     adminDeleteAnnouncement,
     adminChangeAnnouncementStatus,
-=======
-    userUpdateHisAnnouncement
->>>>>>> feat(user-update-announcement):User update the details of announcement
 } from '../models/announcementModels';
 
 export default {
@@ -21,10 +17,6 @@ export default {
     getSpecificAnnouncement,
     getSpecificAnnouncementByStatus,
     adminGetAllAnnouncements,
-<<<<<<< HEAD
     adminDeleteAnnouncement,
     adminChangeAnnouncementStatus
-=======
-    userUpdateHisAnnouncement
->>>>>>> feat(user-update-announcement):User update the details of announcement
 };
