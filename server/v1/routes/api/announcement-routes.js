@@ -15,5 +15,6 @@ announcementRouter.get('/get-specific-announcement-by-status/:announcementStatus
 announcementRouter.get('/admin-get-all-announcements-from-all-users',
     authenticate, models.adminGetAllAnnouncements);
 announcementRouter.delete('/admin-delete-announcement/:id', authenticate, models.adminDeleteAnnouncement);
+announcementRouter.patch('/admin-change-announcement-status', authenticate, models.adminChangeAnnouncementStatus);
 
 export default announcementRouter;

@@ -7,6 +7,13 @@ class Announcements{
         "annoucemmenttext":"default",
         "announcementstartdate":"default startdate",
         "announcementsenddate":"default enddate"
+},{
+        "announcementid":2,
+        "announcementowner":1,
+        "announcementstatus":"active",
+        "annoucemmenttext":"default",
+        "announcementstartdate":"default startdate",
+        "announcementsenddate":"default enddate"
 }];
     }
 
@@ -52,6 +59,19 @@ class Announcements{
     // delete announcement
     deleteAnnouncement(id) {
         return this.announcArray.splice(id);
+    }
+
+    // update status
+    adminChangeStatusOfAnnouncement(announcId, status) {
+        let changedAnnounc;
+        this.announcArray.forEach((currAnn) => {
+            if (currAnn.announcementid === announcId) {
+                currAnn.announcementstatus = status;
+                changedAnnounc = currAnn;
+            }
+        });
+
+        return changedAnnounc;
     }
     
 }

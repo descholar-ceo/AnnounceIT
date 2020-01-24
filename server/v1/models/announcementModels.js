@@ -139,7 +139,34 @@ export const adminDeleteAnnouncement = (req, res, next) => {
         res.status(404).send({
             status: 'error',
             error: 'The element you want to delete is not found'
+        });
+    } 
+}
+
+export const adminChangeAnnouncementStatus = (req, res, next) => {
+    const { id, status } = req.body;
+    const { authenticatedUser } = req;
+    
+    if (authenticatedUser.isadmin) {
+        const changedAnnouncement = announcemment.announcements
+            .adminChangeStatusOfAnnouncement(parseInt(id), status);
+        
+        if (changedAnnouncement) {
+            res.status(200).json({
+                status: 'success',
+                data: changedAnnouncement
+            });
+            next();
+        } else {
+            res.status(500).send({
+                status: 'error',
+                error:'Failed to update the announcement you want, try again'
+            })
+        }
+    } else {
+        res.status(401).send({
+            status: 'error',
+            error:'You are not admin, only admins can update status of announcements'
         })
     }
-    
 }
