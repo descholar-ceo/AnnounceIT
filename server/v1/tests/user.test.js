@@ -6,15 +6,18 @@ import data from './dataToUseInTest';
 
 chai.use(chaiHttp);
 const expect = chai.expect;
+let token;
+let tokenNotAdmin;
 
 describe('Authentication', () => {
 
     // user signup
-    it('Should return an object with status code 201 and an object containing  contains token and user data', (done) => {
+    it('Should return an object with status code 201 and an object containing  contains token and user data',
+        (done) => {
         chai.request(server)
             .post('/api/v1/auth/signup')
             .set('Accept', 'Application/json')
-            .send(data.userTest.expectedData)
+            .send(data.userTest.expectedDataForSignup)
             .end((err, res) => {
                 if (err) done(err);
                 expect(res).to.have.status(201);
@@ -29,7 +32,7 @@ describe('Authentication', () => {
         chai.request(server)
             .post('/api/v1/auth/signup')
             .set('Accept', 'Application/json')
-            .send(data.userTest.wrongData)
+            .send(data.userTest.wrongDataForSignup)
             .end((err, res) => {
                 if (err) done(err);
                 expect(res).to.have.status(400);
@@ -37,6 +40,277 @@ describe('Authentication', () => {
                 expect(res.body).to.have.property('status');
                 expect(res.body).to.have.property('error');
                 done();
-        })
+            });
     });
+
+    // for signin
+    it('Should return an object with status code 200 and an object which contains token and user data', (done) => {
+        chai.request(server)
+            .post('/api/v1/auth/signin')
+            .set('Accept', 'Application/json')
+            .send(data.userTest.expectedDataForLogin)
+            .end((err, res) => {
+                if (err) done(err);
+                expect(res).to.have.status(200);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('status');
+                expect(res.body).to.have.property('data');
+                done();
+            });
+    });
+
+    // for signin with wrong data
+    it('Should return an error with status code 400 and message', (done) => {
+        chai.request(server)
+            .post('/api/v1/auth/signin')
+            .set('Accept', 'Application/json')
+            .send(data.userTest.wrongDataForLogin)
+            .end((err, res) => {
+                if (err) done(err);
+                expect(res).to.have.status(400);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('status');
+                expect(res.body).to.have.property('error');
+                done();
+            });
+    });
+
+    // for signin with wrong data
+    it('Should return an object with status code 400 and an object which contains token and user data', (done) => {
+        chai.request(server)
+            .post('/api/v1/auth/signin')
+            .set('Accept', 'Application/json')
+            .send(data.userTest.loginNoEmail)
+            .end((err, res) => {
+                if (err) done(err);
+                expect(res).to.have.status(400);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('status');
+                expect(res.body).to.have.property('error');
+                done();
+            });
+    });
+});
+
+// ANNOUNCEMENTS
+describe('Announcements', () => {
+    before((done) => { 
+        //admin
+        chai.request(server)
+            .post('/api/v1/auth/signin')
+            .set('Accept', 'Application/json')
+            .send(data.userTest.expectedDataForLogin)
+            .then((res) => {
+                token = res.body.data.token;
+            });
+        done();
+    });
+
+    before((done) => {
+        //normal user
+        chai.request(server)
+            .post('/api/v1/auth/signin')
+            .set('Accept', 'Application/json')
+            .send(data.userTest.expectedDataForLoginNotAdmin)
+            .then((res) => {
+                tokenNotAdmin = res.body.data.token;
+            });
+        done();
+    })
+    it('Should return object with 201 status, containing properties', (done) => { 
+        chai.request(server)
+            .post('/api/v1/announcements/create-announcement')
+            .set('Accept', 'Application/json')
+            .send(data.announcementTest.announcementRegisterExpectedData)
+            .end((err, res) => {
+                if (err) done(err);
+                expect(res).to.have.status(201);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('status');
+                expect(res.body).to.have.property('data');
+                done();
+            });
+    });
+    it('Should return an error with 400 status, containing properties status and error', (done) => { 
+        chai.request(server)
+            .post('/api/v1/announcements/create-announcement')
+            .set('Accept', 'Application/json')
+            .send(data.announcementTest.announcementRegisterWrongData)
+            .end((err, res) => {
+                if (err) done(err);
+                expect(res).to.have.status(400);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('status');
+                expect(res.body).to.have.property('error');
+                done();
+            });
+    });
+
+    // requesting all announcement with valid token
+    it('Should return object with 200 status, containing properties status and data', (done) => { 
+        chai.request(server)
+            .get(`/api/v1/announcements/get-all-announcement-for-current-user?auth=${token}`)
+            .set('Accept', 'Application/json')
+            .end((err, res) => {
+                if (err) done(err);
+                expect(res).to.have.status(200);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('status');
+                expect(res.body).to.have.property('data');
+                done();
+            });
+    });
+
+    // requesting all announcement with invalid token
+    it('Should return an error with 401 status, and an object containing properties status and error', (done) => { 
+        chai.request(server)
+            .get(`/api/v1/announcements/get-all-announcement-for-current-user?auth=${data.fakeToken}`)
+            .set('Accept', 'Application/json')
+            .end((err, res) => {
+                if (err) done(err);
+                expect(res).to.have.status(401);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('status');
+                expect(res.body).to.have.property('error');
+                done();
+            });
+    });
+
+    // requesting specic announcement with valid token
+    it('Should return object with 200 status, containing properties status and data', (done) => { 
+        chai.request(server)
+            .get(`/api/v1/announcements/get-specific-announcement/1?auth=${token}`)
+            .set('Accept', 'Application/json')
+            .end((err, res) => {
+                if (err) done(err);
+                expect(res).to.have.status(200);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('status');
+                expect(res.body).to.have.property('data');
+                done();
+            });
+    });
+
+    // requesting a specific announcement with invalid token
+    it('Should return an error with 401 status, and an object containing properties status and error', (done) => { 
+        chai.request(server)
+            .get(`/api/v1/announcements/get-specific-announcement/1?auth=${data.fakeToken}`)
+            .set('Accept', 'Application/json')
+            .end((err, res) => {
+                if (err) done(err);
+                expect(res).to.have.status(401);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('status');
+                expect(res.body).to.have.property('error');
+                done();
+            });
+    });
+    // requesting a specific announcement with invalid token
+    it('Should return an error with 404 status, and an object containing properties status and error', (done) => { 
+        chai.request(server)
+            .get(`/api/v1/announcements/get-specific-announcement/0?auth=${token}`)
+            .set('Accept', 'Application/json')
+            .end((err, res) => {
+                if (err) done(err);
+                expect(res).to.have.status(404);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('status');
+                expect(res.body).to.have.property('error');
+                done();
+            });
+    });
+
+    // requesting a specific announcement by status with invalid token
+    it('Should return an error with 401 status, and an object containing properties status and error', (done) => { 
+        chai.request(server)
+            .get(`/api/v1/announcements/get-specific-announcement-by-status/pending?auth=${data.fakeToken}`)
+            .set('Accept', 'Application/json')
+            .end((err, res) => {
+                if (err) done(err);
+                expect(res).to.have.status(401);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('status');
+                expect(res.body).to.have.property('error');
+                done();
+            });
+    });
+
+
+    // requesting specific announcement with valid token
+    it('Should return object with 200 status, containing properties status and data', (done) => { 
+        chai.request(server)
+            .get(`/api/v1/announcements/get-specific-announcement-by-status/pending?auth=${token}`)
+            .set('Accept', 'Application/json')
+            .end((err, res) => {
+                if (err) done(err);
+                expect(res).to.have.status(200);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('status');
+                expect(res.body).to.have.property('data');
+                done();
+            });
+    });
+
+    // admin can get all the announcements with valid
+    it('Should return object with 200 status, containing properties status and data', (done) => { 
+        chai.request(server)
+            .get(`/api/v1/announcements/admin-get-all-announcements-from-all-users?auth=${token}`)
+            .set('Accept', 'Application/json')
+            .end((err, res) => {
+                if (err) done(err);
+                expect(res).to.have.status(200);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('status');
+                expect(res.body).to.have.property('data');
+                done();
+            });
+    });
+
+    // requesting for get all the announcements with valid token but not admin
+    it('Should return object with 401 status, containing properties status and error', (done) => { 
+        chai.request(server)
+            .get(`/api/v1/announcements/admin-get-all-announcements-from-all-users?auth=${tokenNotAdmin}`)
+            .set('Accept', 'Application/json')
+            .end((err, res) => {
+                if (err) done(err);
+                expect(res).to.have.status(401);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('status');
+                expect(res.body).to.have.property('error');
+                done();
+            });
+    });
+
+    // admin changes the status of announcement
+    it('Should return an object with 200 status, containing properties status and data', (done) => { 
+        chai.request(server)
+            .patch(`/api/v1/announcements/admin-change-announcement-status?auth=${token}`)
+            .set('Accept', 'Application/json')
+            .send(data.dataToChangeAnnouncementStatus)
+            .end((err, res) => {
+                
+                if (err) done(err);
+                expect(res).to.have.status(200);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('status');
+                expect(res.body).to.have.property('data');
+                done();
+            });
+    });
+
+     //admin delete announcement
+    it('Should return an object with 200 status, containing properties status and data', (done) => { 
+        chai.request(server)
+            .delete(`/api/v1/announcements/admin-delete-announcement/0?auth=${token}`)
+            .set('Accept', 'Application/json')
+            .end((err, res) => {
+                if (err) done(err);
+                expect(res).to.have.status(200);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('status');
+                expect(res.body).to.have.property('data');
+                done();
+            });
+    });
+
 });

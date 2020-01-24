@@ -1,3 +1,4 @@
 import userRouter from './api/user-routes';
+import announcementRouter from './api/announcement-routes';
 
-export default { userRouter };
+export default { userRouter, announcementRouter};

@@ -11,7 +11,7 @@ const port = process.env.PORT;
 appGeneralMiddlewares(server, express);
 
 server.listen(port, () => {
-  //console.log(`listening to port ${port}`);
+  console.log(`listening to port ${port}`);
 });
 
 export default server;
