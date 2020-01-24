@@ -7,6 +7,7 @@ import data from './dataToUseInTest';
 chai.use(chaiHttp);
 const expect = chai.expect;
 let token;
+let tokenNotAdmin;
 
 describe('Authentication', () => {
 
@@ -94,6 +95,7 @@ describe('Authentication', () => {
 // ANNOUNCEMENTS
 describe('Announcements', () => {
     before((done) => { 
+        //admin
         chai.request(server)
             .post('/api/v1/auth/signin')
             .set('Accept', 'Application/json')
@@ -103,6 +105,18 @@ describe('Announcements', () => {
             });
         done();
     });
+
+    before((done) => {
+        //normal user
+        chai.request(server)
+            .post('/api/v1/auth/signin')
+            .set('Accept', 'Application/json')
+            .send(data.userTest.expectedDataForLoginNotAdmin)
+            .then((res) => {
+                tokenNotAdmin = res.body.data.token;
+            });
+        done();
+    })
     it('Should return object with 201 status, containing properties', (done) => { 
         chai.request(server)
             .post('/api/v1/announcements/create-announcement')
@@ -233,6 +247,36 @@ describe('Announcements', () => {
                 expect(res.body).to.be.an('object');
                 expect(res.body).to.have.property('status');
                 expect(res.body).to.have.property('data');
+                done();
+            });
+    });
+
+    // admin can get all the announcements with valid
+    it('Should return object with 200 status, containing properties status and data', (done) => { 
+        chai.request(server)
+            .get(`/api/v1/announcements/admin-get-all-announcements-from-all-users?auth=${token}`)
+            .set('Accept', 'Application/json')
+            .end((err, res) => {
+                if (err) done(err);
+                expect(res).to.have.status(200);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('status');
+                expect(res.body).to.have.property('data');
+                done();
+            });
+    });
+
+    // requesting for get all the announcements with valid token but not admin
+    it('Should return object with 401 status, containing properties status and error', (done) => { 
+        chai.request(server)
+            .get(`/api/v1/announcements/admin-get-all-announcements-from-all-users?auth=${tokenNotAdmin}`)
+            .set('Accept', 'Application/json')
+            .end((err, res) => {
+                if (err) done(err);
+                expect(res).to.have.status(401);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('status');
+                expect(res.body).to.have.property('error');
                 done();
             });
     });

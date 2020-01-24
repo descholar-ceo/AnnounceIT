@@ -6,11 +6,20 @@ class User{
         this.data = [
             {
                 "id":"1",
-                fname: 'emmamugira',
+                fname: 'nezago',
                 lname: 'emma',
                 password: hashPassword('123'),
-                email:'emmamugira@gmail.com'
-            }
+                email: 'emmamugira@gmail.com',
+                isadmin:true
+            },
+            {
+                "id":"2",
+                fname: 'descholar',
+                lname: 'emma',
+                password: hashPassword('123'),
+                email: 'descholar.stech@gmail.com',
+                isadmin:false
+            },
         ];
     }
 

@@ -3,11 +3,13 @@ class Announcements{
         this.announcArray = [];
     }
 
+    // adding new
     addNewAnnouncement(announcement) {
         this.announcArray.push(announcement);
         return this.announcArray.find((announc) => announc.id === announcement.id);
     }
 
+    // all for a currently logged in user
     getAllAnnouncementsByOwnerId(owner) {
         let foundAnnouncA=[];
         this.announcArray.forEach((currAnn) => {
@@ -18,10 +20,13 @@ class Announcements{
         return foundAnnouncA;
     }
 
+    // by id
     getSpecificAnnouncementById(announcID, userID) {
         return this.announcArray.find((currAnn) => parseInt(currAnn.announcementowner) === parseInt(userID)
             && parseInt(currAnn.announcementid) === parseInt(announcID));
     }
+
+    // by status
     getSpecificAnnouncementByStatus(announcStatus, userID) {
         let newArr = [];
         this.announcArray.forEach((currAnn) => {
@@ -29,10 +34,14 @@ class Announcements{
                 newArr.push(currAnn);
             }
         });
-
         return newArr;
-
     }
+
+    // admin get all
+    adminGetAllAnnouncements(){
+        return this.announcArray;
+    }
+
     
 }
 
