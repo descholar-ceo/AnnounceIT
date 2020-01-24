@@ -17,6 +17,12 @@ class Announcements{
         })
         return foundAnnouncA;
     }
+
+    getSpecificAnnouncementById(announcID, userID) {
+        return this.announcArray.find((currAnn) => parseInt(currAnn.announcementowner) === parseInt(userID)
+            && parseInt(currAnn.announcementid) === parseInt(announcID));
+    }
+    
 }
 
 class AnnouncementData{

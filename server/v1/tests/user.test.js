@@ -162,4 +162,48 @@ describe('Announcements', () => {
             });
     });
 
+    // requesting all announcement with valid token
+    it('Should return object with 200 status, containing properties status and data', (done) => { 
+        chai.request(server)
+            .get(`/api/v1/announcements/get-specific-announcement/1?auth=${token}`)
+            .set('Accept', 'Application/json')
+            .end((err, res) => {
+                if (err) done(err);
+                expect(res).to.have.status(200);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('status');
+                expect(res.body).to.have.property('data');
+                done();
+            });
+    });
+
+    // requesting a specific announcement with invalid token
+    it('Should return an error with 401 status, and an object containing properties status and error', (done) => { 
+        chai.request(server)
+            .get(`/api/v1/announcements/get-specific-announcement/1?auth=${data.fakeToken}`)
+            .set('Accept', 'Application/json')
+            .end((err, res) => {
+                if (err) done(err);
+                expect(res).to.have.status(401);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('status');
+                expect(res.body).to.have.property('error');
+                done();
+            });
+    });
+    // requesting a specific announcement with invalid token
+    it('Should return an error with 404 status, and an object containing properties status and error', (done) => { 
+        chai.request(server)
+            .get(`/api/v1/announcements/get-specific-announcement/0?auth=${token}`)
+            .set('Accept', 'Application/json')
+            .end((err, res) => {
+                if (err) done(err);
+                expect(res).to.have.status(404);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('status');
+                expect(res.body).to.have.property('error');
+                done();
+            });
+    });
+
 });
