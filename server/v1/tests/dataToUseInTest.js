@@ -52,7 +52,11 @@ export default {
         "isadmin": false
     },
     dataToChangeAnnouncementStatus: {
-	"id":2,
-	"status":"deactivated"
+        "id": 2,
+        "status": "deactivated"
+    },
+    toTestUserUpdateAnnouncementDetails:{
+	"announcementId":"1",
+	"announcementNewBody":"New Announcemment"
 }
 }
