@@ -7,6 +7,16 @@ class Announcements{
         this.announcArray.push(announcement);
         return this.announcArray.find((announc) => announc.id === announcement.id);
     }
+
+    getAllAnnouncementsByOwnerId(owner) {
+        let foundAnnouncA=[];
+        this.announcArray.forEach((currAnn) => {
+            if (currAnn.announcementowner === owner) {
+                foundAnnouncA.push(currAnn);
+            }
+        })
+        return foundAnnouncA;
+    }
 }
 
 class AnnouncementData{
