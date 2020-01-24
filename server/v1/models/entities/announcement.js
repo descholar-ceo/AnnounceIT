@@ -1,6 +1,13 @@
 class Announcements{
     constructor() {
-        this.announcArray = [];
+        this.announcArray = [{
+        "announcementid":1,
+        "announcementowner":1,
+        "announcementstatus":"active",
+        "annoucemmenttext":"default",
+        "announcementstartdate":"default startdate",
+        "announcementsenddate":"default enddate"
+}];
     }
 
     // adding new
@@ -42,6 +49,10 @@ class Announcements{
         return this.announcArray;
     }
 
+    // delete announcement
+    deleteAnnouncement(id) {
+        return this.announcArray.splice(id);
+    }
     
 }
 
