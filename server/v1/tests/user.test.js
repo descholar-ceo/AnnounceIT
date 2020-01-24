@@ -162,7 +162,7 @@ describe('Announcements', () => {
             });
     });
 
-    // requesting all announcement with valid token
+    // requesting specic announcement with valid token
     it('Should return object with 200 status, containing properties status and data', (done) => { 
         chai.request(server)
             .get(`/api/v1/announcements/get-specific-announcement/1?auth=${token}`)
@@ -202,6 +202,37 @@ describe('Announcements', () => {
                 expect(res.body).to.be.an('object');
                 expect(res.body).to.have.property('status');
                 expect(res.body).to.have.property('error');
+                done();
+            });
+    });
+
+    // requesting a specific announcement by status with invalid token
+    it('Should return an error with 401 status, and an object containing properties status and error', (done) => { 
+        chai.request(server)
+            .get(`/api/v1/announcements/get-specific-announcement-by-status/pending?auth=${data.fakeToken}`)
+            .set('Accept', 'Application/json')
+            .end((err, res) => {
+                if (err) done(err);
+                expect(res).to.have.status(401);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('status');
+                expect(res.body).to.have.property('error');
+                done();
+            });
+    });
+
+
+    // requesting specific announcement with valid token
+    it('Should return object with 200 status, containing properties status and data', (done) => { 
+        chai.request(server)
+            .get(`/api/v1/announcements/get-specific-announcement-by-status/pending?auth=${token}`)
+            .set('Accept', 'Application/json')
+            .end((err, res) => {
+                if (err) done(err);
+                expect(res).to.have.status(200);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('status');
+                expect(res.body).to.have.property('data');
                 done();
             });
     });
