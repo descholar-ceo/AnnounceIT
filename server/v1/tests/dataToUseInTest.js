@@ -1,6 +1,6 @@
 export default {
     userTest: {
-        expectedData: {
+        expectedDataForSignup: {
             "fname":"Minani",
             "lname":"Emmanuel",
             "email": "cool@gmail.com",
@@ -9,11 +9,21 @@ export default {
             "address": "kigali",
             "password": "123"
         },
-        wrongData: {
+        wrongDataForSignup: {
             fname: 'Doe',
             lname: 'John',
             password: 'johndoe',
             isadmin:true
+        },
+        expectedDataForLogin: {
+            "email": "emmamugira@gmail.com",
+            "password": "123"
+        },
+        wrongDataForLogin: {
+            "email": "emmamugira@gmail.com",
+        },
+        loginNoEmail: {
+            "password": "123",
         }
     }
 }

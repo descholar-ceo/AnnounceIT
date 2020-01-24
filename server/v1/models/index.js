@@ -1,3 +1,3 @@
-import { addUser } from '../models/userModels';
+import { addUser,getUser } from '../models/userModels';
 
-export default { addUser };
+export default { addUser,getUser };

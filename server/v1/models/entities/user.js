@@ -1,14 +1,27 @@
+/* eslint-disable no-undef */
 import { hashPassword } from '../../helpers/passwordEncryption';
 
 class User{
     constructor() {
-        this.data = [];
+        this.data = [
+            {
+                fname: 'emmamugira',
+                lname: 'emma',
+                password: hashPassword('123'),
+                email:'emmamugira@gmail.com'
+            }
+        ];
     }
 
     //function to save new user
     saveUser(user){
         this.data.push(user);
         return this.data.find((dat) => (dat.email === user.email));
+    }
+
+    // fnction to get a user by email
+    getUserByEmail(email) {
+        return this.data.find((dat) => (dat.email === email));
     }
 }
 
