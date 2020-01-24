@@ -88,3 +88,35 @@ describe('Authentication', () => {
             });
     });
 });
+
+// ANNOUNCEMENTS
+describe('Announcements', () => {
+    it('Should return object with 201 status, containing properties', (done) => { 
+        chai.request(server)
+            .post('/api/v1/announcements/create-announcement')
+            .set('Accept', 'Application/json')
+            .send(data.announcementTest.announcementRegisterExpectedData)
+            .end((err, res) => {
+                if (err) done(err);
+                expect(res).to.have.status(201);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('status');
+                expect(res.body).to.have.property('data');
+                done();
+            });
+    });
+    it('Should return object with 201 status, containing properties', (done) => { 
+        chai.request(server)
+            .post('/api/v1/announcements/create-announcement')
+            .set('Accept', 'Application/json')
+            .send(data.announcementTest.announcementRegisterWrongData)
+            .end((err, res) => {
+                if (err) done(err);
+                expect(res).to.have.status(400);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('status');
+                expect(res.body).to.have.property('error');
+                done();
+            });
+    });
+});

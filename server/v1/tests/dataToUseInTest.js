@@ -25,5 +25,21 @@ export default {
         loginNoEmail: {
             "password": "123",
         }
+    },
+    announcementTest: {
+        announcementRegisterExpectedData: {
+            "owner":"1",
+            "status":"active",
+            "text":"buying computers",
+            "startdate":"1/1/2020",
+            "enddate":"22/2/2020"
+        },
+        announcementRegisterWrongData: {
+            "owner": "2",
+            "status": "active",
+            "text": "buying computers",
+            "start-date": "1/1/2020",
+            "end-date": "22/2/2020"
+}
     }
 }
