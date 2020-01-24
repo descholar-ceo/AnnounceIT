@@ -43,7 +43,6 @@ export const getSpecificAnnouncement = (req, res, next) => {
 
     const gottenAnnounc = announcemment.announcements.getSpecificAnnouncementById(announcementId,
         authenticatedUser.id);
-    
     if (gottenAnnounc) {
         res.status(200).json({
             status: 'success',
@@ -114,25 +113,32 @@ export const adminGetAllAnnouncements = (req, res, next) => {
 
 export const adminDeleteAnnouncement = (req, res, next) => {
     const { authenticatedUser } = req;
-    console.log(authenticatedUser)
-    if (authenticatedUser.isadmin) {
-        const returnedArray = announcemment.announcements.deleteAnnouncement(req.id);
-    if (announcemment.announcements.announcArray.length - 1 === returnedArray.length) {
+    const { id } = req.params;
+    if (announcemment.announcements.announcArray.length >= parseInt(id)) {
+        if (authenticatedUser.isadmin) {
+            const deletedElmt = announcemment.announcements.deleteAnnouncement(parseInt(id));
+    if (deletedElmt.length!==0) {
         res.status(200).send({
             status: 'success',
-            data: "Successfully deleted your announcement"
+            data:  'Successfully deleted'
         });
         next();
     } else {
-        res.status({
+        res.status(500).send({
             status: 'error',
-            error:'We failed to delete your announcement, try again!'
-        })
+            error: 'We failed to delete your announcement, try again!'
+        });
     }
     } else {
         res.status(401).send({
             status: 'error',
-            error:'You are not admin, admin only can delete'
+            error: 'You are not admin, admin only can delete'
+        });
+    }
+    } else {
+        res.status(404).send({
+            status: 'error',
+            error: 'The element you want to delete is not found'
         })
     }
     

@@ -1,6 +1,13 @@
 class Announcements{
     constructor() {
-        this.announcArray = [];
+        this.announcArray = [{
+        "announcementid":1,
+        "announcementowner":1,
+        "announcementstatus":"active",
+        "annoucemmenttext":"default",
+        "announcementstartdate":"default startdate",
+        "announcementsenddate":"default enddate"
+}];
     }
 
     // adding new
@@ -44,22 +51,7 @@ class Announcements{
 
     // delete announcement
     deleteAnnouncement(id) {
-        const myArr = this.announcArray;
-        if(myArr.length < parseInt(id)){
-            return {
-                status:'error', error:'That number does\'nt exist on database!'
-            }
-        } else {
-            //
-        }
-
-
-        if (this.announcArray[id]) {
-             return delete this.announcArray[id];
-        } else {
-            return null;
-        }
-       
+        return this.announcArray.splice(id);
     }
     
 }

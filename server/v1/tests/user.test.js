@@ -281,4 +281,19 @@ describe('Announcements', () => {
             });
     });
 
+    // requesting for get all the announcements with valid token but not admin
+    it('Should return an object with 200 status, containing properties status and data', (done) => { 
+        chai.request(server)
+            .delete(`/api/v1/announcements/admin-delete-announcement/0?auth=${token}`)
+            .set('Accept', 'Application/json')
+            .end((err, res) => {
+                if (err) done(err);
+                expect(res).to.have.status(200);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('status');
+                expect(res.body).to.have.property('data');
+                done();
+            });
+    });
+
 });
