@@ -119,12 +119,12 @@ describe('Announcements', () => {
     })
     it('Test 1 : Should return object with 201 status, containing properties', (done) => { 
         chai.request(server)
-            .post(`/api/v1/announcements/create-announcement?auth=${token}`)
-            .set('Accept', 'Application/json')
+            .post('/api/v1/announcements/create-announcement')
+            .set('authorization', `Bearer ${token}`)
             .send(data.announcementTest.announcementRegisterExpectedData)
             .end((err, res) => {
                 if (err) done(err);
-                console.log(res);
+                // console.log(res);
                 expect(res).to.have.status(201);
                 expect(res.body).to.be.an('object');
                 expect(res.body).to.have.property('status');
@@ -132,26 +132,26 @@ describe('Announcements', () => {
                 done();
             });
     });
-    // it('Test 2 : Should return an error with 400 status, containing properties status and error', (done) => { 
-    //     chai.request(server)
-    //         .post('/api/v1/announcements/create-announcement')
-    //         .set('Accept', 'Application/json')
-    //         .send(data.announcementTest.announcementRegisterWrongData)
-    //         .end((err, res) => {
-    //             if (err) done(err);
-    //             expect(res).to.have.status(400);
-    //             expect(res.body).to.be.an('object');
-    //             expect(res.body).to.have.property('status');
-    //             expect(res.body).to.have.property('error');
-    //             done();
-    //         });
-    // });
+    it('Test 2 : Should return an error with 400 status, containing properties status and error', (done) => { 
+        chai.request(server)
+            .post('/api/v1/announcements/create-announcement')
+            .set('authorization', `Bearer ${token}`)
+            .send(data.announcementTest.announcementRegisterWrongData)
+            .end((err, res) => {
+                if (err) done(err);
+                expect(res).to.have.status(400);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('status');
+                expect(res.body).to.have.property('error');
+                done();
+            });
+    });
 
     // requesting all announcement with valid token
     it('Should return object with 200 status, containing properties status and data', (done) => { 
         chai.request(server)
-            .get(`/api/v1/announcements/get-all-announcement-for-current-user?auth=${token}`)
-            .set('Accept', 'Application/json')
+            .get(`/api/v1/announcements/get-all-announcement-for-current-user`)
+            .set('authorization', `Bearer ${token}`)
             .end((err, res) => {
                 if (err) done(err);
                 expect(res).to.have.status(200);
@@ -165,8 +165,8 @@ describe('Announcements', () => {
     // requesting all announcement with invalid token
     it('Should return an error with 401 status, and an object containing properties status and error', (done) => { 
         chai.request(server)
-            .get(`/api/v1/announcements/get-all-announcement-for-current-user?auth=${data.fakeToken}`)
-            .set('Accept', 'Application/json')
+            .get(`/api/v1/announcements/get-all-announcement-for-current-user`)
+            .set('authorization', `Bearer ${data.fakeToken}`)
             .end((err, res) => {
                 if (err) done(err);
                 expect(res).to.have.status(401);
@@ -180,8 +180,8 @@ describe('Announcements', () => {
     // requesting specic announcement with valid token
     it('Should return object with 200 status, containing properties status and data', (done) => { 
         chai.request(server)
-            .get(`/api/v1/announcements/get-specific-announcement/1?auth=${token}`)
-            .set('Accept', 'Application/json')
+            .get(`/api/v1/announcements/get-specific-announcement/1`)
+            .set('authorization', `Bearer ${token}`)
             .end((err, res) => {
                 if (err) done(err);
                 expect(res).to.have.status(200);
@@ -195,8 +195,8 @@ describe('Announcements', () => {
     // requesting a specific announcement with invalid token
     it('Should return an error with 401 status, and an object containing properties status and error', (done) => { 
         chai.request(server)
-            .get(`/api/v1/announcements/get-specific-announcement/1?auth=${data.fakeToken}`)
-            .set('Accept', 'Application/json')
+            .get(`/api/v1/announcements/get-specific-announcement/1`)
+            .set('authorization', `Bearer ${data.fakeToken}`)
             .end((err, res) => {
                 if (err) done(err);
                 expect(res).to.have.status(401);
@@ -209,8 +209,8 @@ describe('Announcements', () => {
     // requesting a specific announcement with invalid token
     it('Should return an error with 404 status, and an object containing properties status and error', (done) => { 
         chai.request(server)
-            .get(`/api/v1/announcements/get-specific-announcement/0?auth=${token}`)
-            .set('Accept', 'Application/json')
+            .get(`/api/v1/announcements/get-specific-announcement/0`)
+            .set('authorization', `Bearer ${token}`)
             .end((err, res) => {
                 if (err) done(err);
                 expect(res).to.have.status(404);
@@ -224,8 +224,8 @@ describe('Announcements', () => {
     // requesting a specific announcement by status with invalid token
     it('Should return an error with 401 status, and an object containing properties status and error', (done) => { 
         chai.request(server)
-            .get(`/api/v1/announcements/get-specific-announcement-by-status/pending?auth=${data.fakeToken}`)
-            .set('Accept', 'Application/json')
+            .get(`/api/v1/announcements/get-specific-announcement-by-status/pending`)
+            .set('authorization', `Bearer ${data.fakeToken}`)
             .end((err, res) => {
                 if (err) done(err);
                 expect(res).to.have.status(401);
@@ -240,8 +240,8 @@ describe('Announcements', () => {
     // requesting specific announcement with valid token
     it('Should return object with 200 status, containing properties status and data', (done) => { 
         chai.request(server)
-            .get(`/api/v1/announcements/get-specific-announcement-by-status/pending?auth=${token}`)
-            .set('Accept', 'Application/json')
+            .get(`/api/v1/announcements/get-specific-announcement-by-status/pending`)
+            .set('authorization', `Bearer ${token}`)
             .end((err, res) => {
                 if (err) done(err);
                 expect(res).to.have.status(200);
@@ -255,8 +255,8 @@ describe('Announcements', () => {
     // admin can get all the announcements with valid
     it('Should return object with 200 status, containing properties status and data', (done) => { 
         chai.request(server)
-            .get(`/api/v1/announcements/admin-get-all-announcements-from-all-users?auth=${token}`)
-            .set('Accept', 'Application/json')
+            .get(`/api/v1/announcements/admin-get-all-announcements-from-all-users`)
+            .set('authorization', `Bearer ${token}`)
             .end((err, res) => {
                 if (err) done(err);
                 expect(res).to.have.status(200);
@@ -270,8 +270,8 @@ describe('Announcements', () => {
     // requesting for get all the announcements with valid token but not admin
     it('Should return object with 401 status, containing properties status and error', (done) => { 
         chai.request(server)
-            .get(`/api/v1/announcements/admin-get-all-announcements-from-all-users?auth=${tokenNotAdmin}`)
-            .set('Accept', 'Application/json')
+            .get(`/api/v1/announcements/admin-get-all-announcements-from-all-users`)
+            .set('authorization', `Bearer ${tokenNotAdmin}`)
             .end((err, res) => {
                 if (err) done(err);
                 expect(res).to.have.status(401);
@@ -285,8 +285,8 @@ describe('Announcements', () => {
     // admin changes the status of announcement
     it('Should return an object with 200 status, containing properties status and data', (done) => { 
         chai.request(server)
-            .patch(`/api/v1/announcements/admin-change-announcement-status?auth=${token}`)
-            .set('Accept', 'Application/json')
+            .patch(`/api/v1/announcements/admin-change-announcement-status`)
+            .set('authorization', `Bearer ${token}`)
             .send(data.dataToChangeAnnouncementStatus)
             .end((err, res) => {
                 
@@ -302,8 +302,8 @@ describe('Announcements', () => {
      //admin delete announcement
     it('Should return an object with 200 status, containing properties status and data', (done) => { 
         chai.request(server)
-            .delete(`/api/v1/announcements/admin-delete-announcement/0?auth=${token}`)
-            .set('Accept', 'Application/json')
+            .delete(`/api/v1/announcements/admin-delete-announcement/0`)
+            .set('authorization', `Bearer ${token}`)
             .end((err, res) => {
                 if (err) done(err);
                 expect(res).to.have.status(200);

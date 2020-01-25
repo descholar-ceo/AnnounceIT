@@ -3,23 +3,12 @@ import jwt from 'jsonwebtoken';
 
 export const authenticate = (req, res, next) => {
 
-    let token;
-
-    if (process.env.NODE_ENV === 'test') {
-        token = req.query.auth;
-        console.log(token);
-    } else {
-        const { authorization } = req.headers;
-        
-        if (authorization) {
-            token = authorization.split(' ')[1];
-        }
-    }
+    let token=req.headers.authorization.split(' ')[1];
 
     if (token) {
        try {
         const decodedToken = jwt.decode(token, process.env.TOKEN_KEY);
-        req.authenticatedUser = decodedToken;
+           req.authenticatedUser = decodedToken;
         next();
     } catch (err) {
         res.status(401).send({
