@@ -5,7 +5,7 @@ class User{
     constructor() {
         this.data = [
             {
-                "id":"1",
+                "id":1,
                 fname: 'nezago',
                 lname: 'emma',
                 password: hashPassword('123'),
@@ -13,7 +13,7 @@ class User{
                 isadmin:true
             },
             {
-                "id":"2",
+                "id":2,
                 fname: 'descholar',
                 lname: 'emma',
                 password: hashPassword('123'),

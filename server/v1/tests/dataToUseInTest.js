@@ -56,7 +56,7 @@ export default {
         "status": "deactivated"
     },
     toTestUserUpdateAnnouncementDetails:{
-	"announcementId":"1",
-	"announcementNewBody":"New Announcemment"
+	"announcId":1,
+	"announcNewBody":"New body"
 }
 }

@@ -5,7 +5,7 @@ export const validateAnnouncementData = (req, res, next) => {
     if (authenticatedUser) {
         const { text, startdate, enddate } = req.body;
         const { id } = authenticatedUser;
-        const announcOwner = user.users.data.find((foundOwn) => foundOwn.id === id);
+        const announcOwner = user.users.data.find((foundOwn) => foundOwn.id === parseInt(id));
     if (announcOwner) {
         if (text) {
             if (startdate) {

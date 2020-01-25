@@ -7,6 +7,7 @@ import {
     adminGetAllAnnouncements,
     adminDeleteAnnouncement,
     adminChangeAnnouncementStatus,
+    userUpdateHisAnnouncement
 } from '../models/announcementModels';
 
 export default {
@@ -18,5 +19,6 @@ export default {
     getSpecificAnnouncementByStatus,
     adminGetAllAnnouncements,
     adminDeleteAnnouncement,
-    adminChangeAnnouncementStatus
+    adminChangeAnnouncementStatus,
+    userUpdateHisAnnouncement
 };

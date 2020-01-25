@@ -183,3 +183,22 @@ export const adminChangeAnnouncementStatus = (req, res, next) => {
         })
     }
 }
+
+export const userUpdateHisAnnouncement = (req, res, next) => {
+    const { id: userId } = req.authenticatedUser;
+    if (userId) {
+        const { announcId, announcNewBody } = req.body;
+        const changedAnnouncement = announcemment.announcements
+            .userUpdatesHisAnnouncement(userId, announcId, announcNewBody)
+        
+        if (changedAnnouncement) {
+            res.status(200).send({ status: 'success', data: changedAnnouncement });
+            next();
+        } else {
+            res.status(500).send({ status: 'error', error: 'Internal server error' });
+        }
+    } else {
+        res.status(401).send({ status: 'error', error: 'You are unothorized' });
+    }
+    
+}
