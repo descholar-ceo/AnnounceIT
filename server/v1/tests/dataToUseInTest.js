@@ -32,15 +32,11 @@ export default {
     },
     announcementTest: {
         announcementRegisterExpectedData: {
-            "owner":"1",
-            "status":"active",
             "text":"buying computers",
             "startdate":"1/1/2020",
             "enddate":"22/2/2020"
         },
         announcementRegisterWrongData: {
-            "owner": "10000000000000",
-            status:'active'
         },
     },
     fakeToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTEDIyfQ.SlKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'

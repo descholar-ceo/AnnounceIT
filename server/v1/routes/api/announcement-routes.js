@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { Router } from 'express';
 import {  authenticate } from '../../middlewares/authentication/authenticate';
 import models from '../../models'
@@ -5,7 +6,10 @@ import { validateAnnouncementData } from '../../middlewares/validations/validate
 
 const announcementRouter = new Router();
 
-announcementRouter.post('/create-announcement', validateAnnouncementData ,models.addNewAnnouncement);
+announcementRouter.post('/create-announcement',
+    authenticate, validateAnnouncementData, models.addNewAnnouncement);
+
+
 announcementRouter.get('/get-all-announcement-for-current-user',
     authenticate, models.getAllAnnouncementsByOwnerId);
 announcementRouter.get('/get-specific-announcement/:announcementId',

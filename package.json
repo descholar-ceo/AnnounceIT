@@ -4,7 +4,7 @@
   "description": "AnnounceIT is a platform which facilitates advertisers to be linked with broadcasting agencies",
   "main": "server/index.js",
   "scripts": {
-    "start":"NODE_ENV=production babel-node server/index.js",
+    "start": "NODE_ENV=production babel-node server/index.js",
     "dev": "NODE_ENV=dev nodemon --exec babel-node server/index.js",
     "test": "NODE_ENV=test nyc mocha --exit --require @babel/register --require babel-polyfill ./server/v1/tests/*.test.js",
     "coverage": "nyc --reporter=lcov --reporter=text-lcov npm test | coveralls"
@@ -34,6 +34,7 @@
     "babel-node": "0.0.1-security",
     "babel-polyfill": "^6.26.0",
     "bcrypt": "^3.0.7",
+    "body-parser": "^1.19.0",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "coveralls": "^3.0.9",
