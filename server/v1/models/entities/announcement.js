@@ -3,7 +3,7 @@ class Announcements{
         this.announcArray = [{
         "announcementid":1,
         "announcementowner":1,
-        "announcementstatus":"active",
+        "announcementstatus":"pending",
         "annoucemmenttext":"default",
         "announcementstartdate":"default startdate",
         "announcementsenddate":"default enddate"

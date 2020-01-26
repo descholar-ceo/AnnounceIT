@@ -6,7 +6,7 @@
   "scripts": {
     "start": "NODE_ENV=production babel-node server/index.js",
     "dev": "NODE_ENV=dev nodemon --exec babel-node server/index.js",
-    "test": "NODE_ENV=test nyc mocha --exit --require @babel/register --require babel-polyfill ./server/v1/tests/*.test.js",
+    "test": "NODE_ENV=test nyc mocha --exit --timeout 10000 --require @babel/register --require babel-polyfill ./server/v1/tests/*.test.js",
     "coverage": "nyc --reporter=lcov --reporter=text-lcov npm test | coveralls"
   },
   "repository": {

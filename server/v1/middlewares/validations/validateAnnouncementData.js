@@ -1,7 +1,6 @@
 import user from '../../models/entities/user';
 
 export const validateAnnouncementData = (req, res, next) => {
-    // console.log(req.body);
     const { authenticatedUser } = req;
     if (authenticatedUser) {
         const { text, startdate, enddate } = req.body;

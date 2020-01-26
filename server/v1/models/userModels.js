@@ -34,10 +34,8 @@ export const getUser = (req, res, next) => {
             const fname = gottenUser.fname;
             const lname = gottenUser.lname;
             const email = gottenUser.email;
-            const phonenumber = gottenUser.phonenumber;
-            const address = gottenUser.address;
             const isadmin = gottenUser.isadmin;
-            const dataToSendToFrontend = {id, fname, lname, email, phonenumber, address,isadmin}
+            const dataToSendToFrontend = {id, email, isadmin}
             const gotenToken = generateToken(dataToSendToFrontend); 
 
             res.status(200).json({

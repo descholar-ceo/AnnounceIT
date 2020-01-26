@@ -41,6 +41,16 @@ export default {
     },
     fakeToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTEDIyfQ.SlKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
     ,
+    dataOfAValidToken: {
+        "id": "1",
+        "email": "emmamugira@gmail.com",
+        "isadmin": true
+    },
+    dataOfAValidTokenNotAdmin: {
+        "id": "2",
+        "email": "descholar.stech@gmail.com",
+        "isadmin": false
+    },
     dataToChangeAnnouncementStatus: {
 	"id":2,
 	"status":"deactivated"
