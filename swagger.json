@@ -1,0 +1,493 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0",
+      "title": "AnnounceIT",
+      "description": "AnnounceIT is a platform which facilitates advertisers to be linked with broadcasting agencies",
+      "contact": {}
+    },
+    "host": "https://descholar-announce-it.herokuapp.com",
+    "basePath": "/api/v1",
+    "securityDefinitions": {},
+    "schemes": [
+      "http",
+      "https"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+
+    "paths": {
+      "/auth/signup": {
+        "post": {
+          "description": "A user makes a signup, and after a success he/she gets an authentication token",
+          "summary": "User Signup",
+          "tags": [
+            "All AnnounceIT Endpoints (APIs)"
+          ],
+          "operationId": "user-signup",
+          "deprecated": false,
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "required": true,
+              "default": "application/json",
+              "type": "string",
+              "description": "fill the form below"
+            },
+            {
+              "name": "fname",
+              "in": "formData",
+              "required": true,
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "lname",
+              "in": "formData",
+              "required": true,
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "address",
+              "in": "formData",
+              "required": true,
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "email",
+              "in": "formData",
+              "required": true,
+              "type": "string",
+              "description": "",
+              "format": "email"
+            },
+            {
+              "name": "password",
+              "in": "formData",
+              "required": true,
+              "type": "string",
+              "format" :"password",
+              "description": ""
+            },
+            {
+              "name": "phonenumber",
+              "in": "formData",
+              "required": true,
+              "type": "string",
+              "description": ""
+            }
+
+          ],
+          "responses": {
+            "201": {
+              "description": "",
+              "headers": {}
+            }
+          }
+        }
+      },
+      "/auth/signin": {
+        "post": {
+          "description": "A registered user, signs in, and after success, he/she gets an access token",
+          "summary": "Registered user signs-in",
+          "tags": [
+            "All AnnounceIT Endpoints (APIs)"
+          ],
+          "operationId": "user-signin",
+          "deprecated": false,
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "required": true,
+              "default": "application/json",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "email",
+              "in": "formData",
+              "required": true,
+              "type": "string",
+              "format": "email",
+              "description": "Email for securing user's account"
+            },
+            {
+              "name": "password",
+              "in": "formData",
+              "required": true,
+              "type": "string",
+              "format": "password",
+              "description": "Password for authentication"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {}
+            }
+          }
+        }
+      },
+      "/announcements/create-announcement": {
+        "post": {
+          "description": "A registered user, can create announcement using this api",
+          "summary": "Registered user create announcement",
+          "tags": [
+            "All AnnounceIT Endpoints (APIs)"
+          ],
+          "operationId": "localhost8080createannouncement",
+          "deprecated": false,
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "required": true,
+              "default": "application/json",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "text",
+              "in": "formData",
+              "required": true,
+              "type": "string",
+              "description": "text detailing announcement"
+            },
+            {
+              "name": "starting date",
+              "in": "formData",
+              "required": true,
+              "type": "date",
+              "format": "date",
+              "description": "Date when the date is valid from"
+            },
+            {
+              "name": "ending date",
+              "in": "formData",
+              "required": true,
+              "type": "date",
+              "format": "date",
+              "description": "Date when the date is valid to"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {}
+            }
+          }
+        }
+      },
+      "/announcements/get-all-announcement-for-current-user": {
+        "get": {
+          "description": "A registered user, can get all his/her posted announcements",
+          "summary": "Registered user gets all his/her announcements",
+          "tags": [
+            "All AnnounceIT Endpoints (APIs)"
+          ],
+          "operationId": "getallannouncementforthecurrentuser",
+          "deprecated": false,
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "Authorization",
+              "in": "header",
+              "required": true,
+              "default": "Bearer {token}",
+              "type": "string",
+              "description": ""
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {}
+            }
+          }
+        }
+      },
+      "/announcements/user-update-announcement-details": {
+        "patch": {
+          "description": "A registered user, can update the details of his/her posted announcements",
+          "summary": "update the details of announcements",
+          "tags": [
+            "All AnnounceIT Endpoints (APIs)"
+          ],
+          "operationId": "update-deatails-announcement",
+          "deprecated": false,
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "required": true,
+              "default": "application/json",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "Authorization",
+              "in": "header",
+              "required": true,
+              "default": "Bearer {token}",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "announcId",
+              "in": "formData",
+              "required": true,
+              "type": "string",
+              "format": "number",
+              "description": "Announcement ID that you want to update"
+            },
+            {
+              "name": "announcNewBody",
+              "in": "formData",
+              "required": true,
+              "type": "string",
+              "format": "text",
+              "description": "Announcement new body that you want to describe to your announcement"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {}
+            }
+          }
+        }
+      },
+      "/announcements/admin-change-announcement-status": {
+        "patch": {
+          "description": "An admin can change the status of an announcement",
+          "summary": "change status of announcements",
+          "tags": [
+            "All AnnounceIT Endpoints (APIs)"
+          ],
+          "operationId": "update-status-announcement",
+          "deprecated": false,
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "required": true,
+              "default": "application/json",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "Authorization",
+              "in": "header",
+              "required": true,
+              "default": "Bearer {token}",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "announcId",
+              "in": "formData",
+              "required": true,
+              "type": "string",
+              "format": "number",
+              "description": "Announcement ID that you want to update"
+            },
+            {
+              "name": "announcNewStatus",
+              "in": "formData",
+              "required": true,
+              "type": "string",
+              "format": "text",
+              "description": "new announcement's status"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {}
+            }
+          }
+        }
+      }
+      ,
+      "/announcements/get-specific-announcement-by-status/:announcementStatus": {
+        "get": {
+          "description": "A registered user, can get a particular announcement by adding status of it at the ed of the url",
+          "summary": "get announcement by status",
+          "tags": [
+            "All AnnounceIT Endpoints (APIs)"
+          ],
+          "operationId": "get-announcement-by-status",
+          "deprecated": false,
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "required": true,
+              "default": "application/json",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "Authorization",
+              "in": "header",
+              "required": true,
+              "default": "Bearer {token}",
+              "type": "string",
+              "description": ""
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {}
+            }
+          }
+        }
+      },
+      "/announcements/get-specific-announcement/:announcementId": {
+        "get": {
+          "description": "A registered user, can get a particular announcement by adding its id at the end of the url",
+          "summary": "get announcement by id",
+          "tags": [
+            "All AnnounceIT Endpoints (APIs)"
+          ],
+          "operationId": "get-announcement-by-id",
+          "deprecated": false,
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "required": true,
+              "default": "application/json",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "Authorization",
+              "in": "header",
+              "required": true,
+              "default": "Bearer {token}",
+              "type": "string",
+              "description": ""
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {}
+            }
+          }
+        }
+      },
+      "/announcements/admin-delete-announcement/:id": {
+        "delete": {
+          "description": "An admin can delete any announcement",
+          "summary": "delete announcement by admin",
+          "tags": [
+            "All AnnounceIT Endpoints (APIs)"
+          ],
+          "operationId": "getspecificannouncement",
+          "deprecated": false,
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "required": true,
+              "default": "application/json",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "Authorization",
+              "in": "header",
+              "required": true,
+              "default": "Bearer {token}",
+              "type": "string",
+              "description": ""
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {}
+            }
+          }
+        }
+      }
+      ,
+      "/announcements/admin-get-all-announcements-from-all-users": {
+        "get": {
+          "description": "An admin can get all announcements from all users",
+          "summary": "get all announcements",
+          "tags": [
+            "All AnnounceIT Endpoints (APIs)"
+          ],
+          "operationId": "get-all-announcement",
+          "deprecated": false,
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "Authorization",
+              "in": "header",
+              "required": true,
+              "default": "Bearer {token}",
+              "type": "string",
+              "description": ""
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {}
+            }
+          }
+        }
+      }
+      
+    }
+}
