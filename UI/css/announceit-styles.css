@@ -6,13 +6,20 @@
 --dark-color-transparent: rgba(5, 5, 5, 0.664);
 --blue-color: rgb(82, 69, 202);
 --blue-color-transparent: rgba(113, 103, 204, 0.459);
+--blue-color-light: rgb(154, 149, 206);
 --grey-color: rgb(85, 84, 87);
 --light-grey-color: rgb(122, 119, 119);
 --green-color: rgb(7, 192, 146);
+--green-color-dark: rgb(2, 51, 39);
 --red-color: rgb(133, 69, 69);
+--purple-color: rgb(75, 4, 75);
+--purple-dark-color: rgb(24, 1, 24);
 }
 
 body,html{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     margin: 0;
     width: 100%;
     height: 100%;
@@ -20,24 +27,59 @@ body,html{
     background-color: var(--white-color);
 }
 
+
 .introductory-block{
     background-image: url('../img/navbar-bg-pic.jpg');
     background-size: cover;
     height: 100%;
+    margin-top: 0;
+}
+
+@media screen and (max-width: 768px){
+    .header-big-screen{
+        display: none;
+    }
+}
+
+.header-small-screens{
+    display: flex;
+    flex-direction: column;
+}
+
+.header-small-screens ul{
+    list-style-type: none;
+}
+
+@media screen and (min-width:768px){
+    .header-small-screens{
+        display: none;
+    }
+}
+.header-logo-sm{
+    display: flex;
+    flex-direction: row;
+}
+
+.hidden-element{
+    display: none;
+}
+.active{
+    display: block;
 }
 
 .container{
     display: flex;
     flex-direction: row;
 }
-@media screen and (max-width: 800px){
+@media screen and (max-width: 768px){
     .container{
         display: flex;
         flex-direction: column;
     }
 }
 
-@media screen and (max-width: 800px){
+
+@media screen and (max-width: 768px){
     h1{
         font-size: 20px;
     }
@@ -57,9 +99,10 @@ a{
     text-decoration: none;
     color: var(--white-color);
 }
-@media screen and (max-width:800px){
-    a{
+@media screen and (max-width:768px){
+   .entrance-button > a{
         margin: 10%;
+        font-size: 2px;
     }
 }
 .expl-to-do{
@@ -111,9 +154,11 @@ button{
     outline: none;
 }
 
-@media screen and (max-width:800px){
+@media screen and (max-width:768px){
     button{
         line-height: 30px;
+        margin-left:10%;
+        margin-right: 10%;
     }
 }
 
@@ -129,7 +174,7 @@ ELEMENTS
     margin: 0px 30px 0px 0px;
 }
 
-@media screen and (max-width: 800px){
+@media screen and (max-width: 768px){
     nav{
         width: 40%;
         margin-left: auto;
@@ -170,7 +215,7 @@ nav a:hover {
     margin-right: 5%;
 }
 
-@media screen and (max-width: 800px){
+@media screen and (max-width: 768px){
     .search-bar-div{
         width: 80%;
         margin: auto;
@@ -180,14 +225,17 @@ nav a:hover {
 footer{
     background-color: var(--dark-color);
     color: var(--white-color);
-    position: fixed;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
 }
 
 .profile-heading{
     background: url('../img/profile-heading.jpeg');
+    display: flex;
+    flex-direction: row;
+}
+@media screen and (max-width:768px){
+    .profile-heading{
+        display: none;
+    }
 }
 .search-bar-result{
     margin-top: -80px;
@@ -198,7 +246,7 @@ footer{
     margin-top: -80px;
 }
 
-@media screen and (max-width: 800px){
+@media screen and (max-width: 768px){
    .profile-details{
         width: 80%;
         margin: 1% auto;
@@ -208,7 +256,7 @@ footer{
     width: 100%;
     height: 200px;
 }
-@media screen and (max-width: 800px){
+@media screen and (max-width: 1000px){
     .default-pp{
         width: 100%;
         height: 100%;
@@ -224,7 +272,7 @@ footer{
     width: 80%;
 }
 
-@media screen and (max-width: 800px){
+@media screen and (max-width: 768px){
     .list{
         width: 85%;
         margin: 1% auto;
@@ -243,10 +291,6 @@ footer{
     border-collapse: collapse;
     width: 100%;
     margin: 2% auto;
-}
-
-@media screen and (max-width:800px){
-    /* width: 100%; */
 }
 
 .list-of-announcements thead tr{
@@ -268,14 +312,12 @@ footer{
 }
 .list-of-announcements tbody tr:hover{
     cursor: pointer;
-    background-color: var(--grey-color);
+    background-color: var(--dark-color);
+    color: var(--white-color);
 }
 
 .hand-cursor{
 cursor: pointer;
-}
-.hidden-element{
-    display: none;
 }
 
 .entrance-pages{
@@ -285,14 +327,18 @@ cursor: pointer;
     -o-background-size: cover;
     background-size: cover;
 }
-.option-hovered:hover{
+.option-admin{
+    width: 100%;
+}
+
+@media screen and (max-width:768px){
+    .option-admin{
+        width: 90%;
+    }
+}
+.option-admin:hover{
     background-color: var(--dark-color);
     color: var(--white-color);
-    font-size: 20px;
-    transition: background 0.5s linear,font-size 0.5s linear;
-    padding: 1%;
-    margin: 1%;
-    border-radius: 15px;
 }
 
 
@@ -301,7 +347,7 @@ cursor: pointer;
     line-height: 42px;
     width: 20%;
 }
-@media screen and (max-width:800px){
+@media screen and (max-width:768px){
    .entrance-button{
         margin: -60px auto;
         line-height: 30px;
@@ -311,7 +357,7 @@ cursor: pointer;
 .announcement-card-footer{
     width: 30%;
 }
-@media screen and (max-width: 800px){
+@media screen and (max-width: 768px){
     .announcement-card-footer{
         width: 100%;
         display: flex;
@@ -357,6 +403,14 @@ GENERAL STYLES
     background-color: var(--red-color);
     color: var(--white-color);
 }
+.bg-purple{
+    background-color: var(--purple-color);
+    color: var(--white-color);
+}
+.bg-purple-dark{
+    background-color: var(--purple-dark-color);
+    color: var(--white-color);
+}
 
 /* widths and height */
 .width-100{
@@ -379,7 +433,7 @@ GENERAL STYLES
     width: 40%;
     margin: auto;
 }
-@media screen and (max-width:800px){
+@media screen and (max-width:768px){
     .width-40{
         width: 60%;
         margin: auto;
@@ -391,7 +445,7 @@ GENERAL STYLES
     margin: auto;
 }
 
-@media screen and (max-width:800px){
+@media screen and (max-width:768px){
     .width-20{
         width: 60%;
         margin: auto;
@@ -417,6 +471,14 @@ GENERAL STYLES
 }
 .heigth-400{
     height: 400px;
+}
+@media screen and (max-width:768px){
+    .heigth-400{
+        height: 200px;
+    }
+}
+.heigth-full{
+    height: 100%;
 }
 
 /* paddings and margins */
@@ -470,6 +532,9 @@ GENERAL STYLES
 
 .margin-5{
     margin: 5%;
+}
+.margin-2{
+    margin: 2%;
 }
 .margin-right-5{
     margin-right: 5%;
@@ -540,9 +605,9 @@ GENERAL STYLES
 .text-30{
     font-size: 30px;
 }
-@media screen and (max-width: 800px){
+@media screen and (max-width: 768px){
     .text-30{
-        font-size: 20px;
+        font-size: 15px;
     }
 }
 
@@ -552,7 +617,7 @@ GENERAL STYLES
 .text-50{
     font-size: 50px;
 }
-@media screen and (max-width: 800px){
+@media screen and (max-width: 768px){
     .text-50{
         font-size: 25px;
     }
@@ -574,7 +639,9 @@ GENERAL STYLES
 .text-light-grey{
     color: var(--light-grey-color);
 }
-
+.text-blue-light{
+    color: var(--blue-color-light);
+}
 .text-bold{
     font-weight: bolder;
 }

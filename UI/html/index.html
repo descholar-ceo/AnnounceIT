@@ -5,21 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../css/announceit-styles.css">
+    <link rel="stylesheet" href="../css/font-awesome/css/font-awesome.min.css">
     <title>AnnounceIT</title>
 </head>
 <body>
+     <!-- Header for small screens -->
+    <div class="header-small-screens width-100 bg-purple">
+        <div class="width-100">
+            <div class="text-50 text-bold expl-to-do text-center header-logo-sm bg-purple-dark padding-2">
+                <a href="index.html">
+                    <span class="announce-brand">Announce</span><span class="it-brand">IT</span>
+                </a>
+                <span class="position-right hand-cursor" id="toggler">
+                    <i class="fa fa-bars menu"></i>
+                </span>
+            </div>
+        <div class="text-50 width-80 hidden-element" id="menu-small-screens">
+            <ul class="text-center container-vertical">  
+                <li class="margin-top-5"><a href="signin.html" class="text-green">Signin</a></li>
+                <li class="margin-top-5"><a href="signup.html" class="text-green">Signup</a></li>
+                <li class="margin-top-5"><a href="#" class=" text-green">Help</a></li>
+            </ul>
+        </div>
+    </div>
+    </div>
 
-    <!-- Header -->
-  <div class="introductory-block heigth-400 width-100">
+ <!--Header for big-screens-->
+  <div class="introductory-block header-big-screen heigth-400 width-100">
        <div class="width-100 bg-dark-transparent heigth-400 nav white-bordered-1-bottom">
         <div class="container width-90">
             <div class="text-50 text-bold expl-to-do">
                 <a href="index.html">
-                <span class="announce-brand">Announce</span>
-                <span class="it-brand">IT</span>
-            </a>
+                    <span class="announce-brand">Announce</span><span class="it-brand">IT</span>
+                </a>
             </div>
-
             <nav class="container">
                 <a href="signin.html" class="text-green">Signin</a>
                 <a href="signup.html" class="text-green">Signup</a>
@@ -78,12 +97,12 @@
    </div>
   </div>
 
-  <footer>
+  <footer class="text-center margin-top-1">
       <div class="container centered-element-h">
           <span>AnnounceIT</span>
           <span class="margin-left-5">&#9426; 2020</span>
       </div>
   </footer>
-
+  <script type="module" src="../js/responsive-navbar.js"></script>
 </body>
 </html>
