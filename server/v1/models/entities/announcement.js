@@ -3,7 +3,7 @@ class Announcements{
         this.announcArray = [{
         "announcementid":1,
         "announcementowner":1,
-        "announcementstatus":"active",
+        "announcementstatus":"pending",
         "annoucemmenttext":"default",
         "announcementstartdate":"default startdate",
         "announcementsenddate":"default enddate"
@@ -20,7 +20,7 @@ class Announcements{
     // adding new
     addNewAnnouncement(announcement) {
         this.announcArray.push(announcement);
-        return this.announcArray.find((announc) => announc.id === announcement.id);
+        return this.announcArray.find((announc) => announc.announcementid === announcement.announcementid);
     }
 
     // all for a currently logged in user
@@ -30,7 +30,7 @@ class Announcements{
             if (currAnn.announcementowner === owner) {
                 foundAnnouncA.push(currAnn);
             }
-        })
+        });
         return foundAnnouncA;
     }
 
@@ -77,10 +77,10 @@ class Announcements{
 }
 
 class AnnouncementData{
-    constructor(announcData, id) {
+    constructor(announcData, id, ownerId) {
         this.announcementid = id;
-        this.announcementowner = announcData.owner;
-        this.announcementstatus = announcData.status;
+        this.announcementowner = ownerId;
+        this.announcementstatus = "Pending"
         this.annoucemmenttext = announcData.text;
         this.announcementstartdate = announcData.startdate;
         this.announcementsenddate = announcData.enddate;

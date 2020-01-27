@@ -1,6 +1,5 @@
 export const validateLoginData = (req, res, next) => {
     const { email, password } = req.body;
-
     if (email) {
         if (email.includes('@')) {
             if (password) {

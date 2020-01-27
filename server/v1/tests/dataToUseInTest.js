@@ -11,6 +11,7 @@ export default {
         },
         wrongDataForSignup: {
             fname: 'Doe',
+            "email": "cool@gmail.com",
             lname: 'John',
             password: 'johndoe',
         },
@@ -31,19 +32,25 @@ export default {
     },
     announcementTest: {
         announcementRegisterExpectedData: {
-            "owner":"1",
-            "status":"active",
             "text":"buying computers",
             "startdate":"1/1/2020",
             "enddate":"22/2/2020"
         },
         announcementRegisterWrongData: {
-            "owner": "10000000000000",
-            status:'active'
         },
     },
     fakeToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTEDIyfQ.SlKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
     ,
+    dataOfAValidToken: {
+        "id": "1",
+        "email": "emmamugira@gmail.com",
+        "isadmin": true
+    },
+    dataOfAValidTokenNotAdmin: {
+        "id": "2",
+        "email": "descholar.stech@gmail.com",
+        "isadmin": false
+    },
     dataToChangeAnnouncementStatus: {
 	"id":2,
 	"status":"deactivated"

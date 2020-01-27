@@ -7,14 +7,8 @@ export const addUser = (req, res, next) => {
     const newId = user.users.data.length + 1;
     const newDataToSave = new user.UsersData(req.body, newId);
     const registeredUser = user.users.saveUser(newDataToSave);
-    const id = registeredUser.id;
-    const fname = registeredUser.fname;
-    const lname = registeredUser.lname;
-    const email = registeredUser.email;
-    const phonenumber = registeredUser.phonenumber;
-    const address = registeredUser.address;
-    const isadmin = registeredUser.isadmin;
-    const dataToSendToFrontend = {id, fname, lname, email, phonenumber, address,isadmin}
+    const {id,fname,lname,email,address,isadmin } = registeredUser;
+    const dataToSendToFrontend = {id, email, address,isadmin}
     const gotenToken = generateToken(dataToSendToFrontend);
 
     res.status(201).json({
@@ -40,10 +34,8 @@ export const getUser = (req, res, next) => {
             const fname = gottenUser.fname;
             const lname = gottenUser.lname;
             const email = gottenUser.email;
-            const phonenumber = gottenUser.phonenumber;
-            const address = gottenUser.address;
             const isadmin = gottenUser.isadmin;
-            const dataToSendToFrontend = {id, fname, lname, email, phonenumber, address,isadmin}
+            const dataToSendToFrontend = {id, email, isadmin}
             const gotenToken = generateToken(dataToSendToFrontend); 
 
             res.status(200).json({

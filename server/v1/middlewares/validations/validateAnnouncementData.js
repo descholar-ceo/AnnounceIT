@@ -1,8 +1,11 @@
 import user from '../../models/entities/user';
 
 export const validateAnnouncementData = (req, res, next) => {
-    const { owner,text,startdate,enddate } = req.body;
-    const announcOwner = user.users.data.find((foundOwn) => foundOwn.id === owner);
+    const { authenticatedUser } = req;
+    if (authenticatedUser) {
+        const { text, startdate, enddate } = req.body;
+        const { id } = authenticatedUser;
+        const announcOwner = user.users.data.find((foundOwn) => foundOwn.id === id);
     if (announcOwner) {
         if (text) {
             if (startdate) {
@@ -27,6 +30,9 @@ export const validateAnnouncementData = (req, res, next) => {
         res.status(400).send({
             status: "error",
             error: "The user you are trying to use is not exists"
-        })
+        });
+    }
+    } else {
+        console.log('No id found');
     }
 }
