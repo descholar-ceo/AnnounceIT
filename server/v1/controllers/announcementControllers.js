@@ -1,56 +1,32 @@
-import announcemment from '../models/entities/announcement'
+import announcemment from '../models/announcement'
 
-export const addNewAnnouncement = (req, res, next) => {
-    
-    const newAnnouncId = announcemment.announcements.announcArray.length + 1;
-    const ownerId = req.authenticatedUser.id;
-    
-    const announcToSave = new announcemment.AnnouncementData(req.body, newAnnouncId, parseInt(ownerId));
+// function to create new a new announcement
+export const addNewAnnouncement = (req, res) => {
+    const announcToSave = new announcemment.AnnouncementData(req.body,
+        announcemment.announcements.announcArray.length + 1, parseInt(req.authenticatedUser.id));
     const savedAnnounceme = announcemment.announcements.addNewAnnouncement(announcToSave);
 
     res.status(201).json({
         status: 'success',
         data:savedAnnounceme
     });
-    
-    next();
+
 }
 
-export const getAllAnnouncementsByOwnerId = (req, res, next) => {
-   
+export const getAllAnnouncementsByOwnerId = (req, res) => {
     const { authenticatedUser } = req;
-
-    if (authenticatedUser) {
-
+    
         const allMyAnnouncs = announcemment.announcements.getAllAnnouncementsByOwnerId(authenticatedUser.id);
-        
-        if (allMyAnnouncs) {
-            
             if (allMyAnnouncs.length !== 0) {
 
-            res.status(200).json({
-                status: 'success',
-                data: allMyAnnouncs
-            });
-            next();
-            } else {
-                res.status(200).send({
-                    status: 'success',
-                    data: ['It seems that you don\'t have any recorded announcement yet']
-                });
-        }
-    } else {
-            res.status(404).send({
-                status:'error',
-                error: 'The announcements you are requesting for, are not found, try again!'
-            });
-    }
-    } else {
-        console.log('No token found!')
-    }
-}
+            res.status(200).json({ status: 'success', data: allMyAnnouncs});
 
-export const getSpecificAnnouncement = (req, res, next) => {
+            } else {
+                res.status(404).send({ status: 'error', error: 'No announcements found'});
+        }
+    } 
+
+export const getSpecificAnnouncement = (req, res) => {
     const { authenticatedUser } = req;
     const {announcementId} = req.params;
 
@@ -60,8 +36,8 @@ export const getSpecificAnnouncement = (req, res, next) => {
         res.status(200).json({
             status: 'success',
             data: gottenAnnounc
-        });
-        next();
+        })
+
     } else {
         res.status(404).send({
             status: 'error',
@@ -70,51 +46,44 @@ export const getSpecificAnnouncement = (req, res, next) => {
     }
 }
 
-export const getSpecificAnnouncementByStatus = (req, res, next) => {
+export const getSpecificAnnouncementByStatus = (req, res) => {
     const { authenticatedUser } = req;
     const {announcementStatus} = req.params;
 
     const gottenAnnounc = announcemment.announcements
         .getSpecificAnnouncementByStatus(announcementStatus, authenticatedUser.id);
     
-    if (gottenAnnounc) {
+    if (gottenAnnounc.length!==0) {
         res.status(200).json({
             status: 'success',
             data: gottenAnnounc
         });
-        next();
+
     } else {
         res.status(404).send({
             status: 'error',
             error: 'The announcement you trying to get is not registered yet'
-        })
+        });
     }
 }
 
-export const adminGetAllAnnouncements = (req, res, next) => {
+export const adminGetAllAnnouncements = (req, res) => {
     const { authenticatedUser } = req;
     if (authenticatedUser.isadmin) {
         const allAnnouncs = announcemment.announcements.adminGetAllAnnouncements();
 
-        if (allAnnouncs) {
             if (allAnnouncs.length !== 0) {
                 res.status(200).send({
-            status: 'success',
-            data: allAnnouncs
-        });
-        next();
+                    status: 'success',
+                    data: allAnnouncs
+                });
+
             } else {
                 res.status(404).send({
                     status: 'error',
                     error:'It seems like no one has posted any announcement yet!'
                 })
             }
-        } else {
-            res.status(500).send({
-                status: 'error',
-                error:'Unexpected cirmuctance occured in our servers, please refresh'
-            })
-        }
         
     } else {
         res.status(401).send({
@@ -124,7 +93,7 @@ export const adminGetAllAnnouncements = (req, res, next) => {
     }
 }
 
-export const adminDeleteAnnouncement = (req, res, next) => {
+export const adminDeleteAnnouncement = (req, res) => {
     const { authenticatedUser } = req;
     const { id } = req.params;
     if (announcemment.announcements.announcArray.length >= parseInt(id)) {
@@ -134,8 +103,8 @@ export const adminDeleteAnnouncement = (req, res, next) => {
         res.status(200).send({
             status: 'success',
             data:  'Successfully deleted'
-        });
-        next();
+        })
+
     } else {
         res.status(500).send({
             status: 'error',
@@ -143,7 +112,7 @@ export const adminDeleteAnnouncement = (req, res, next) => {
         });
     }
     } else {
-        res.status(401).send({
+        res.status(403).send({
             status: 'error',
             error: 'You are not admin, admin only can delete'
         });
@@ -156,7 +125,7 @@ export const adminDeleteAnnouncement = (req, res, next) => {
     } 
 }
 
-export const adminChangeAnnouncementStatus = (req, res, next) => {
+export const adminChangeAnnouncementStatus = (req, res) => {
     const { id, status } = req.body;
     const { authenticatedUser } = req;
     
@@ -169,7 +138,7 @@ export const adminChangeAnnouncementStatus = (req, res, next) => {
                 status: 'success',
                 data: changedAnnouncement
             });
-            next();
+
         } else {
             res.status(500).send({
                 status: 'error',
@@ -177,28 +146,28 @@ export const adminChangeAnnouncementStatus = (req, res, next) => {
             })
         }
     } else {
-        res.status(401).send({
+        res.status(403).send({
             status: 'error',
-            error:'You are not admin, only admins can update status of announcements'
-        })
+            error: 'You are not admin, only admins can update status of announcements'
+        });
     }
 }
 
-export const userUpdateHisAnnouncement = (req, res, next) => {
+/* 
+FUNCTION TO HELP A USER UPDATE HIS ANNOUNCEMENT BY SENDING ANNOUNCEMENT_ID
+AND NEW ANNOUNCEMENT DETAILS HE WANT TO PUT
+*/
+export const userUpdateHisAnnouncement = (req, res) => {
     const { id: userId } = req.authenticatedUser;
-    if (userId) {
         const { announcId, announcNewBody } = req.body;
-        const changedAnnouncement = announcemment.announcements
-            .userUpdatesHisAnnouncement(userId, announcId, announcNewBody)
+        const changedAnnouncement = announcemment.announcements.userUpdatesHisAnnouncement(userId, announcId, announcNewBody)
         
         if (changedAnnouncement) {
             res.status(200).send({ status: 'success', data: changedAnnouncement });
-            next();
+
         } else {
-            res.status(500).send({ status: 'error', error: 'Internal server error' });
+            res.status(500).send({ status: 'error', error: 'This is most likely you didn\'t enter a right announcement_ID' });
         }
-    } else {
-        res.status(401).send({ status: 'error', error: 'You are unothorized' });
-    }
+    
     
 }

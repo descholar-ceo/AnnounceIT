@@ -1,11 +1,11 @@
 import { Router } from 'express';
-import models from '../../models';
+import controllers from '../../controllers';
 import { validateUserData } from '../../middlewares/validations/validateSignupData';
 import { validateLoginData } from '../../middlewares/validations/validateLoginData';
 
 const userRouter = new Router();
 
-userRouter.post('/signup', validateUserData, models.addUser);
-userRouter.post('/signin', validateLoginData, models.getUser);
+userRouter.post('/signup', validateUserData, controllers.addUser);
+userRouter.post('/signin', validateLoginData, controllers.getUser);
 
 export default userRouter;

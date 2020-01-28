@@ -76,11 +76,13 @@ class Announcements{
 
     // update user announcement
     userUpdatesHisAnnouncement(userID, announcId, annNewBody) {
-        let changedAnnounc;
+        let changedAnnounc;//TO HOLD THE CHANGED ANNOUNCEMENT_DATA TO DISPLAY IS ON THE FRONTEND
         this.announcArray.forEach((currAnn) => {
             
             if (parseInt(currAnn.announcementid) === parseInt(announcId)
                 && parseInt(currAnn.announcementowner) === parseInt(userID)) {
+                
+                    // HERE YOU CAN UPDATE OTHER PROPERTIES AS WELL
                 currAnn.annoucemmenttext = annNewBody;
                 changedAnnounc = currAnn;
             }

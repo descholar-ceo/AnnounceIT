@@ -1,4 +1,5 @@
-import user from '../../models/entities/user';
+import user from '../../models/user';
+import Joi from '@hapi/joi';
 
 export const validateUserData = (req, res, next) => {
     const {
@@ -11,22 +12,36 @@ export const validateUserData = (req, res, next) => {
     user.users.data.forEach((currUser) => {
         registeredEmails.push(currUser.email);
     });
+
+    // validation
+    if (!registeredEmails.includes(email)) {
+        const signupDataSchema = Joi.object({
+        fname: Joi.string().required(),
+        lname: Joi.string().required(),
+        email: Joi.string().email().required(),
+        phonenumber: Joi.string().required(),
+        address: Joi.string().required(),
+            password: Joi.string().regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/)
+                .required()
+    });
     
-    if (!fname) {
-        res.status(400).send({status:'error',error:'Enter your first name'});
-    } else if (!lname) {
-        res.status(400).send({ status: 'error', error: 'Enter your last name' });
-    } else if (!email && email.includes('@')) {
-        res.status(400).send({ status: 'error', error: 'Enter a valid email' });
-    } else if (registeredEmails.includes(email)) {
-        res.status(400).send({ status: 'error', error: 'The email you put is already used!' });
-    } else if (!phonenumber) {
-        res.status(400).send({ status: 'error', error: 'Enter your phone number' });
-    } else if (!address) {
-        res.status(400).send({ status: 'error', error: 'Enter your address' });
-    } else if (!password) {
-        res.status(400).send({ status: 'error', error: 'Enter a password you prefer to use!' });
-    } else {
+    const validationRes = signupDataSchema
+        .validate({fname, lname, email, phonenumber, address, password});
+
+    if (!validationRes.error) {
         next();
+    } else {
+        res.status(400).send({
+        status: 'error',
+        error:'Validations to your data has failed, make sure you follow all rules!'
+        });
+        
     }
+    } else {
+        res.status(400).send({
+            status:'error',
+            error:'The email you are trying to register is already registered'
+        })
+    }
+    
 }

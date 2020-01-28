@@ -1,4 +1,4 @@
-import user from './entities/user';
+import user from '../models/user';
 import { generateToken } from '../helpers/handleTokens';
 import { checkPassword } from '../helpers/passwordEncryption';
 
@@ -28,7 +28,6 @@ export const getUser = (req, res, next) => {
     const { email, password } = req.body;
     const gottenUser = user.users.getUserByEmail(email);
     if (gottenUser) {
-        
         if (checkPassword(password, gottenUser.password)) {
             const id = gottenUser.id;
             const fname = gottenUser.fname;
@@ -50,14 +49,8 @@ export const getUser = (req, res, next) => {
         } else {
             res.status(403).json({
                 status: 'error',
-                data: `You are not allowed to login, entered a wrong password!`
+                error: `Email and password mismatch`
             })
         }
-    } else {
-        res.status(403).json({
-            status: 'error',
-            data: `You are not allowed to login, because we don't recognize ${email}
-             on AnnounceIT servers, so Signup first!`
-        });
-    }
+    } 
 }
