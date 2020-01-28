@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
 import { Router } from 'express';
-// import {  authenticate } from '../../middlewares/authentication/authenticate';
 import models from '../../models'
 import { validateAnnouncementData } from '../../middlewares/validations/validateAnnouncementData';
 
@@ -13,5 +12,6 @@ announcementRouter.get('/get-specific-announcement-by-status/:announcementStatus
 announcementRouter.get('/admin-get-all-announcements-from-all-users', models.adminGetAllAnnouncements);
 announcementRouter.delete('/admin-delete-announcement/:id', models.adminDeleteAnnouncement);
 announcementRouter.patch('/admin-change-announcement-status', models.adminChangeAnnouncementStatus);
+announcementRouter.patch('/user-updates-his-announcement', models.userUpdateHisAnnouncement);
 
 export default announcementRouter;

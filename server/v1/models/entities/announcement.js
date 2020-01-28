@@ -73,6 +73,21 @@ class Announcements{
 
         return changedAnnounc;
     }
+
+    // update user announcement
+    userUpdatesHisAnnouncement(userID, announcId, annNewBody) {
+        let changedAnnounc;
+        this.announcArray.forEach((currAnn) => {
+            
+            if (parseInt(currAnn.announcementid) === parseInt(announcId)
+                && parseInt(currAnn.announcementowner) === parseInt(userID)) {
+                currAnn.annoucemmenttext = annNewBody;
+                changedAnnounc = currAnn;
+            }
+        });
+
+        return changedAnnounc;
+    }
     
 }
 

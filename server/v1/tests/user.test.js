@@ -93,30 +93,7 @@ describe('Authentication', () => {
 
 // ANNOUNCEMENTS
 describe('Announcements', () => {
-    // before((done) => { 
-    //     //admin
-    //     chai.request(server)
-    //         .post('/api/v1/auth/signin')
-    //         .set('Accept', 'Application/json')
-    //         .send(data.userTest.expectedDataForLogin)
-    //         .then((res) => {
-    //             token = res.body.data.token;
-    //             // console.log(myHeaders);
-    //         });
-    //     done();
-    // });
 
-    // before((done) => {
-    //     //normal user
-    //     chai.request(server)
-    //         .post('/api/v1/auth/signin')
-    //         .set('Accept', 'Application/json')
-    //         .send(data.userTest.expectedDataForLoginNotAdmin)
-    //         .then((res) => {
-    //             tokenNotAdmin = res.body.data.token;
-    //         });
-    //     done();
-    // });
     it('Test 1 : Should return object with 201 status, containing properties', (done) => { 
         const token = generateToken(data.dataOfAValidToken);
         chai.request(server)
@@ -125,7 +102,6 @@ describe('Announcements', () => {
             .send(data.announcementTest.announcementRegisterExpectedData)
             .end((err, res) => {
                 if (err) done(err);
-                // console.log(res);
                 expect(res).to.have.status(201);
                 expect(res.body).to.be.an('object');
                 expect(res.body).to.have.property('status');
@@ -157,6 +133,7 @@ describe('Announcements', () => {
             .set('authorization', `Bearer ${token}`)
             .end((err, res) => {
                 if (err) done(err);
+                // console.log(res);
                 expect(res).to.have.status(200);
                 expect(res.body).to.be.an('object');
                 expect(res.body).to.have.property('status');
@@ -298,6 +275,23 @@ describe('Announcements', () => {
             .patch(`/api/v1/announcements/admin-change-announcement-status`)
             .set('authorization', `Bearer ${token}`)
             .send(data.dataToChangeAnnouncementStatus)
+            .end((err, res) => {
+                if (err) done(err);
+                expect(res).to.have.status(200);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('status');
+                expect(res.body).to.have.property('data');
+                done();
+            });
+    });
+
+    //User update his announcemment
+    it('Testing user updates his announcement: it should return an object with 200 status, containing properties status and data', (done) => { 
+        const token = generateToken(data.dataOfAValidToken);
+        chai.request(server)
+            .patch('/api/v1/announcements/user-updates-his-announcement')
+            .send(data.toTestUserUpdateAnnouncementDetails)
+            .set('authorization', `Bearer ${token}`)
             .end((err, res) => {
                 if (err) done(err);
                 expect(res).to.have.status(200);
