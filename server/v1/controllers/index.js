@@ -1,4 +1,4 @@
-import { addUser, getUser } from '../models/userModels';
+import { addUser, getUser } from '../controllers/userControllers';
 import {
     addNewAnnouncement,
     getAllAnnouncementsByOwnerId,
@@ -8,7 +8,7 @@ import {
     adminDeleteAnnouncement,
     adminChangeAnnouncementStatus,
     userUpdateHisAnnouncement
-} from '../models/announcementModels';
+} from '../controllers/announcementControllers';
 
 export default {
     addUser,

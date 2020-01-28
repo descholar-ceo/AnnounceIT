@@ -1,13 +1,12 @@
 import { Router } from 'express';
 
-const defaultRoute = new Router();
+const defaltRoute = new Router();
 
-defaultRoute.get('/', (req, res, next) => {
+defaltRoute.get('/', (req, res) => {
     res.status(200).send({
         status: 'success',
         message: 'Welcome to the AnnounceIT app,'
     });
-    next();
 });
 
-export default defaultRoute;
+export default defaltRoute;

@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { hashPassword } from '../../helpers/passwordEncryption';
+import { hashPassword } from '../helpers/passwordEncryption';
 
 class User{
     constructor() {
@@ -8,7 +8,7 @@ class User{
                 "id":1,
                 fname: 'nezago',
                 lname: 'emma',
-                password: hashPassword('123'),
+                password: hashPassword('AnnounceIT1.'),
                 email: 'emmamugira@gmail.com',
                 isadmin:true
             },
@@ -16,9 +16,17 @@ class User{
                 "id":2,
                 fname: 'descholar',
                 lname: 'emma',
-                password: hashPassword('123'),
+                password: hashPassword('AnnounceIT1.'),
                 email: 'descholar.stech@gmail.com',
                 isadmin:false
+            },
+            {
+                "id":3,
+                fname: 'descholar',
+                lname: 'NezaGo',
+                password: hashPassword('AnnounceIT1.'),
+                email: 'descholar.stechnologies@gmail.com',
+                isadmin:true
             },
         ];
     }

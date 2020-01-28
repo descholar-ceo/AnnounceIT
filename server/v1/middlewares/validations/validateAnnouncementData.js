@@ -1,38 +1,25 @@
-import user from '../../models/entities/user';
+import Joi from '@hapi/joi';
 
 export const validateAnnouncementData = (req, res, next) => {
-    const { authenticatedUser } = req;
-    if (authenticatedUser) {
+
         const { text, startdate, enddate } = req.body;
-        const { id } = authenticatedUser;
-        const announcOwner = user.users.data.find((foundOwn) => foundOwn.id === parseInt(id));
-    if (announcOwner) {
-        if (text) {
-            if (startdate) {
-                if (enddate) {
-                    next();
-                } else {
-                    res.status(400).send({status:'error',error:"Enter the end date of your announcement"})
-                }
-            } else {
-                res.status(400).send({
-                    status: 'error',
-                    error:'Select the starting date of your announcement'
-                })
-            }
+
+        const evalStartDate = new Date(startdate);
+        const evalEndDate = new Date(enddate);
+        
+            const announcementDataSchema = Joi.object({
+            text: Joi.string().required(),
+            evalStartDate: Joi.date().required(),
+            evalEndDate:Joi.date().required()
+        });
+
+        const validateRes = announcementDataSchema.validate({text, evalStartDate, evalEndDate });
+        if (!validateRes.error) {
+            next();
         } else {
             res.status(400).send({
-                status:'error',
-                error:'Enter the body of your annnouncement'
-            })
-        }
-    } else {
-        res.status(400).send({
-            status: "error",
-            error: "The user you are trying to use is not exists"
+        status: 'error',
+        error:'Validations to your data has failed, make sure you follow all rules!'
         });
-    }
-    } else {
-        console.log('No id found');
     }
 }
