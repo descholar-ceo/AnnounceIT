@@ -3,11 +3,14 @@
  * USE THEM IN index.js MODULE
  *
  */
+import swaggerUI from 'swagger-ui-express';
+import docs from '../../../swagger.json';
 import routes from '../routes';
 import { authenticate } from './authentication/authenticate';
 
 const appGeneralMiddlewares = (server, express) => {
 
+  server.use('/api/v1/docs', swaggerUI.serve, swaggerUI.setup(docs));
   server.use(express.json());
 
   server.use('/', routes.defaltRoute);

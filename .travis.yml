@@ -1,15 +1,15 @@
 language: node_js
-node_js
-  - 13.6.0
+node_js:
+  - stable
 
-install
+install:
   - npm ci
 
-script
+script:
   - npm test
 
-notification
+notification:
   - email: false
   
-after_success
+after_success:
   - npm run coverage
