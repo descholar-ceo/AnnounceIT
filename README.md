@@ -1,5 +1,6 @@
 # Description of AnnounceIT platform
 
+[![Build Status](https://travis-ci.org/descholar-ceo/AnnounceIT.svg?branch=develop)](https://travis-ci.org/descholar-ceo/AnnounceIT) [![Coverage Status](https://coveralls.io/repos/github/descholar-ceo/AnnounceIT/badge.svg)](https://coveralls.io/github/descholar-ceo/AnnounceIT) [![Maintainability](https://api.codeclimate.com/v1/badges/40055eb7c678b9aefc6f/maintainability)](https://codeclimate.com/github/descholar-ceo/AnnounceIT/maintainability)
 ## What and Why AnnounceIT
 
 _Since the rise of the internet, more people have switched their attention from spending hours
