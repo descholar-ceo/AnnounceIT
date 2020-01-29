@@ -1,8 +1,8 @@
 export default {
     userTest: {
         expectedDataForSignup: {
-            "fname":"Minani",
-            "lname":"Emmanuel",
+            "fname":"descholar",
+            "lname":"ceo",
             "email": "cool@gmail.com",
             "phonenumber": "0782229462",
             "isadmin": "true",
@@ -10,8 +10,8 @@ export default {
             "password": "AnnounceIT1."
         },
         expectedDataForSignupWithUsedEmail: {
-            "fname":"Minani",
-            "lname":"Emmanuel",
+            "fname":"descholar",
+            "lname":"ceo",
             "email": "emmamugira@gmail.com",
             "phonenumber": "0782229462",
             "isadmin": "true",
@@ -45,7 +45,7 @@ export default {
     },
     announcementTest: {
         announcementRegisterExpectedData: {
-            "text":"buying computers",
+            "text":"buying macbooks",
             "startdate":"2020-01-09",
             "enddate":"2020-03-13"
         },
