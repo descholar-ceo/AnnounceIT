@@ -13,7 +13,7 @@ describe('Authentication', () => {
     it('Should return an object with status code 201 and an object containing  contains token and user data',
         (done) => {
         chai.request(server)
-            .post('/api/v1/auth/signup')
+            .post('/api/v2/auth/signup')
             .set('Accept', 'Application/json')
             .send(data.userTest.expectedDataForSignup)
             .end((err, res) => {
@@ -28,7 +28,7 @@ describe('Authentication', () => {
 
     it('Should return an object with status code 400, and a message', (done) => {
         chai.request(server)
-            .post('/api/v1/auth/signup')
+            .post('/api/v2/auth/signup')
             .set('Accept', 'Application/json')
             .send(data.userTest.wrongDataForSignup)
             .end((err, res) => {
@@ -42,7 +42,7 @@ describe('Authentication', () => {
     });
     it('Signup with existing email should return an object with status code 400, and a message', (done) => {
         chai.request(server)
-            .post('/api/v1/auth/signup')
+            .post('/api/v2/auth/signup')
             .set('Accept', 'Application/json')
             .send(data.userTest.expectedDataForSignupWithUsedEmail)
             .end((err, res) => {
@@ -58,7 +58,7 @@ describe('Authentication', () => {
     // for signin
     it('Signin with valid token should return an object with status code 200 and an object which contains token and user data', (done) => {
         chai.request(server)
-            .post('/api/v1/auth/signin')
+            .post('/api/v2/auth/signin')
             .set('Accept', 'Application/json')
             .send(data.userTest.expectedDataForLogin)
             .end((err, res) => {
@@ -74,7 +74,7 @@ describe('Authentication', () => {
     // for signin with wrong data
     it('Signin with invalid credentials should return an error with status code 401 and message', (done) => {
         chai.request(server)
-            .post('/api/v1/auth/signin')
+            .post('/api/v2/auth/signin')
             .set('Accept', 'Application/json')
             .send(data.userTest.wrongDataForLoginWithNoPassword)
             .end((err, res) => {
@@ -90,7 +90,7 @@ describe('Authentication', () => {
     // for signin with wrong data
     it('Signin with email not exists should return an error with status code 403 and message', (done) => {
         chai.request(server)
-            .post('/api/v1/auth/signin')
+            .post('/api/v2/auth/signin')
             .set('Accept', 'Application/json')
             .send(data.userTest.wrongDataEmailNotExist)
             .end((err, res) => {
