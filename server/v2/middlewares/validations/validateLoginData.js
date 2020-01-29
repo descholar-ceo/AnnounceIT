@@ -1,6 +1,6 @@
 import Joi from '@hapi/joi';
-export const validateLoginData = (req, res, next) => {
-    const { email, password } = req.body;
+export const validateLoginData = async (req, res, next) => {
+    const { email, password } = await req.body;
 
     const loginDataSchema = Joi.object({
         email: Joi.string().email().required(),
@@ -12,7 +12,7 @@ export const validateLoginData = (req, res, next) => {
     if (!validateRes.error) {
         next();
     } else {
-        res.status(401).send({
+     res.status(401).send({
             status:'error',
             error:'Unknown credentials'
         })

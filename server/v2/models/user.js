@@ -1,51 +1,33 @@
-/* eslint-disable no-undef */
+import connect from './configs/connect-db';
+import { ADD_NEW_USER, CHECK_EMAIL_FROM_TABLE_USERS, GET_USER_BY_EMAIL } from './configs/queries';
 import { hashPassword } from '../helpers/passwordEncryption';
 
-class User{
-    constructor() {
-        this.data = [
-            {
-                "id":1,
-                fname: 'nezago',
-                lname: 'emma',
-                password: hashPassword('AnnounceIT1.'),
-                email: 'emmamugira@gmail.com',
-                isadmin:true
-            },
-            {
-                "id":2,
-                fname: 'descholar',
-                lname: 'emma',
-                password: hashPassword('AnnounceIT1.'),
-                email: 'descholar.stech@gmail.com',
-                isadmin:false
-            },
-            {
-                "id":3,
-                fname: 'descholar',
-                lname: 'NezaGo',
-                password: hashPassword('AnnounceIT1.'),
-                email: 'descholar.stechnologies@gmail.com',
-                isadmin:true
-            },
-        ];
+class User {
+    async saveUser(user) {
+        const { fname, lname, email, phonenumber, address, password, isadmin } = user;
+        const queryString = {text:ADD_NEW_USER,values:[fname,lname,address,phonenumber,email,password,isadmin]}
+        const { rows } = await connect.query(queryString);
+        return rows;
     }
 
-    //function to save new user
-    saveUser(user){
-        this.data.push(user);
-        return this.data.find((dat) => (dat.email === user.email));
+    async checkIfEmailExistsFromDb(user) {
+        const { email } = user;
+        const queryString = { text: CHECK_EMAIL_FROM_TABLE_USERS, values: [email] };
+        const { rows } = await connect.query(queryString);
+
+        return rows[0].exists;
     }
 
-    // fnction to get a user by email
-    getUserByEmail(email) {
-        return this.data.find((dat) => (dat.email === email));
+    async getUserByEmail(email) {
+        const queryString = { text: GET_USER_BY_EMAIL, values: [email] };
+        const { rows } = await connect.query(queryString);
+        return rows;
     }
 }
 
+
 class UsersData{
-    constructor(data,id) {
-        this.id = id;
+    constructor(data) {
         this.email = data.email;
         this.fname = data.fname;
         this.lname = data.lname;

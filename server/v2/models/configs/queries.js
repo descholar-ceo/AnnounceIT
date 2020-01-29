@@ -21,6 +21,14 @@ export const CREATE_TABLE_USERS = `
     isadmin BOOLEAN);
     `;
 
+export const GET_USER_BY_EMAIL = `
+SELECT * FROM users WHERE email=$1;
+`;
+
+/** CHECKING IF AN EMAIL EXISTS FROM TABLE USERS OR NOT */
+export const CHECK_EMAIL_FROM_TABLE_USERS = `
+SELECT EXISTS(SELECT 1 FROM users WHERE email = $1);
+`;
 
     //ADDING NEW USER
 export const ADD_NEW_USER = `

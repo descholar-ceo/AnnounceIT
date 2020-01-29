@@ -10,7 +10,7 @@ import { hashPassword } from '../../helpers/passwordEncryption';
 
 const migrateAllTables = async (isDone) => {
     await connect.query({text:CREATE_TABLE_USERS});
-    const hashedKey = await hashPassword('AnnounceIT1.');
+    const hashedKey = hashPassword('AnnounceIT1.');
     await connect.query({text:ADD_SAMPLE_USERS(hashedKey)});
     await connect.query({text:CREATE_TABLE_ANNOUNCEMENTS});
     await connect.query({text:ADD_SAMPLE_ANNOUNCEMENTS});
