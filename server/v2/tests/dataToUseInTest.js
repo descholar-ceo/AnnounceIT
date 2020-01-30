@@ -74,7 +74,7 @@ export default {
         "status": "deactivated"
     },
     dataToChangeAnnouncementStatusInvalidID: {
-        "id": "yyyyyyyyyyuuuuuuuu",
+        "id": 100,
         "status": "deactivated"
     },
     toTestUserUpdateAnnouncementDetails:{
@@ -82,7 +82,7 @@ export default {
 	"announcNewBody":"New body"
 },
     toTestUserUpdateAnnouncementDetailsNotExist:{
-	"announcId":"yu",
+	"announcId":0,
 	"announcNewBody":"New body"
 }
 }

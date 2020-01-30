@@ -1,4 +1,5 @@
-/** 
+
+/**
  * ===========================================================
  * ===========================================================
  * ==================1. TABLE USERS===========================
@@ -21,6 +22,14 @@ export const CREATE_TABLE_USERS = `
     isadmin BOOLEAN);
     `;
 
+export const GET_USER_BY_EMAIL = `
+SELECT * FROM users WHERE email=$1;
+`;
+
+/** CHECKING IF AN EMAIL EXISTS FROM TABLE USERS OR NOT */
+export const CHECK_EMAIL_FROM_TABLE_USERS = `
+SELECT EXISTS(SELECT 1 FROM users WHERE email = $1);
+`;
 
     //ADDING NEW USER
 export const ADD_NEW_USER = `
@@ -49,11 +58,11 @@ export const CREATE_TABLE_ANNOUNCEMENTS = `
     CREATE TABLE IF NOT EXISTS announcements (
     announcementid SERIAL PRIMARY KEY,
     announcementowner INTEGER,
-    announcementstatus VARCHAR(10),
+    announcementstatus VARCHAR(255),
     annoucemmenttext VARCHAR(255),
     announcementstartdate DATE,
     announcementsenddate DATE,
-    CONSTRAINT announcement_ownership FOREIGN KEY(announcementid) 
+    CONSTRAINT announcement_ownership FOREIGN KEY(announcementowner) 
     REFERENCES users(id));
     `;
 
@@ -61,5 +70,47 @@ export const CREATE_TABLE_ANNOUNCEMENTS = `
 export const ADD_SAMPLE_ANNOUNCEMENTS = `
 INSERT INTO announcements(
     announcementowner,announcementstatus,annoucemmenttext,announcementstartdate,announcementsenddate)
-    VALUES(1,'Pending','default',NOW(),'2020-12-31'),
-    (1,'active','default',NOW(),'2020-12-31');`;
+    VALUES(1,'Pending','default','2020-01-02','2020-12-31'),
+    (1,'active','default','2020-01-02','2020-12-31');`;
+
+    //ADD NEW ANNOUNCEMENT
+export const ADD_NEW_ANNOUNCEMENT = `
+    INSERT INTO announcements(
+    announcementowner,announcementstatus,annoucemmenttext,announcementstartdate,announcementsenddate)
+    VALUES($1,$2,$3,$4,$5) RETURNING*;
+`;
+
+//GET ALL FOR THE CURRENT USER
+export const GET_ALL_ANNOUNCEMENTS_FOR_CURRENT_USER = `
+SELECT * FROM announcements WHERE announcementowner=$1 ORDER BY announcementid DESC;
+`;
+
+// GET ANNOUNCEMENT BY ID
+export const GET_ANNOUNCEMENT_BY_ID = `
+SELECT * FROM announcements WHERE announcementid=$1 AND announcementowner=$2;
+`;
+
+// GET ANNOUNCEMENT BY STATUS
+export const GET_ANNOUNCEMENT_BY_STATUS = `
+SELECT * FROM announcements WHERE announcementstatus=$1 AND announcementowner=$2 ORDER BY announcementid DESC;
+`;
+
+//GET ALL ANNOUNCEMENTS
+export const GET_ALL_ANNOUNCEMENTS = `
+SELECT * FROM announcements ORDER BY announcementid DESC;
+`;
+
+// DELETE ANNOUNCEMENT BY ID
+export const DELETE_ANNOUNCEMENT = `
+DELETE FROM announcements WHERE announcementid=$1 RETURNING*;
+`;
+
+// UPDATE STATUS OF ANNOUNCEMENT
+export const UPDATE_ANNOUNCEMENT_STATUS = `
+UPDATE announcements SET announcementstatus=$1 WHERE announcementid=$2 RETURNING*;
+`;
+
+// USER UPDATE HIS ANNOUNCEMENT
+export const USER_UPDATE_HIS_ANNOUNCEMENT = `
+UPDATE announcements SET annoucemmenttext=$1 WHERE announcementid=$2 AND announcementowner=$3 RETURNING*;
+`;

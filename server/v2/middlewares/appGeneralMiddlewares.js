@@ -15,7 +15,7 @@ const appGeneralMiddlewares = (server, express) => {
 
   server.use('/', routes.defaltRoute);
   server.use('/api/v2/auth', routes.userRouter);
-  server.use('/api/v2/announcements', authenticate, routes.announcementRouter);
+  server.use('/api/v2/announcements', authenticate,routes.announcementRouter);
 };
 
 export default appGeneralMiddlewares;

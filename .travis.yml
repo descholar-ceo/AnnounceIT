@@ -1,7 +1,10 @@
 language: node_js
 node_js:
   - stable
-
+services:
+- postgresql
+before_script:
+- psql -c "create database announceit_db;" -U postgres
 install:
   - npm install
 

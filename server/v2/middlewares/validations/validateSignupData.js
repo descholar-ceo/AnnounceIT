@@ -1,20 +1,16 @@
 import user from '../../models/user';
 import Joi from '@hapi/joi';
 
-export const validateUserData = (req, res, next) => {
+export const validateUserData =async (req, res, next) => {
     const {
         fname, lname, email, phonenumber, address, password
     } = req.body;
 
     //checking if the email a user sent does exists
-    let registeredEmails = []; 
-    
-    user.users.data.forEach((currUser) => {
-        registeredEmails.push(currUser.email);
-    });
+    const isEmailRegistered = await user.users.checkIfEmailExistsFromDb(req.body);
 
     // validation
-    if (!registeredEmails.includes(email)) {
+    if (!isEmailRegistered) {
         const signupDataSchema = Joi.object({
         fname: Joi.string().required(),
         lname: Joi.string().required(),

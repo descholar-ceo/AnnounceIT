@@ -1,60 +1,61 @@
 import announcemment from '../models/announcement'
 
-// function to create new a new announcement
-export const addNewAnnouncement = (req, res) => {
-    const announcToSave = new announcemment.AnnouncementData(req.body,
-        announcemment.announcements.announcArray.length + 1, parseInt(req.authenticatedUser.id));
-    const savedAnnounceme = announcemment.announcements.addNewAnnouncement(announcToSave);
 
-    res.status(201).json({
+// function to create new a new announcement
+    export const addNewAnnouncement = async(req, res) => {
+    const announcToSave = new announcemment.AnnouncementData(req.body, parseInt(req.authenticatedUser.id));
+    const savedAnnounceme = await announcemment.announcements.addNewAnnouncement(announcToSave);
+
+    res.status(201).send({
         status: 'success',
-        data:savedAnnounceme
+        data:savedAnnounceme[0]
     });
 
 }
 
-export const getAllAnnouncementsByOwnerId = (req, res) => {
+export const getAllAnnouncementsByOwnerId  = async(req, res) =>{
     const { authenticatedUser } = req;
     
-        const allMyAnnouncs = announcemment.announcements.getAllAnnouncementsByOwnerId(authenticatedUser.id);
+        const allMyAnnouncs = await announcemment.announcements.getAllAnnouncementsByOwnerId(authenticatedUser.id);
             if (allMyAnnouncs.length !== 0) {
 
-            res.status(200).json({ status: 'success', data: allMyAnnouncs});
+                res.status(200).send({ status: 'success', data: allMyAnnouncs });
 
             } else {
                 res.status(404).send({ status: 'error', error: 'No announcements found'});
         }
     } 
 
-export const getSpecificAnnouncement = (req, res) => {
+export const getSpecificAnnouncement = async(req, res) =>{
     const { authenticatedUser } = req;
     const {announcementId} = req.params;
 
-    const gottenAnnounc = announcemment.announcements.getSpecificAnnouncementById(announcementId,
+    const gottenAnnounc = await announcemment.announcements.getSpecificAnnouncementById(announcementId,
         authenticatedUser.id);
-    if (gottenAnnounc) {
-        res.status(200).json({
-            status: 'success',
-            data: gottenAnnounc
-        })
-
-    } else {
-        res.status(404).send({
-            status: 'error',
-            error: 'The announcement you trying to get is not registered yet'
-        })
-    }
+    
+    if (gottenAnnounc.length !== 0) {
+            
+            res.status(200).send({
+                status: 'success',
+                data: gottenAnnounc[0]
+            });
+        } else {
+            res.status(404).send({
+                status: 'error',
+                error: 'You didn\'t such announcement'
+            });
+        }
 }
 
-export const getSpecificAnnouncementByStatus = (req, res) => {
+export const getSpecificAnnouncementByStatus = async(req, res) =>{
     const { authenticatedUser } = req;
     const {announcementStatus} = req.params;
 
-    const gottenAnnounc = announcemment.announcements
+    const gottenAnnounc = await announcemment.announcements
         .getSpecificAnnouncementByStatus(announcementStatus, authenticatedUser.id);
     
     if (gottenAnnounc.length!==0) {
-        res.status(200).json({
+        res.status(200).send({
             status: 'success',
             data: gottenAnnounc
         });
@@ -67,10 +68,10 @@ export const getSpecificAnnouncementByStatus = (req, res) => {
     }
 }
 
-export const adminGetAllAnnouncements = (req, res) => {
+export const adminGetAllAnnouncements = async(req, res) =>{
     const { authenticatedUser } = req;
     if (authenticatedUser.isadmin) {
-        const allAnnouncs = announcemment.announcements.adminGetAllAnnouncements();
+        const allAnnouncs = await announcemment.announcements.adminGetAllAnnouncements();
 
             if (allAnnouncs.length !== 0) {
                 res.status(200).send({
@@ -93,22 +94,25 @@ export const adminGetAllAnnouncements = (req, res) => {
     }
 }
 
-export const adminDeleteAnnouncement = (req, res) => {
+export const adminDeleteAnnouncement = async(req, res) =>{
     const { authenticatedUser } = req;
     const { id } = req.params;
-    if (announcemment.announcements.announcArray.length >= parseInt(id)) {
+    
         if (authenticatedUser.isadmin) {
-            const deletedElmt = announcemment.announcements.deleteAnnouncement(parseInt(id));
+            const deletedElmt = await announcemment.announcements.deleteAnnouncement(parseInt(id));
     if (deletedElmt.length!==0) {
         res.status(200).send({
             status: 'success',
-            data:  'Successfully deleted'
+            data: {
+                message: 'Successfully deleted, you cannot undo this action.',
+                deletedElmt
+            }
         })
 
     } else {
-        res.status(500).send({
+        res.status(404).send({
             status: 'error',
-            error: 'We failed to delete your announcement, try again!'
+            error: 'The element you want to delete is not found'
         });
     }
     } else {
@@ -117,32 +121,26 @@ export const adminDeleteAnnouncement = (req, res) => {
             error: 'You are not admin, admin only can delete'
         });
     }
-    } else {
-        res.status(404).send({
-            status: 'error',
-            error: 'The element you want to delete is not found'
-        });
-    } 
+    
 }
 
-export const adminChangeAnnouncementStatus = (req, res) => {
+export const adminChangeAnnouncementStatus  = async(req, res) =>{
     const { id, status } = req.body;
     const { authenticatedUser } = req;
-    
     if (authenticatedUser.isadmin) {
-        const changedAnnouncement = announcemment.announcements
+        const changedAnnouncement = await announcemment.announcements
             .adminChangeStatusOfAnnouncement(parseInt(id), status);
-        
-        if (changedAnnouncement) {
-            res.status(200).json({
+        if (changedAnnouncement.length!==0) {
+            
+            res.status(200).send({
                 status: 'success',
-                data: changedAnnouncement
+                data: changedAnnouncement[0]
             });
 
         } else {
-            res.status(500).send({
+            res.status(404).send({
                 status: 'error',
-                error:'Failed to update the announcement you want, try again'
+                error:'The announcement you want to update doens\'t exist'
             })
         }
     } else {
@@ -157,17 +155,15 @@ export const adminChangeAnnouncementStatus = (req, res) => {
 FUNCTION TO HELP A USER UPDATE HIS ANNOUNCEMENT BY SENDING ANNOUNCEMENT_ID
 AND NEW ANNOUNCEMENT DETAILS HE WANT TO PUT
 */
-export const userUpdateHisAnnouncement = (req, res) => {
+export const userUpdateHisAnnouncement = async (req, res) =>{
     const { id: userId } = req.authenticatedUser;
         const { announcId, announcNewBody } = req.body;
-        const changedAnnouncement = announcemment.announcements.userUpdatesHisAnnouncement(userId, announcId, announcNewBody)
+        const changedAnnouncement = await announcemment.announcements.userUpdatesHisAnnouncement(userId, announcId, announcNewBody)
         
-        if (changedAnnouncement) {
-            res.status(200).send({ status: 'success', data: changedAnnouncement });
+        if (changedAnnouncement.length!==0) {
+            res.status(200).send({ status: 'success', data: changedAnnouncement[0] });
 
         } else {
             res.status(500).send({ status: 'error', error: 'This is most likely you didn\'t enter a right announcement_ID' });
         }
-    
-    
-}
+ }
