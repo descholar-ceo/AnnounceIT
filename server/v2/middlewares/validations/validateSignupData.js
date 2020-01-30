@@ -8,7 +8,6 @@ export const validateUserData =async (req, res, next) => {
 
     //checking if the email a user sent does exists
     const isEmailRegistered = await user.users.checkIfEmailExistsFromDb(req.body);
-    console.log()
 
     // validation
     if (!isEmailRegistered) {

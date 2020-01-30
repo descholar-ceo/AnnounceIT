@@ -1,101 +1,88 @@
+import {
+    ADD_NEW_ANNOUNCEMENT,
+    GET_ALL_ANNOUNCEMENTS_FOR_CURRENT_USER,
+    GET_ANNOUNCEMENT_BY_ID,
+    GET_ANNOUNCEMENT_BY_STATUS,
+    GET_ALL_ANNOUNCEMENTS,
+    DELETE_ANNOUNCEMENT,
+    UPDATE_ANNOUNCEMENT_STATUS,
+    USER_UPDATE_HIS_ANNOUNCEMENT
+} from "./configs/queries";
+import connect from "./configs/connect-db";
+
 class Announcements{
-    constructor() {
-        this.announcArray = [{
-        "announcementid":1,
-        "announcementowner":1,
-        "announcementstatus":"pending",
-        "annoucemmenttext":"default",
-        "announcementstartdate":"default startdate",
-        "announcementsenddate":"default enddate"
-},{
-        "announcementid":2,
-        "announcementowner":1,
-        "announcementstatus":"active",
-        "annoucemmenttext":"default",
-        "announcementstartdate":"default startdate",
-        "announcementsenddate":"default enddate"
-}];
-    }
 
     // adding new
-    addNewAnnouncement(announcement) {
-        this.announcArray.push(announcement);
-        return this.announcArray.find((announc) => announc.announcementid === announcement.announcementid);
+    async addNewAnnouncement(announcement) {
+        const {
+            announcementowner,
+            announcementstatus,
+            annoucemmenttext,
+            announcementstartdate,
+            announcementsenddate
+        } = announcement;
+        const queryString = {
+            text: ADD_NEW_ANNOUNCEMENT,
+            values: [
+                announcementowner,
+                announcementstatus,
+                annoucemmenttext,
+                new Date(announcementstartdate),
+                new Date(announcementsenddate)]
+        };
+       
+        const {rows} = await connect.query(queryString);
+        
+        return rows;
     }
 
     // all for a currently logged in user
-    getAllAnnouncementsByOwnerId(owner) {
-        let foundAnnouncA=[];
-        this.announcArray.forEach((currAnn) => {
-            if (currAnn.announcementowner === owner) {
-                foundAnnouncA.push(currAnn);
-            }
-        });
-        return foundAnnouncA;
+    async getAllAnnouncementsByOwnerId(owner) {
+        const { rows } = await connect.query({ text: GET_ALL_ANNOUNCEMENTS_FOR_CURRENT_USER, values: [owner] });
+        return rows;
     }
 
     // by id
-    getSpecificAnnouncementById(announcID, userID) {
-        return this.announcArray.find((currAnn) => parseInt(currAnn.announcementowner) === parseInt(userID)
-            && parseInt(currAnn.announcementid) === parseInt(announcID));
+    async getSpecificAnnouncementById(announcID, userID) {
+        const { rows } = await connect.query({ text: GET_ANNOUNCEMENT_BY_ID, values: [announcID, userID] });
+        return rows;
     }
 
     // by status
-    getSpecificAnnouncementByStatus(announcStatus, userID) {
-        let newArr = [];
-        this.announcArray.forEach((currAnn) => {
-            if (currAnn.announcementstatus === announcStatus && parseInt(currAnn.announcementowner) === parseInt(userID)) {
-                newArr.push(currAnn);
-            }
-        });
-        return newArr;
+    async getSpecificAnnouncementByStatus(announcStatus, userID) {
+        const { rows } = await connect
+            .query({ text: GET_ANNOUNCEMENT_BY_STATUS, values: [announcStatus, userID] });
+        return rows;
     }
 
     // admin get all
-    adminGetAllAnnouncements(){
-        return this.announcArray;
+    async adminGetAllAnnouncements() {
+        const { rows } = await connect.query({ text: GET_ALL_ANNOUNCEMENTS });
+        return rows;
     }
 
     // delete announcement
-    deleteAnnouncement(id) {
-        return this.announcArray.splice(id);
+    async deleteAnnouncement(id) {
+        const { rows } = await connect.query({ text: DELETE_ANNOUNCEMENT, values: [id] });
+        return rows;
     }
 
     // update status
-    adminChangeStatusOfAnnouncement(announcId, status) {
-        let changedAnnounc;
-        this.announcArray.forEach((currAnn) => {
-            if (currAnn.announcementid === announcId) {
-                currAnn.announcementstatus = status;
-                changedAnnounc = currAnn;
-            }
-        });
-
-        return changedAnnounc;
+    async adminChangeStatusOfAnnouncement(announcId, status) {
+        const { rows } = await connect.query({ text: UPDATE_ANNOUNCEMENT_STATUS, values: [status, announcId] });
+        return rows;
     }
 
     // update user announcement
-    userUpdatesHisAnnouncement(userID, announcId, annNewBody) {
-        let changedAnnounc;//TO HOLD THE CHANGED ANNOUNCEMENT_DATA TO DISPLAY IS ON THE FRONTEND
-        this.announcArray.forEach((currAnn) => {
-            
-            if (parseInt(currAnn.announcementid) === parseInt(announcId)
-                && parseInt(currAnn.announcementowner) === parseInt(userID)) {
-                
-                    // HERE YOU CAN UPDATE OTHER PROPERTIES AS WELL
-                currAnn.annoucemmenttext = annNewBody;
-                changedAnnounc = currAnn;
-            }
-        });
-
-        return changedAnnounc;
+    async userUpdatesHisAnnouncement(userID, announcId, annNewBody) {
+        const { rows } = await connect.query({ text: USER_UPDATE_HIS_ANNOUNCEMENT, values: [annNewBody, announcId, userID] });
+        return rows;
     }
     
 }
 
 class AnnouncementData{
-    constructor(announcData, id, ownerId) {
-        this.announcementid = id;
+    constructor(announcData, ownerId) {
         this.announcementowner = ownerId;
         this.announcementstatus = "Pending"
         this.annoucemmenttext = announcData.text;

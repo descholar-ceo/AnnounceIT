@@ -25,8 +25,6 @@ describe('Announcements', () => {
                 expect(res.body).to.have.property('data').to.be.an('object').to.have.property('announcementid').to.equal(3);
                 expect(res.body).to.have.property('data').to.be.an('object').to.have.property('annoucemmenttext').to.equal('buying macbooks');
                 expect(res.body).to.have.property('data').to.be.an('object').to.have.property('announcementstatus').to.equal('Pending');
-                expect(res.body).to.have.property('data').to.be.an('object').to.have.property('announcementstartdate').to.equal('2020-01-09');
-                expect(res.body).to.have.property('data').to.be.an('object').to.have.property('announcementsenddate').to.equal('2020-03-13');
                 done();
             });
     });
@@ -106,9 +104,7 @@ describe('Announcements', () => {
                 expect(res.body).to.have.property('status').to.equal('success');
                 expect(res.body).to.have.property('data').to.be.an('object').to.have.property('announcementid').to.equal(1);
                 expect(res.body).to.have.property('data').to.be.an('object').to.have.property('annoucemmenttext').to.equal('default');
-                expect(res.body).to.have.property('data').to.be.an('object').to.have.property('announcementstatus').to.equal('pending');
-                expect(res.body).to.have.property('data').to.be.an('object').to.have.property('announcementstartdate').to.equal('default startdate');
-                expect(res.body).to.have.property('data').to.be.an('object').to.have.property('announcementsenddate').to.equal('default enddate');
+                expect(res.body).to.have.property('data').to.be.an('object').to.have.property('announcementstatus').to.equal('Pending');
                 done();
             });
     });
@@ -138,7 +134,7 @@ describe('Announcements', () => {
                 expect(res).to.have.status(404);
                 expect(res.body).to.be.an('object');
                 expect(res.body).to.have.property('status').to.equal('error');
-                expect(res.body).to.have.property('error').to.equal('The announcement you trying to get is not registered yet');
+                expect(res.body).to.have.property('error').to.equal('You didn\'t such announcement');
                 done();
             });
     });
@@ -178,7 +174,7 @@ describe('Announcements', () => {
     it('Testing get specific announcement by status with valid token : Should return object with 200 status, containing properties status and data', (done) => { 
         const token = generateToken(data.dataOfAValidToken);
         chai.request(server)
-            .get(`/api/v2/announcements/get-specific-announcement-by-status/pending`)
+            .get(`/api/v2/announcements/get-specific-announcement-by-status/Pending`)
             .set('authorization', `Bearer ${token}`)
             .end((err, res) => {
                 if (err) done(err);
@@ -237,8 +233,6 @@ describe('Announcements', () => {
                 expect(res.body).to.have.property('data').to.be.an('object').to.have.property('announcementid').to.equal(2);
                 expect(res.body).to.have.property('data').to.be.an('object').to.have.property('annoucemmenttext').to.equal('default');
                 expect(res.body).to.have.property('data').to.be.an('object').to.have.property('announcementstatus').to.equal('deactivated');
-                expect(res.body).to.have.property('data').to.be.an('object').to.have.property('announcementstartdate').to.equal('default startdate');
-                expect(res.body).to.have.property('data').to.be.an('object').to.have.property('announcementsenddate').to.equal('default enddate');
                 done();
             });
     });
@@ -251,10 +245,10 @@ describe('Announcements', () => {
             .send(data.dataToChangeAnnouncementStatusInvalidID)
             .end((err, res) => {
                 if (err) done(err);
-                expect(res).to.have.status(500);
+                expect(res).to.have.status(404);
                 expect(res.body).to.be.an('object');
                 expect(res.body).to.have.property('status').to.equal('error');
-                expect(res.body).to.have.property('error').to.equal('Failed to update the announcement you want, try again');
+                expect(res.body).to.have.property('error').to.equal('The announcement you want to update doens\'t exist');
                 done();
             });
     });
@@ -289,9 +283,7 @@ describe('Announcements', () => {
                 expect(res.body).to.have.property('status').to.equal('success');
                 expect(res.body).to.have.property('data').to.be.an('object').to.have.property('announcementid').to.equal(1);
                 expect(res.body).to.have.property('data').to.be.an('object').to.have.property('annoucemmenttext').to.equal('New body');
-                expect(res.body).to.have.property('data').to.be.an('object').to.have.property('announcementstatus').to.equal('pending');
-                expect(res.body).to.have.property('data').to.be.an('object').to.have.property('announcementstartdate').to.equal('default startdate');
-                expect(res.body).to.have.property('data').to.be.an('object').to.have.property('announcementsenddate').to.equal('default enddate');
+                expect(res.body).to.have.property('data').to.be.an('object').to.have.property('announcementstatus').to.equal('Pending');
                 done();
             });
     });
@@ -318,14 +310,14 @@ describe('Announcements', () => {
     containing properties status and data`, (done) => { 
             const token = generateToken(data.dataOfAValidToken);
         chai.request(server)
-            .delete(`/api/v2/announcements/admin-delete-announcement/0`)
+            .delete(`/api/v2/announcements/admin-delete-announcement/1`)
             .set('authorization', `Bearer ${token}`)
             .end((err, res) => {
                 if (err) done(err);
                 expect(res).to.have.status(200);
                 expect(res.body).to.be.an('object');
                 expect(res.body).to.have.property('status').to.equal('success');
-                expect(res.body).to.have.property('data').to.equal('Successfully deleted');
+                expect(res.body).to.have.property('data').to.be.an('object').to.have.property('message').equal('Successfully deleted, you cannot undo this action.');
                 done();
             });
     });
@@ -334,7 +326,7 @@ describe('Announcements', () => {
     containing properties status and data`, (done) => { 
             const token = generateToken(data.dataOfAValidToken);
         chai.request(server)
-            .delete(`/api/v2/announcements/admin-delete-announcement/1000000000000000000011111110`)
+            .delete(`/api/v2/announcements/admin-delete-announcement/0`)
             .set('authorization', `Bearer ${token}`)
             .end((err, res) => {
                 if (err) done(err);
@@ -361,35 +353,19 @@ describe('Announcements', () => {
                 done();
             });
     });
-     //admin delete announcement
-    it(`Testing delete announcement : Should return an error with 500 status, 
-    containing properties status and data`, (done) => { 
-            const token = generateToken(data.dataOfAValidToken);
-        chai.request(server)
-            .delete(`/api/v2/announcements/admin-delete-announcement/0`)
-            .set('authorization', `Bearer ${token}`)
-            .end((err, res) => {
-                if (err) done(err);
-                expect(res).to.have.status(500);
-                expect(res.body).to.be.an('object');
-                expect(res.body).to.have.property('status').to.equal('error');
-                expect(res.body).to.have.property('error').to.equal('We failed to delete your announcement, try again!');
-                done();
-            });
-    });
 
      // admin can get all the announcements with valid
-    it('Testing admin get all announcement from all users with toke admin : Should return object with 200 status, containing properties status and data', (done) => { 
-        const token = generateToken(data.dataOfAValidToken);
+    it('Testing, sending an empty token on secured route', (done) => { 
+        // const token = generateToken(data.dataOfAValidToken);
         chai.request(server)
             .get(`/api/v2/announcements/admin-get-all-announcements-from-all-users`)
-            .set('authorization', `Bearer ${token}`)
+            .set('Accept', `Application/json`)
             .end((err, res) => {
                 if (err) done(err);
-                expect(res).to.have.status(404);
+                expect(res).to.have.status(401);
                 expect(res.body).to.be.an('object');
                 expect(res.body).to.have.property('status').to.equal('error');
-                expect(res.body).to.have.property('error').to.equal('It seems like no one has posted any announcement yet!');
+                expect(res.body).to.have.property('error').to.equal('Login first!');
                 done();
             });
     });
