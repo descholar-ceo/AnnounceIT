@@ -47,3 +47,23 @@ export const getUser = async (req, res)=>{
             });
         }
 }
+
+// password reset
+export const passwordReset = async (req, res) => {
+    const resetPasswordResults = await user.users.passwordReset(req.body);
+    switch (resetPasswordResults.status) {
+        case 1:
+        case 4:
+            res.status(401).send({status:'error',error:resetPasswordResults.error});
+            break;
+        case 2:
+            res.status(200).send({ status: 'success', message: resetPasswordResults.message });
+            break;
+        case 3:
+            res.status(400).send({ status: 'error', error: resetPasswordResults.error });
+            break;
+        case 5:
+            res.status(200).send({ status: 'success', message: resetPasswordResults.message });
+            break;
+    }
+}

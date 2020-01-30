@@ -1,6 +1,7 @@
 import {
     addUser,
-    getUser
+    getUser,
+    passwordReset,
 } from './userControllers';
 import { 
     addNewAnnouncement,
@@ -16,6 +17,7 @@ import {
 export default {
     addUser,
     getUser,
+    passwordReset,
     addNewAnnouncement,
     getAllAnnouncementsByOwnerId,
     getSpecificAnnouncement,

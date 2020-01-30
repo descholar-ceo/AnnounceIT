@@ -1,4 +1,3 @@
-
 /**
  * ===========================================================
  * ===========================================================
@@ -37,12 +36,17 @@ INSERT INTO users(fname, lname, address, phonenumber, email, password, isadmin)
 VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING*;    
 `
 
+// UPDATE USER PASSWORD
+export const UPDATE_USER_PASSWORD = `
+UPDATE users SET password=$1 WHERE email=$2 RETURNING*;
+`;
+
 // ADDING SAMPLE USERS FOR TEST
-export const ADD_SAMPLE_USERS = (hashedKey) => (`INSERT INTO users(
+export const ADD_SAMPLE_USERS = (hashedPassword) => (`INSERT INTO users(
         fname, lname, address, phonenumber, email, password, isadmin) VALUES
-    ('nezago','emma','Kigali','0782229462','emmamugira@gmail.com','${hashedKey}',true),
-    ('descholar','emma','Kigali','0782229462','descholar.stech@gmail.com','${hashedKey}',false),
-    ('descholar','NezaGo','Kigali','0782229462','descholar.stechnologies@gmail.com','${hashedKey}',true);`);
+    ('nezago','emma','Kigali','0782229462','emmamugira@gmail.com','${hashedPassword}',true),
+    ('descholar','emma','Kigali','0782229462','descholar.stech@gmail.com','${hashedPassword}',false),
+    ('descholar','NezaGo','Kigali','0782229462','descholar.stechnologies@gmail.com','${hashedPassword}',true);`);
 
 
 /**
