@@ -73,18 +73,10 @@ export const adminGetAllAnnouncements = async(req, res) =>{
     if (authenticatedUser.isadmin) {
         const allAnnouncs = await announcemment.announcements.adminGetAllAnnouncements();
 
-            if (allAnnouncs.length !== 0) {
-                res.status(200).send({
+            res.status(200).send({
                     status: 'success',
                     data: allAnnouncs
                 });
-
-            } else {
-                res.status(404).send({
-                    status: 'error',
-                    error:'It seems like no one has posted any announcement yet!'
-                })
-            }
         
     } else {
         res.status(401).send({

@@ -6,7 +6,8 @@ import {
     GET_ALL_ANNOUNCEMENTS,
     DELETE_ANNOUNCEMENT,
     UPDATE_ANNOUNCEMENT_STATUS,
-    USER_UPDATE_HIS_ANNOUNCEMENT
+    USER_UPDATE_HIS_ANNOUNCEMENT,
+    CHECK_ANNOUNCEMENT_EXISTANCE
 } from "./configs/queries";
 import connect from "./configs/connect-db";
 
@@ -77,6 +78,12 @@ class Announcements{
     async userUpdatesHisAnnouncement(userID, announcId, annNewBody) {
         const { rows } = await connect.query({ text: USER_UPDATE_HIS_ANNOUNCEMENT, values: [annNewBody, announcId, userID] });
         return rows;
+    }
+
+    // check if announcement exists
+    async checkIfAnnouncementExist(announcId) {
+        const { rows } = await connect.query({ text: CHECK_ANNOUNCEMENT_EXISTANCE, values: [announcId] });
+        return rows[0].exists;
     }
     
 }

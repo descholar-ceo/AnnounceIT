@@ -84,5 +84,15 @@ export default {
     toTestUserUpdateAnnouncementDetailsNotExist:{
 	"announcId":0,
 	"announcNewBody":"New body"
+    },
+    toTestAddNewFlag: {
+	"announcement_id":"2",
+	"reason":"RealEstate",
+	"description":"Cool kabsa"
+},
+    toTestAddNewFlagWithInValidId: {
+	"announcement_id":"0",
+	"reason":"RealEstate",
+	"description":"Cool kabsa"
 }
 }
