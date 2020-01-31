@@ -47,3 +47,15 @@ export const getUser = async (req, res)=>{
             });
         }
 }
+
+// add a user to blacklist
+export const addUserToBlacklist = async (req, res) => {
+    const { authenticatedUser } = req;
+    if (authenticatedUser.isadmin) {
+        const blaclistedUser =
+            await user.users.addUserToBlackList(parseInt(req.body.id),req.body.isactive);
+        res.status(200).send({ status: 'success', data: blaclistedUser });
+    } else {
+        res.status(403).send({ error: 'You are not admin, admins only can blaclist users!' });
+    }
+}

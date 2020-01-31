@@ -19,11 +19,17 @@ export const CREATE_TABLE_USERS = `
     phonenumber VARCHAR(255),
     email VARCHAR(50) UNIQUE,
     password VARCHAR(255),
-    isadmin BOOLEAN);
+    isadmin BOOLEAN,
+    isactive BOOLEAN);
     `;
 
+    // GET USER BY EMAIL
 export const GET_USER_BY_EMAIL = `
 SELECT * FROM users WHERE email=$1;
+`;
+    // GET USER BY EMAIL
+export const GET_USER_BY_ID = `
+SELECT isactive FROM users WHERE id=$1;
 `;
 
 /** CHECKING IF AN EMAIL EXISTS FROM TABLE USERS OR NOT */
@@ -33,17 +39,20 @@ SELECT EXISTS(SELECT 1 FROM users WHERE email = $1);
 
     //ADDING NEW USER
 export const ADD_NEW_USER = `
-INSERT INTO users(fname, lname, address, phonenumber, email, password, isadmin) 
-VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING*;    
+INSERT INTO users(fname, lname, address, phonenumber, email, password, isadmin,isactive) 
+VALUES($1, $2, $3, $4, $5, $6, $7, true) RETURNING*;    
 `
 
 // ADDING SAMPLE USERS FOR TEST
 export const ADD_SAMPLE_USERS = (hashedKey) => (`INSERT INTO users(
-        fname, lname, address, phonenumber, email, password, isadmin) VALUES
-    ('nezago','emma','Kigali','0782229462','emmamugira@gmail.com','${hashedKey}',true),
-    ('descholar','emma','Kigali','0782229462','descholar.stech@gmail.com','${hashedKey}',false),
-    ('descholar','NezaGo','Kigali','0782229462','descholar.stechnologies@gmail.com','${hashedKey}',true);`);
+        fname, lname, address, phonenumber, email, password, isadmin,isactive) VALUES
+    ('nezago','emma','Kigali','0782229462','emmamugira@gmail.com','${hashedKey}',true,true),
+    ('descholar','emma','Kigali','0782229462','descholar.stech@gmail.com','${hashedKey}',false,false),
+    ('descholar','NezaGo','Kigali','0782229462','descholar.stechnologies@gmail.com','${hashedKey}',true,true);`);
 
+export const ADD_USER_TO_BLACKLIST = `
+UPDATE users SET isactive=$1 WHERE id=$2 RETURNING id,fname,email,isactive;
+`;
 
 /**
  * ===========================================================
@@ -118,6 +127,7 @@ UPDATE announcements SET annoucemmenttext=$1 WHERE announcementid=$2 AND announc
 export const CHECK_ANNOUNCEMENT_EXISTANCE = `
 SELECT EXISTS(SELECT 1 FROM announcements WHERE announcementid = $1);
 `;
+
 /**
  * ==================================================================
  * ==================================================================

@@ -2,10 +2,11 @@
 import { Router } from 'express';
 import controllers from '../../controllers';
 import { validateAnnouncementData } from '../../middlewares/validations/validateAnnouncementData';
+import { validateUserStatus } from '../../middlewares/validations/validateUserStatus';
 
 const announcementRouter = new Router();
 
-announcementRouter.post('/create-announcement',
+announcementRouter.post('/create-announcement',validateUserStatus,
     validateAnnouncementData,controllers.addNewAnnouncement);
 announcementRouter.get('/get-all-announcement-for-current-user',
     controllers.getAllAnnouncementsByOwnerId);

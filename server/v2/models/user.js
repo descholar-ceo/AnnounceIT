@@ -1,5 +1,5 @@
 import connect from './configs/connect-db';
-import { ADD_NEW_USER, CHECK_EMAIL_FROM_TABLE_USERS, GET_USER_BY_EMAIL } from './configs/queries';
+import { ADD_NEW_USER, CHECK_EMAIL_FROM_TABLE_USERS, GET_USER_BY_EMAIL, ADD_USER_TO_BLACKLIST, GET_USER_BY_ID } from './configs/queries';
 import { hashPassword } from '../helpers/passwordEncryption';
 
 class User {
@@ -22,6 +22,14 @@ class User {
         const queryString = { text: GET_USER_BY_EMAIL, values: [email] };
         const { rows } = await connect.query(queryString);
         return rows;
+    }
+    async addUserToBlackList(id,sentStatus) {
+        const { rows } = await connect.query({ text: ADD_USER_TO_BLACKLIST, values: [sentStatus,id] });
+        return rows;
+    }
+    async isUserActive(userId) {
+        const { rows } = await connect.query({ text: GET_USER_BY_ID, values: [userId] });
+        return rows[0];
     }
 }
 

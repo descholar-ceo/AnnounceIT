@@ -1,6 +1,7 @@
 import {
     addUser,
-    getUser
+    getUser,
+    addUserToBlacklist
 } from './userControllers';
 import { 
     addNewAnnouncement,
@@ -32,5 +33,6 @@ export default {
     adminDeleteAnnouncement,
     addFlag,
     getFlagByAnnouncement,
-    getFlagByReason
+    getFlagByReason,
+    addUserToBlacklist
 };
