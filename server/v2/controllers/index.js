@@ -12,7 +12,13 @@ import {
     userUpdateHisAnnouncement,
     adminChangeAnnouncementStatus,
     adminDeleteAnnouncement,
- } from './announcementControllers';
+} from './announcementControllers';
+ 
+import {
+    addFlag,
+    getFlagByAnnouncement,
+    getFlagByReason
+} from './flagControllers';
 
 export default {
     addUser,
@@ -26,4 +32,7 @@ export default {
     userUpdateHisAnnouncement,
     adminChangeAnnouncementStatus,
     adminDeleteAnnouncement,
+    addFlag,
+    getFlagByAnnouncement,
+    getFlagByReason
 };
