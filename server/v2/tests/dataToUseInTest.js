@@ -104,5 +104,15 @@ export default {
     },
     toTestPasswordResetWrongEmail: {
         "email": "emmamugi@gmail.com"
-    }
+    },
+    toTestAddNewFlag: {
+	"announcement_id":"2",
+	"reason":"RealEstate",
+	"description":"Cool kabsa"
+},
+    toTestAddNewFlagWithInValidId: {
+	"announcement_id":"0",
+	"reason":"RealEstate",
+	"description":"Cool kabsa"
+}
 }
