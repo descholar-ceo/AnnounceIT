@@ -109,4 +109,68 @@ describe('Authentication', () => {
             });
     });
 
+    // for resetting password with wrong password
+    it('Reset password with good data(email and pass): should return an object of with status code 200', (done) => {
+        chai.request(server)
+            .post('/api/v2/auth/reset-password')
+            .set('Accept', 'Application/json')
+            .send(data.toTestPasswordResetWrongPassword)
+            .end((err, res) => {
+                if (err) done(err);
+                expect(res).to.have.status(401);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('status').to.equal('error');
+                expect(res.body).to.have.property('error').to.equal('unknown credentials');
+                done();
+            });
+    });
+    // for resetting password with wrong password
+    it('Reset password with good data(email and pass): should return an object of with status code 200', (done) => {
+        chai.request(server)
+            .post('/api/v2/auth/reset-password')
+            .set('Accept', 'Application/json')
+            .send(data.toTestPasswordWithoutNewPassword)
+            .end((err, res) => {
+                if (err) done(err);
+                expect(res).to.have.status(400);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('status').to.equal('error');
+                expect(res.body).to.have.property('error').to.equal('cannot reset password to none, login instead');
+                done();
+            });
+    });
+
+    // for resetting password with good data
+    it('Reset password with good data(email and pass): should return an object of with status code 200', (done) => {
+        chai.request(server)
+            .post('/api/v2/auth/reset-password')
+            .set('Accept', 'Application/json')
+            .send(data.toTestPasswordResetEmailAndPassData)
+            .end((err, res) => {
+                if (err) done(err);
+                expect(res).to.have.status(200);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('status').to.equal('success');
+                expect(res.body).to.have.property('message').to.equal('password updated successfully');
+                done();
+            });
+    });
+
+    // for resetting password with good data
+    it('Reset password with good data: should return a ststus of with status code 200', (done) => {
+        chai.request(server)
+            .post('/api/v2/auth/reset-password')
+            .set('Accept', 'Application/json')
+            .send(data.toTestPasswordResetGoodData)
+            .end((err, res) => {
+                if (err) done(err);
+                expect(res).to.have.status(200);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('status').to.equal('success');
+                expect(res.body).to.have.property('message').to.equal('your password is reset successfully, we sent an email to you, check it');
+                done();
+            });
+    });
+    
+
 });

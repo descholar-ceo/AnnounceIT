@@ -84,5 +84,25 @@ export default {
     toTestUserUpdateAnnouncementDetailsNotExist:{
 	"announcId":0,
 	"announcNewBody":"New body"
-}
+    },
+    toTestPasswordResetGoodData: {
+        "email": "emmamugira@gmail.com"
+    },
+    toTestPasswordResetEmailAndPassData: {
+        "email": "emmamugira@gmail.com",
+        "oldpassword": "AnnounceIT1.",
+        "newpassword":"Announceit1."
+    },
+    toTestPasswordWithoutNewPassword: {
+        "email": "emmamugira@gmail.com",
+        "oldpassword": "AnnounceIT1."
+    },
+    toTestPasswordResetWrongPassword: {
+        "email": "emmamugira@gmail.com",
+        "oldpassword": "12345.",
+        "newpassword":"Announceit1."
+    },
+    toTestPasswordResetWrongEmail: {
+        "email": "emmamugi@gmail.com"
+    }
 }

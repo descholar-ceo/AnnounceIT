@@ -7,5 +7,6 @@ const userRouter = new Router();
 
 userRouter.post('/signup', validateUserData, controllers.addUser);
 userRouter.post('/signin', validateLoginData, controllers.getUser);
+userRouter.post('/reset-password', controllers.passwordReset);
 
 export default userRouter;
